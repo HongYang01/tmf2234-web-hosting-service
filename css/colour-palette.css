@@ -1,0 +1,10 @@
+.color-palette {
+	width: 280px;
+	justify-content: space-evenly;
+}
+
+.color-palette > span {
+	height: 45px;
+	width: 45px;
+	background-color: var(--color-current);
+}

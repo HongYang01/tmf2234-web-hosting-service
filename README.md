@@ -1,8 +1,8 @@
 # TMF2234 Web Based System Development Assignment
 
-## Developed by Team: Semicolon
+## Topic : Web Host Service
 
-Members:
+## Developed by Team: _Semicolon_
 
 - **79880** LIM HONG YANG
 - **79065** CHIN TECK YUNG
@@ -11,5 +11,7 @@ Members:
 - **79027** CHAI CHENG KANG
 
 ---
+
+## Colour Palette
 
 ## Manual

@@ -1,13 +1,27 @@
 * {
-	--color-black: #454545;
-	--color-white: #ffe6c7;
+	/* Hong Yang */
+	--color-black: black;
+	--color-white: #ffffff;
+	--color-gray: #e1e1e1;
 	--color-orange: #ff6000;
-	--color-peach: #ffa559;
+	--color-paleOrange: #ffa559;
+	--color-peach: #ffe6c7;
+
+	/* Teck Yung */
+	/* --color-black: #31708e;
+	--color-white: #88bdbc;
+	--color-orange: #eee2dc;
+	--color-peach: #b1a296; */
+
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: var(--color-black);
+
 	--font-size-title: 45px;
 	--font-size-h1: 18px;
 	--font-size-normal: 20px;
 
-	font-family: "Courier New", Courier, monospace;
+	letter-spacing: 1px;
+	scroll-behavior: smooth;
 }
 
 html,
@@ -15,23 +29,34 @@ body {
 	/* min-height: 100dvh; //dynamic view height */
 	padding: 0;
 	margin: 0;
+	background-color: var(--color-white);
 }
 
 .black {
-	color: var(--color-black);
+	--color-current: var(--color-black);
 }
 
 .white {
-	color: var(--color-white);
+	--color-current: var(--color-white);
+}
+
+.gray {
+	--color-current: var(--color-gray);
 }
 
 .orange {
-	color: var(--color-orange);
+	--color-current: var(--color-orange);
+}
+
+.paleOrange {
+	--color-current: var(--color-paleOrange);
 }
 
 .peach {
-	color: var(--color-peach);
+	--color-current: var(--color-peach);
 }
+
+/* Font Style */
 
 .text-title {
 	font-size: var(--font-size-title);
@@ -49,6 +74,8 @@ body {
 	font-weight: bold;
 }
 
+/* Panel */
+
 .zero-margin {
 	margin: 0;
 }
@@ -57,19 +84,34 @@ body {
 	padding: 0;
 }
 
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
 .container-main {
 	display: block;
 	height: auto;
 	width: 100%;
 	min-width: 100%;
-	background-color: var(--color-peach);
+	background-color: var(--color-current);
+}
+
+.container-content {
 }
 
 .centre {
-	margin: 0 auto;
+	display: block;
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 p {
-	display: block;
-	width: fit-content;
+	color: var(--color-current);
 }
