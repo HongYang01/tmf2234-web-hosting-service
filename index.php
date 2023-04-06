@@ -13,6 +13,7 @@
 
 <body>
 
+    <!-- may edit to see changes -->
     <div class="flex-row">
         <p>Color Palette</p>
         <div class="color-palette flex-row">
