@@ -25,7 +25,7 @@
 
 .nav-bar > div > a:hover {
 	cursor: pointer;
-	background-color: var(--color-orange);
+	background-color: var(--color-c2);
 	color: var(--color-white);
 	opacity: 0.8;
 }

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/effect.js"></script>
     <title>Semicolonix</title>
-
 </head>
 
 <body>
@@ -23,18 +22,18 @@
     require_once(__DIR__ . "{$ds}php{$ds}nav.php");
     ?>
 
-    <!-- <div class="flex-row">
+    <div class="flex-row">
         <p>Color Palette</p>
         <div class="color-palette flex-row">
-            <span class="gray" title="Gray"></span>
             <span class="black" title="Black"></span>
-            <span class="orange" title="Orange"></span>
-            <span class="paleOrange" title="Pale Orange"></span>
-            <span class="peach" title="Peach"></span>
+            <span class="c1" title="c1"></span>
+            <span class="c2" title="c2"></span>
+            <span class="c3" title="c3"></span>
+            <span class="c4" title="c4"></span>
         </div>
-    </div> -->
+    </div>
 
-    <p class="black text-title font-second font-w-300">YOUR WEBSITE DESERVES A HOME</p>
+    <p class="gray text-title font-second font-w-300">YOUR WEBSITE DESERVES A HOME</p>
 
 </body>
 
