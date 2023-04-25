@@ -1,0 +1,31 @@
+.logo {
+	width: 50px;
+	height: auto;
+	height: fit-content;
+	margin-right: 10px;
+}
+
+.nav-bar {
+	height: fit-content;
+	max-width: 100%;
+	justify-content: space-between;
+	padding: 10px;
+	user-select: none;
+}
+
+.nav-bar > div > a {
+	color: var(--color-current);
+	background-color: transparent;
+	border: 0;
+	height: 50px;
+	border-radius: 10px;
+	padding: 13px;
+	transition: 0.5s;
+}
+
+.nav-bar > div > a:hover {
+	cursor: pointer;
+	background-color: var(--color-orange);
+	color: var(--color-white);
+	opacity: 0.8;
+}
