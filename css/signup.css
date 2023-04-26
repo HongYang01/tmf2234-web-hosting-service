@@ -1,0 +1,16 @@
+#signup {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: fit-content;
+	width: fit-content;
+	align-items: center;
+	border: 1px solid var(--color-black);
+	border-radius: 15px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+#signup > p {
+	margin-bottom: 25px;
+}

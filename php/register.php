@@ -1,3 +1,7 @@
+<!-- This is just an example -->
+
+
+
 <?php
 
 $ds = DIRECTORY_SEPARATOR;

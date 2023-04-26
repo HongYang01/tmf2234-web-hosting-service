@@ -1,8 +1,8 @@
-<nav class="nav-bar flex-row">
+<nav id="nav-bar" role="navigation">
 
-    <a href="/index.php">
+    <a class="middle" href="/index.php">
 
-        <div class="flex-row middle">
+        <div class="flex-row">
 
             <svg class="logo middle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="71 71 358 358" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
 
@@ -14,16 +14,14 @@
 
             </svg>
 
-            <p class="text-title black middle font-w-400">Semicolonix</p>
-
+            <p class="black text-title font-w-400 center">Semicolonix</p>
         </div>
-
     </a>
 
-    <div class="middle">
-        <a class="black" href="" target="_blank">Pricing</a>
-        <a class="black" href="" target="_blank">Login</a>
-        <a class="black" href="/pages/signup.php">Signup</a>
+    <div class="flex-row font-second">
+        <a class="c1 font-w-600" href="">About</a>
+        <a class="c1 font-w-600" href="/pages/pricing.php">Pricing</a>
+        <a class="c1 font-w-600" href="/pages/signup.php">Signup</a>
     </div>
 
 </nav>
