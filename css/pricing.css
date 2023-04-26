@@ -1,0 +1,23 @@
+main {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	max-width: 100%;
+	flex-wrap: wrap;
+	height: fit-content;
+}
+
+section {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+section:nth-child(1) {
+	background-color: blue;
+}
+
+section:nth-child(2) {
+	background-color: aqua;
+}

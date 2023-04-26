@@ -1,3 +1,13 @@
+#nav-bar {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px 40px;
+	width: 100%;
+	max-width: 100%;
+	justify-content: space-between;
+	box-sizing: border-box;
+}
+
 .logo {
 	width: 50px;
 	height: auto;
@@ -5,27 +15,16 @@
 	margin-right: 10px;
 }
 
-.nav-bar {
-	height: fit-content;
-	max-width: 100%;
-	justify-content: space-between;
-	padding: 10px;
-	user-select: none;
-}
-
-.nav-bar > div > a {
+#nav-bar > div > a {
 	color: var(--color-current);
 	background-color: transparent;
 	border: 0;
-	height: 50px;
 	border-radius: 10px;
-	padding: 13px;
-	transition: 0.5s;
+	padding: 15px;
+	letter-spacing: 1.5px;
 }
 
-.nav-bar > div > a:hover {
+#nav-bar > div > a:hover {
 	cursor: pointer;
-	background-color: var(--color-orange);
-	color: var(--color-white);
-	opacity: 0.8;
+	opacity: 0.5;
 }

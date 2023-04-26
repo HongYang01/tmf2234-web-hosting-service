@@ -2,10 +2,10 @@
 
 class DBConnection
 {
-    private $servername = "localhost";
-    private $username = "yourusername";
-    private $password = "yourpassword";
-    private $dbname = "yourdbname";
+    private $servername = "";
+    private $username = "";
+    private $password = "";
+    private $dbname = "";
 
     public function getConnection()
     {
@@ -13,6 +13,8 @@ class DBConnection
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
+        } else {
+            echo "success";
         }
 
         return $conn;
