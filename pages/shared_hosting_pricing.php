@@ -28,11 +28,11 @@
 
             <div class="header-left flex-col">
                 <h1 class="c1 text-title">Shared Hosting</h1>
-                <p class="font-second font-w-600">Power up your website with reliable and affordable shared hosting that delivers exceptional performance.</p>
+                <p class="black text-normal font-w-400">Power up your website with reliable and affordable shared hosting that delivers exceptional performance.</p>
 
                 <div class="flex-row middle" style="margin-top:10px;">
                     <span class='icon-tick'></span>
-                    <p class="font-second text-small font-w-600">30-Day Money-Back Guarantee</p>
+                    <p class="black text-normal font-w-400">30-Day Money-Back Guarantee</p>
                 </div>
 
             </div>
