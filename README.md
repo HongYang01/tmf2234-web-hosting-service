@@ -58,12 +58,5 @@ project/
 ├── includes/
 ├── js/
 ├── pages/
-|   ├── about.php
-|   ├── admin.php
-|   ├── about.php
-|   ├── about.php
-|   ├── about.php
-|   ├── about.php
-│   └── image/
 └── index.php
 ```
