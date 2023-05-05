@@ -50,6 +50,8 @@
 
 .dropdown-content a {
 	display: block;
+	height: 100%;
+	width: 100%;
 	padding: 12px 15px;
 	box-sizing: border-box;
 	font-family: var(--font-second);

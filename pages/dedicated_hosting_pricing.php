@@ -52,7 +52,7 @@
 
             require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
-            $query = "SELECT * FROM product WHERE category='dedicated'";
+            $query = "SELECT * FROM product WHERE prod_category='dedicated'";
 
             if ($conn->query($query)) {
 
@@ -65,9 +65,9 @@
                     echo "<h1 class='font-primary text-h1'>" . $row['prod_title'] . "</h1>";
                     echo "<span class='text-small'>" . $row['prod_subtitle'] . "</span>";
 
-                    echo "<div class='font-primary' style='margin-top:30px;'>";
-                    echo "<span>$</span>";
-                    echo "<span class='text-title font-w-600'>" . $row['prod_price'] . "</span>";
+                    echo "<div class='flex-row middle center' style='margin-top:30px;'>";
+                    echo "<span class='text-normal'>$</span>";
+                    echo "<h1 class='text-title font-w-600'>" . $row['prod_price'] . "</h1>";
                     echo "</div>";
 
                     echo "<span>USD/month</span>";

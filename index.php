@@ -67,7 +67,7 @@
 
             <h1 class="c1 text-title margin-0">Our Hosting Services</h1>
 
-            <div id="hosting-type">
+            <div id="hosting-type-grid">
                 <a href="/pages/shared_hosting_pricing.php">Shared</a>
                 <a href="/pages/vps_hosting_pricing.php">VPS</a>
                 <a href="">Dedicated</a>
