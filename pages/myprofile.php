@@ -20,12 +20,12 @@
     </div>
 
     <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+    require_once("auth/auth_session.php");
 
     if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
         header("Location: /pages/login_form.php");
     } else {
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+        require_once("includes/nav.php");
     }
     ?>
 
@@ -33,7 +33,7 @@
     <div class="flex-grow-1 flex-col center middle font-second">
 
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+        require_once("auth/auth_session.php");
         echo "<p>" . $_SESSION['role'] . "</p>";
         echo "<p>" . $_SESSION['email'] . "</p>";
         echo "<p>" . $_SESSION['fname'] . "</p>";
@@ -43,7 +43,7 @@
         <button data-open-modal id="logout-btn">Logout</button>
 
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+        require_once("auth/auth_session.php");
         if ($_SESSION['role'] == "admin") {
             echo "<a href='/admin/dashboard.php'>Goto Dashboard</a>";
         }
@@ -64,7 +64,7 @@
     </dialog>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
+    include("includes/footer.php");
     ?>
 
 </body>

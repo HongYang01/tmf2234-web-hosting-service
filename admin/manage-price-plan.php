@@ -19,12 +19,12 @@
 
     <?php
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+    require_once("auth/auth_session.php");
 
     if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { //check if signned in
         header("Location: /pages/login_form.php");
     } else {
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+        require_once("includes/nav.php");
     }
     ?>
 
@@ -36,7 +36,7 @@
 
         <?php
 
-        include($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+        include("config/conn.php");
 
         $query = "SELECT DISTINCT prod_category FROM product";
         $result = $conn->query($query);
@@ -81,7 +81,7 @@
 
     </div>
 
-    <?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
+    <?php include("includes/footer.php"); ?>
 
 
 

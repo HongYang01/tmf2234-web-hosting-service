@@ -1,6 +1,6 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+include("config/conn.php");
+require_once("auth/auth_session.php");
 
 $_SESSION['loggedin'] = false;
 

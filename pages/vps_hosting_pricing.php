@@ -19,7 +19,7 @@
     </div>
 
     <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+    require_once("includes/nav.php");
     ?>
 
     <div class="flex-grow-1 flex-col center middle">
@@ -28,11 +28,11 @@
 
             <div class="header-left flex-col">
                 <h1 class="c1 text-title">VPS Hosting</h1>
-                <p class="font-second font-w-600">Power up your website with reliable and affordable shared hosting that delivers exceptional performance.</p>
+                <p class="black text-normal font-w-400">Power up your website with reliable and affordable shared hosting that delivers exceptional performance.</p>
 
                 <div class="flex-row middle" style="margin-top:10px;">
                     <span class="icon-tick"></span>
-                    <p class="font-second text-small font-w-600">30-Day Money-Back Guarantee</p>
+                    <p class="black text-normal font-w-400">30-Day Money-Back Guarantee</p>
                 </div>
 
             </div>
@@ -46,9 +46,9 @@
 
             <?php
 
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+            require_once("config/conn.php");
 
-            $query = "SELECT * FROM product WHERE category='vps'";
+            $query = "SELECT * FROM product WHERE prod_category='vps'";
 
 
             if ($conn->query($query)) {
@@ -63,9 +63,9 @@
                     echo "<h1 class='font-primary text-h1'>" . $row['prod_title'] . "</h1>";
                     echo "<span class='text-small'>" . $row['prod_subtitle'] . "</span>";
 
-                    echo "<div class='font-primary' style='margin-top:30px;'>";
-                    echo "<span>$</span>";
-                    echo "<span class='text-title font-w-600'>" . $row['prod_price'] . "</span>";
+                    echo "<div class='flex-row middle center' style='margin-top:30px;'>";
+                    echo "<span class='text-normal'>$</span>";
+                    echo "<h1 class='text-title font-w-600'>" . $row['prod_price'] . "</h1>";
                     echo "</div>";
 
                     echo "<span>USD/month</span>";
@@ -122,7 +122,7 @@
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
+    include("includes/footer.php");
     ?>
 
 

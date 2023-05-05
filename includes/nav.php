@@ -38,7 +38,7 @@
         <a class="c1 text-normal font-w-600" href="/pages/about.php">About</a>
 
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+        require_once("auth/auth_session.php");
 
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
             echo "<a class='c1 text-normal font-w-600' href='/pages/myprofile.php'>My Profile</a>";
