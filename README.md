@@ -12,14 +12,32 @@
 
 ---
 
-## User Manual For Localhost Testing
+## User Manual For Localhost Deployment
 
-### Unable to start a session using FiveServer, must use XAMPP:
+1. Open XAMPP
+2. Click config (Apache)
+3. Select `Apache (httpd.conf)`
+4. Search for `DocumentRoot`, change the directory to your project folder
 
-1. copy paste the project folder to `htdocs` in xampp folder
-2. import SQL file to database (check database naming)
-3. start XAMPP: `Apache` & `MySQL`
-4. use `localhost/tmf2234-web-based-assignment/index.php` to access
+**You will see this (by default):**
+
+```
+DocumentRoot "C:/xampp/htdocs"
+<Directory "C:/xampp/htdocs">
+```
+
+**Change to:**
+
+```
+DocumentRoot "path/to/your/project/folder"
+<Directory "path/to/your/project/folder">
+```
+
+5. Save it, restart XAMPP and start Apache and MySQL
+6. Import `id20654951_semicolonix.sql` to database (assuming no error)
+7. Done, try `localhost/index.php`
+
+---
 
 ## Dummy Data
 
