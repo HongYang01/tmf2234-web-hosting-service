@@ -5,63 +5,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/asset/image/logo.svg" type="image/x-icon">
+    <link rel="icon" href="/assets/image/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/effect.js"></script>
     <title>Semicolonix</title>
 </head>
 
-<body>
+<body class="flex-col">
+
+    <!-- <div class="flex-row">
+    <p class="middle">Color Palette</p>
+    <div class="color-palette flex-row">
+        <span class="black" title="Black"></span>
+        <span class="c1" title="c1"></span>
+        <span class="c2" title="c2"></span>
+        <span class="c3" title="c3"></span>
+        <span class="c4" title="c4"></span>
+    </div>
+</div> -->
 
     <div id="loader">
-        <iframe src="/asset/loading.svg" title="logo"></iframe>
+        <iframe src="/assets/loading.svg" title="logo"></iframe>
     </div>
 
     <?php
-    $ds = DIRECTORY_SEPARATOR;
-    require_once(__DIR__ . "{$ds}php{$ds}nav.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     ?>
 
-    <div id="layout" class="flex-col">
+    <div class="flex-grow-1">
 
-        <!-- <div class="flex-row">
-            <p class="middle">Color Palette</p>
-            <div class="color-palette flex-row">
-                <span class="black" title="Black"></span>
-                <span class="c1" title="c1"></span>
-                <span class="c2" title="c2"></span>
-                <span class="c3" title="c3"></span>
-                <span class="c4" title="c4"></span>
-            </div>
-        </div> -->
+        <header class="header-container middle">
 
-        <header class="header-container flex-row middle">
-
-            <div class="header-left flex-col middle">
-                <!-- left -->
+            <div class="header-left">
                 <h1 class="c1 text-title">Your Website Deserves A Home</h1>
-                <p class="font-second font-w-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum beatae minima, iure, tempora atque saepe quo veniam unde architecto quia voluptas, rem officia. Itaque quisquam doloremque illo, voluptatibus ipsa eos.</p>
+                <p class="black text-normal font-w-400">Semicolonix aims to address common challenges such as lack of knowledge, inefficient servers, and poor technical support that hinder people from adopting web hosting services.</p>
+
+                <div class="flex-col between" style="margin-top:30px;">
+                    <div class="flex-row middle">
+                        <span class="icon-tick"></span>
+                        <p class="black text-normal font-w-400">Beginner Friendly</p>
+                    </div>
+
+                    <div class="flex-row middle">
+                        <span class="icon-tick"></span>
+                        <p class="black text-normal font-w-400">Support Organization</p>
+                    </div>
+                </div>
 
             </div>
 
-            <div class="header-right middle">
-                <!-- right -->
-                <iframe id="image-1" src="/asset/image/index_image.svg" title="logo"></iframe>
-            </div>
+            <iframe id="image-1" src="/assets/image/index_image.svg" title="logo"></iframe>
 
         </header>
 
-        <section class="flex-col center">
-            <h1 class="c3 text-title" style="margin: 24px 0;">Server Location</h1>
-            <iframe id="image-2" src="/asset/image/world_map.svg" title="logo"></iframe>
+        <section id="world-map" class="flex-col middle" style="background-color: var(--color-c1);">
+            <h1 class="c3 text-title margin-0">Server Colocation</h1>
+            <iframe id="image-2" src="/assets/image/world_map.svg" title="logo"></iframe>
         </section>
 
-        <footer class="flex-row between">
-            <p class="font-second font-w-400">Semicolonix Group Project @UNIMAS</p>
-            <p class="font-second font-w-400">for educational purposes only</p>
-        </footer>
+        <section id="hosting-type-layout">
+
+            <h1 class="c1 text-title margin-0">Our Hosting Services</h1>
+
+            <div id="hosting-type">
+                <a href="/pages/shared_hosting_pricing.php">Shared</a>
+                <a href="/pages/vps_hosting_pricing.php">VPS</a>
+                <a href="">Dedicated</a>
+            </div>
+
+        </section>
 
     </div>
+
+    <?php
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
+    ?>
 
 </body>
 

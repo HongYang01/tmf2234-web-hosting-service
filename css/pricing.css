@@ -1,23 +1,53 @@
-main {
+.pricing-layout {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(385px, 1fr));
+	gap: 30px;
+	text-align: center;
+	max-width: 100%;
+}
+
+.pricing-layout .pricing-card {
+	padding: 40px;
+	border-radius: 5px;
+	border: 2px solid var(--color-c3);
+	box-shadow: 0 0 10px 2px #0000002a;
+	transition: all 0.6s ease;
+}
+
+.pricing-layout .pricing-card:hover {
+	transform: scale(1.02);
+	box-shadow: 0 0 30px 3px #0000002a;
+}
+
+.pricing-card h1 {
+	margin: 10px 0;
+}
+
+.pricing-feature-line {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
-	max-width: 100%;
-	flex-wrap: wrap;
-	height: fit-content;
+	width: 100%;
+	line-height: 40px;
+	justify-content: flex-start;
 }
 
-section {
-	display: inline-flex;
-	flex-direction: column;
-	align-items: center;
-	flex-wrap: wrap;
+.pricing-feature-line > img {
+	margin-right: 10px;
 }
 
-section:nth-child(1) {
-	background-color: blue;
+.pricing-card button[type="submit"] {
+	width: 100%;
+	padding: 15px 0;
+	margin: 30px 0;
+	border-radius: 5px;
+	border: 0;
+	text-align: center;
+
+	background-color: var(--color-c1);
+	color: var(--color-white);
+	box-shadow: 0 0 10px 2px #0000002a;
 }
 
-section:nth-child(2) {
-	background-color: aqua;
+.pricing-card button[type="submit"]:hover {
+	cursor: pointer;
 }
