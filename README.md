@@ -12,6 +12,58 @@
 
 ---
 
-## Colour Palette
+## User Manual For Localhost Testing
 
-## Manual
+### Unable to start a session using FiveServer, must use XAMPP:
+
+1. copy paste the project folder to `htdocs` in xampp folder
+2. start XAMPP: `Apache` & `MySQL`
+3. use `localhost/tmf2234-web-based-assignment/index.php` to access
+
+### Alternative way
+
+1. start XAMPP
+2. click `config` for **Apache**
+3. select `Apache (htttpd.conf)`
+4. find `DocumentRoot`
+5. replace the directory to desire directory
+6. start XAMPP: `Apache` & `MySQL`
+7. use `localhost/index.php` to access
+
+## Dummy Data
+
+```
+USER:
+email: cynthia@gmail.com
+pwd  : 123
+
+ADMIN:
+email: admin1@semicolonix.com
+pwd  : 12356
+
+hashing method: password_hash("YOUR_PASSWORD", PASSWORD_BCRYPT);
+```
+
+# Folder Hierarchy
+
+```
+project/
+├── assets/
+│   ├── icon/
+│   └── image/
+├── assets/
+├── auth/
+├── config/
+├── css/
+├── includes/
+├── js/
+├── pages/
+|   ├── about.php
+|   ├── admin.php
+|   ├── about.php
+|   ├── about.php
+|   ├── about.php
+|   ├── about.php
+│   └── image/
+└── index.php
+```

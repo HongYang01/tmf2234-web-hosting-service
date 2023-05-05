@@ -1,0 +1,41 @@
+/* toogle button */
+/* Hide the default checkbox */
+.switch input[type="checkbox"] {
+	display: none;
+}
+
+/* Style the slider */
+.switch .slider {
+	position: relative;
+	display: flex;
+	width: 45px;
+	height: 24px;
+	background-color: var(--color-c1);
+	margin: 10px 10px;
+}
+
+.switch .slider:before {
+	position: absolute;
+	content: "";
+	height: 18px;
+	width: 18px;
+	left: 4px;
+	bottom: 3px;
+	background-color: var(--color-c3);
+	border-radius: 50%;
+	transition: all 0.2s ease;
+}
+
+/* Style the slider when checked */
+.switch input[type="checkbox"]:checked + .slider:before {
+	transform: translateX(20px);
+}
+
+/* Style the round shape of the slider */
+.switch .slider.round {
+	border-radius: 34px;
+}
+
+.switch .slider.round:before {
+	border-radius: 50%;
+}
