@@ -1,4 +1,16 @@
-/* toogle button */
+/* Toggle button */
+#toggle-layout {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 10px 10px;
+	border: 2px solid black;
+	border-radius: 5px;
+	width: fit-content;
+	margin: 10px 0;
+	box-sizing: border-box;
+}
+
 /* Hide the default checkbox */
 .switch input[type="checkbox"] {
 	display: none;
@@ -6,36 +18,53 @@
 
 /* Style the slider */
 .switch .slider {
-	position: relative;
 	display: flex;
-	width: 45px;
+	align-items: center;
+	width: 36px;
 	height: 24px;
 	background-color: var(--color-c1);
-	margin: 10px 10px;
+	margin: 0 10px;
+	padding: 0 3px;
+	cursor: pointer;
+}
+
+.switch .slider.round:before {
+	border-radius: 50%;
 }
 
 .switch .slider:before {
-	position: absolute;
 	content: "";
 	height: 18px;
 	width: 18px;
-	left: 4px;
-	bottom: 3px;
 	background-color: var(--color-c3);
 	border-radius: 50%;
 	transition: all 0.2s ease;
 }
 
-/* Style the slider when checked */
-.switch input[type="checkbox"]:checked + .slider:before {
-	transform: translateX(20px);
-}
-
-/* Style the round shape of the slider */
+/* Style the slider button */
 .switch .slider.round {
 	border-radius: 34px;
 }
 
-.switch .slider.round:before {
-	border-radius: 50%;
+/* Style the slider when checked */
+.switch input[type="checkbox"]:checked + .slider:before {
+	transform: translateX(100%);
+}
+
+/* Style the button when checked */
+.switch input[type="checkbox"]:checked + .slider {
+	background-color: red;
+}
+
+/* Feature Table */
+
+.feature-table {
+	width: 50%;
+	margin: 30px 0;
+	border-collapse: collapse;
+}
+
+.feature-table tr,
+.feature-table td {
+	border: 1px solid black;
 }

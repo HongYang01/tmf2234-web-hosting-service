@@ -20,18 +20,18 @@
 
     <?php
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+    require_once("auth/auth_session.php");
 
 
     if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { //check if signned in
         header("Location: /pages/login_form.php");
     } else {
 
-        // require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+        // require_once("includes/nav.php");
 
         $prod_id = $_GET['prod_id'];
 
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+        require_once("config/conn.php");
 
         $query = "SELECT * FROM product WHERE prod_id ='" . $prod_id . "'";
 
@@ -59,16 +59,16 @@
 
         <p>⚠️still cannot update to database (IN PROGRESS)</p>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
+        <div id="toggle-layout">
+            <span>View</span>
+            <label class="switch">
+                <input type="checkbox" id="toggle-btn">
+                <span class="slider round"></span>
+            </label>
+            <span>Edit</span>
+        </div>
 
-            <div class="flex-row middle">
-                <span>View</span>
-                <label class="switch">
-                    <input type="checkbox" id="toggle-btn">
-                    <span class="slider round"></span>
-                </label>
-                <span>Edit</span>
-            </div>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
 
             <input type="hidden" name="prod_id" value="<?php echo $prod_id; ?>" readonly>
 
@@ -89,7 +89,43 @@
 
             <input type="submit" name="update" id="update" value="Update Changes" style="
             display: none;">
+
+            <?php
+            // SQL SELECT statement
+            $query = "SELECT * FROM productDetail WHERE prod_id = '" . $prod_id . "'";
+            $result = mysqli_query($conn, $query);
+            $counter = 1;
+
+            if (mysqli_num_rows($result) > 0) {
+                // output data of each row
+                echo "<table class='feature-table'>";
+                echo "<colgroup>";
+                echo "<col style='width: 33.33%; text-align: center;'>";
+                echo "<col style='width: 33.33%; text-align: left;'>";
+                echo "<col style='width: 33.33%; text-align: center;'>";
+                echo "</colgroup>";
+
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    echo "<tr>";
+                    // echo "<td>" . $row["auto_num"] . "</td>";
+                    echo "<td>" . $counter++ . "</td>";
+                    echo "<td class='editable' contenteditable='false' data-column='feature' data-id='" . $row["auto_num"] . "'>" . $row["feature"] . "</td>";
+                    echo "<td class='editable' contenteditable='false' data-column='status' data-id='" . $row["auto_num"] . "'>" . $row["status"] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "0 results";
+            }
+
+            mysqli_close($conn);
+            ?>
         </form>
+
+        <hr style="border: 1px solid black;">
+
+
 
     </div>
 
@@ -99,8 +135,8 @@
 
 <?php
 
-include($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+include("config/conn.php");
+require_once("auth/auth_session.php");
 
 if (isset($_GET['update'])) {
     echo "ok";

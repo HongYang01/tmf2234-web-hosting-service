@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/assets/image/logo.svg" type="image/x-icon">
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/effect.js"></script>
+    <link rel="icon" href="assets/image/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/effect.js"></script>
     <title>Semicolonix</title>
 </head>
 
@@ -29,7 +29,7 @@
     </div>
 
     <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+    require_once("includes/nav.php");
     ?>
 
     <div class="flex-grow-1">
@@ -78,7 +78,7 @@
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
+    include("includes/footer.php");
     ?>
 
 </body>
