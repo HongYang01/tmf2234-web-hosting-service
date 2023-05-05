@@ -29,12 +29,12 @@
 
     <?php
 
-    require_once("auth/auth_session.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
 
     if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['id'] !== session_id()) { //check if signned in
         header("Location: /pages/login_form.php");
     } else {
-        require_once("includes/nav.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     }
 
     ?>
@@ -72,7 +72,7 @@
     </div>
 
 
-    <?php include("includes/footer.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
 
 </body>
 

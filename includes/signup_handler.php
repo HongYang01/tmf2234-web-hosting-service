@@ -1,7 +1,7 @@
 <?php
 
-include("config/conn.php");
-require_once("auth/auth_session.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
 
 $_SESSION['loggedin'] = false;
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 
         if ($stmt->execute()) {
             echo "Welcome " . $fname . ", " . $lname;
-            require_once("auth/login_handler.php"); //auto login
+            include_once("/auth/login_handler.php"); //auto login
             header("Location: /pages/myprofile.php");
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conn);
