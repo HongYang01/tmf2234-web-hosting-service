@@ -17,8 +17,9 @@
 ### Unable to start a session using FiveServer, must use XAMPP:
 
 1. copy paste the project folder to `htdocs` in xampp folder
-2. start XAMPP: `Apache` & `MySQL`
-3. use `localhost/tmf2234-web-based-assignment/index.php` to access
+2. import SQL file to database (check database naming)
+3. start XAMPP: `Apache` & `MySQL`
+4. use `localhost/tmf2234-web-based-assignment/index.php` to access
 
 ## Dummy Data
 
