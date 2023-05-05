@@ -19,7 +19,7 @@
     </div>
 
     <?php
-    require_once("includes/nav.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     ?>
 
     <div class="flex-grow-1 header-container">
@@ -28,7 +28,7 @@
             <p class="text-h1">Sign Up Now</p>
 
             <?php
-            require_once("auth/auth_session.php");
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == false) {
                 echo "<p>Check Input</p>";
             }
@@ -53,7 +53,7 @@
     </div>
 
     <?php
-    include("includes/footer.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
 
 

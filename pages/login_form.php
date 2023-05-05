@@ -19,7 +19,7 @@
     </div>
 
     <?php
-    require_once("includes/nav.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     ?>
 
     <div class="flex-grow-1 header-container">
@@ -42,7 +42,7 @@
     </div>
 
     <?php
-    include("includes/footer.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
 
 </body>

@@ -19,7 +19,7 @@
     </div>
 
     <?php
-    require_once("includes/nav.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     ?>
 
     <div class="flex-grow-1 flex-col center middle">
@@ -50,7 +50,7 @@
 
             <?php
 
-            require_once("config/conn.php");
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
             $query = "SELECT * FROM product WHERE prod_category='dedicated'";
 
@@ -126,7 +126,7 @@
 
 
     <?php
-    include("includes/footer.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
 
 
