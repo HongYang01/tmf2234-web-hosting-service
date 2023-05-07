@@ -29,3 +29,36 @@ window.addEventListener("scroll", function () {
 		logo.href = "/index.php";
 	}
 });
+
+//hide the post query in the URL
+function saveChanges(form) {
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", form.action);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.onload = function () {
+		if (xhr.status === 200) {
+			// handle successful response
+			console.log(xhr.responseText);
+		} else {
+			// handle error
+			console.error(xhr.statusText);
+		}
+	};
+	xhr.send(new FormData(form));
+}
+
+//popup and fade message
+function showPopup(msg) {
+	let popup = document.getElementById("popup-fade-msg");
+
+	popup.innerHTML = msg;
+	popup.style.display = "block";
+
+	setTimeout(function () {
+		popup.style.opacity = "0";
+		setTimeout(function () {
+			popup.style.display = "none";
+			popup.style.opacity = "1";
+		}, 1500);
+	}, 2000);
+}

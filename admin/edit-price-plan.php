@@ -27,7 +27,7 @@
         header("Location: /pages/login_form.php");
     } else {
 
-        // require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
 
         $prod_id = $_GET['prod_id'];
 
@@ -126,20 +126,69 @@
 
     </div>
 
+    <script>
+        // Toogle Edit Button (admin-edit-price-plan)
+        const toggleBtn = document.getElementById("toggle-btn");
+        const inputs = document.querySelectorAll("input:not(#toggle-btn)");
+        const tds = document.querySelectorAll(".editable");
+        const updateBtn = document.getElementById("update");
+
+        toggleBtn.addEventListener("change", function() {
+            // Loop through each input element and toggle its read-only status
+            inputs.forEach(function(input) {
+                input.readOnly = !input.readOnly;
+            });
+
+            // Loop through each td element with class "editable" and toggle its contentEditable status
+            // NOTE: contentEditable is not a boolean attribute
+            tds.forEach(function(td) {
+                if (td.contentEditable == "true") {
+                    td.contentEditable = "false";
+                } else {
+                    td.contentEditable = "true";
+                }
+            });
+        });
+
+        //-----------------------------
+        //listen to edit on inputs
+        inputs.forEach(function(input) {
+            input.addEventListener("input", function() {
+                updateBtn.style.display = "block";
+            });
+        });
+
+        //-----------------------------
+        //check if form is edited and not save changes yet
+        let formIsDirty = false;
+
+        // chec if inputs are edited (exclude toggle-btn)
+        const formInputs = document.querySelectorAll("input:not(#toggle-btn), select, textarea");
+        formInputs.forEach((input) => {
+            input.addEventListener("input", () => {
+                formIsDirty = true;
+            });
+        });
+
+        // Add event listener to window
+        window.addEventListener("beforeunload", (event) => {
+            if (formIsDirty) {
+                event.preventDefault();
+                event.returnValue = "";
+            }
+        });
+    </script>
+
 </body>
 
 </html>
 
 <?php
 
-include($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
-
 if (isset($_GET['update'])) {
     echo "ok";
 } else {
     echo "Not submitted";
 }
-mysqli_close($conn);
 
 ?>

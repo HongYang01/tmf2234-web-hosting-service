@@ -1,42 +1,79 @@
-/* #logout-popup {
-	display: none;
-	position: fixed;
-	z-index: 999;
-	width: 100vw;
-	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.8);
-	text-align: center;
-	font-family: var(--font-second);
-	flex-direction: column;
-}
-
-#logout-popup h2 {
-	color: var(--color-white);
-	font-size: 24px;
-	margin-bottom: 20px;
-}
-
-#logout-popup p {
-	color: var(--color-white);
-	font-size: 18px;
-	margin-bottom: 20px;
-}
-
-#logout-popup button {
-	width: 150px;
-	padding: 10px 20px;
+#logout-btn {
+	width: fit-content;
+	padding: 12px 18px;
+	border-radius: 5px;
 	border: none;
-	background-color: var(--color-white);
-	cursor: pointer;
-	font-family: inherit;
+	background-color: var(--color-c1);
+	color: var(--color-white);
 	transition: all 0.6s ease;
 }
 
-#logout-popup button:nth-child(1) {
-	margin-right: 24px;
+#logout-btn:hover {
+	background-color: var(--color-c2);
+	color: var(--color-black);
+	scale: 1.02;
+	box-shadow: 0 0 10px 3px #00000022;
 }
 
-#logout-popup button:hover {
-	background-color: var(--color-c1);
-	color: var(--color-white);
-} */
+/* Left container */
+
+.left-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 20%;
+	border-right: 1px solid #0000005c;
+	padding: 0 15px 0 0;
+	box-sizing: border-box;
+	user-select: none;
+}
+
+form {
+	margin: 24px 0;
+}
+
+form > label {
+	display: block;
+	font-family: var(--font-second);
+	font-size: var(--font-size-normal);
+	margin-top: 15px;
+}
+
+form > label::after {
+	content: ": ";
+}
+
+form > input {
+	display: inline-block;
+	background-color: transparent;
+	font-family: var(--font-second);
+	font-size: var(--font-size-h1);
+	color: black;
+	font-weight: 600;
+	width: 100%;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="email"] {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px solid #00000022;
+}
+
+form > input:focus {
+	background-color: var(--color-c3);
+	outline: none;
+}
+
+/* Right Container */
+.right-container {
+	width: 80%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 0 0 0 15px;
+	box-sizing: border-box;
+}

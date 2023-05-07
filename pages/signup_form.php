@@ -34,7 +34,7 @@
             }
             ?>
 
-            <form action="/includes/signup_handler.php" method="post">
+            <form action="/handlers/signup_handler.php" method="post">
                 <input type="text" name="fname" placeholder="Firstname"><br><br>
                 <input type="text" name="lname" placeholder="Lastname"><br><br>
                 <input type="email" name="email" placeholder="Your email"><br><br>
@@ -53,7 +53,7 @@
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
 
 

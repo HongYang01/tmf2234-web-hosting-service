@@ -9,7 +9,7 @@ logoutBtn.addEventListener("click", () => {
 });
 
 confirmBtn.addEventListener("click", () => {
-	fetch("/auth/logout_handler.php", {
+	fetch(location.origin + "/handlers/logout_handler.php", {
 		method: "POST",
 	})
 		.then((response) => {

@@ -27,7 +27,7 @@
         <div id="signup">
             <p class="text-h1">Login</p>
 
-            <form class="flex-col center" action="/auth/login_handler.php" method="post">
+            <form id="login-form" class="flex-col center" action="/handlers/login_handler.php" method="post">
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="submit" name="submit" value="Login">
@@ -42,8 +42,10 @@
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
+
+
 
 </body>
 

@@ -72,7 +72,7 @@
     </div>
 
 
-    <?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
 
 </body>
 
