@@ -1,11 +1,16 @@
 <?php
 
+//NOTE: using array method to pass value back to js (separated using success[Bool], redirect[string], error[string])
+// $response = array('success' => true, 'redirect' => "String");
+// $response = array('success' => false, 'error' => "String");
+
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
 
 $_SESSION['loggedin'] = false;
 
-if (isset($_POST['submit'])) {
+if (!empty($_POST['email']) && !empty($_POST['fname']) && !empty($_POST['lname']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])) {
 
     //using mysqli_real_escape_string() to protect from SQL injection
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -18,14 +23,7 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) { //user exist in database
-        echo "Already have an account, login instead";
-        header("Location: /pages/signup_form.php");
-    } elseif ($password != $c_password) {   //password not matched
-        echo "Password does not matched";
-        header("Location: /pages/signup_form.php");
-    } elseif (strpos($email, "@semicolonix.com")) { //admin account are not allow to signup
-        echo "Admin account are not allow to signup, login instead";
-        header("Location: /pages/signup_form.php");
+        $response = array('success' => false, 'error' => 'Already have an account, login instead');
     } else { //signing up
 
         $hash = password_hash($_POST['password'], PASSWORD_BCRYPT); //hasing password using Bcrypt
@@ -34,18 +32,26 @@ if (isset($_POST['submit'])) {
         $stmt = $conn->prepare("INSERT INTO user (u_email, u_firstName, u_lastName, u_password) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $email, $fname, $lname, $hash);
 
-        if ($stmt->execute()) {
-            echo "Welcome " . $fname . ", " . $lname;
-            require_once("/handlers/login_handler.php"); //auto login
-            header("Location: /pages/myprofile.php");
-        } else {
-            echo "Error: " . $query . "<br>" . mysqli_error($conn);
+        if ($stmt->execute()) { //login success
+
+            $_SESSION['loggedin'] = true;
+            $_SESSION['id'] = session_id();
+            $_SESSION['role'] = "user";
+            $_SESSION['email'] = $email;
+            $_SESSION['fname'] = $fname;
+            $_SESSION['lname'] = $lname;
+
+            $response = array('success' => true, 'redirect' => '/pages/myprofile.php');
+        } else { //error execution
+            $response = array('success' => false, 'error' => "Error: Unable to connect to server");
         }
 
         mysqli_stmt_close($stmt);
     }
 } else {
-    echo "not submitted";
+    $response = array('success' => false, 'error' => "Failed to submit form, check input");
 }
+
+echo json_encode($response); //respond back to client JS
 
 mysqli_close($conn);

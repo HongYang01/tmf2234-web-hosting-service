@@ -192,6 +192,10 @@ span {
 	font-weight: bold;
 }
 
+.underline {
+	text-decoration: underline;
+}
+
 /* flex */
 
 .flex-grow-1 {

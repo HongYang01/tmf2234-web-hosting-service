@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/assets/image/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/login_singup_form.css">
     <script src="/js/effect.js"></script>
+    <script src="/js/login_form.js" defer></script>
     <title>Login Semicolonix</title>
 </head>
 
@@ -18,24 +19,27 @@
         <iframe src="/assets/loading.svg" title="logo"></iframe>
     </div>
 
+    <div id="popup-fade-msg"></div>
+
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     ?>
 
-    <div class="flex-grow-1 header-container">
+    <div class="main-container center middle">
 
-        <div id="signup">
-            <p class="text-h1">Login</p>
+        <div id="form-layout">
 
-            <form id="login-form" class="flex-col center" action="/handlers/login_handler.php" method="post">
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="submit" name="submit" value="Login">
+            <h1 class="c1 text-h1">Login</h1>
+
+            <form id="form-component" method="post">
+                <input type="email" name="email" id="email" placeholder="Email" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="submit" name="submit" id="submit" value="Login">
             </form>
 
-            <div class="flex-col font-second black font-w-400 center">
+            <div class="flex-col center middle text-normal">
                 <p>Not yet have an account?</p>
-                <a href="/pages/signup_form.php">Sign Up Now</a>
+                <a href="/pages/signup_form.php" class="underline">Sign Up Now</a>
             </div>
 
         </div>
@@ -44,8 +48,6 @@
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
-
-
 
 </body>
 

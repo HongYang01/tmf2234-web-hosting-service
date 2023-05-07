@@ -47,18 +47,24 @@ function saveChanges(form) {
 	xhr.send(new FormData(form));
 }
 
-//popup and fade message
-function showPopup(msg) {
+// popup and fade message
+// to-use: <div id="popup-fade-msg"></div>
+// accept one string parameter only
+let timeoutId; // declare timeoutId as a global variable
+
+window.showPopup = function (msg) {
 	let popup = document.getElementById("popup-fade-msg");
 
 	popup.innerHTML = msg;
 	popup.style.display = "block";
 
-	setTimeout(function () {
+	clearTimeout(timeoutId); // clear the previous timeout, if any
+
+	timeoutId = setTimeout(function () {
 		popup.style.opacity = "0";
 		setTimeout(function () {
 			popup.style.display = "none";
 			popup.style.opacity = "1";
-		}, 1500);
+		}, 2000);
 	}, 2000);
-}
+};

@@ -71,11 +71,11 @@
                         <input type="email" name="email" value="<?php echo $_SESSION['email']; ?>" readonly>
 
                         <label for="fname">Firstname</label>
-                        <input type="text" name="fname" id="fname" value="<?php echo $_SESSION['fname']; ?>" onblur="saveChanges()" required>
+                        <input type="text" autocomplete="off" name="fname" id="fname" value="<?php echo $_SESSION['fname']; ?>" onblur="saveChanges()" required>
                         <span id="err-msg-fname"></span>
 
                         <label for="lname">Lastname</label>
-                        <input type="text" name="lname" id="lname" value="<?php echo $_SESSION['lname']; ?>" onblur="saveChanges()" required>
+                        <input type="text" autocomplete="off" name="lname" id="lname" value="<?php echo $_SESSION['lname']; ?>" onblur="saveChanges()" required>
                         <span id="err-msg-lname"></span>
                     </form>
 
