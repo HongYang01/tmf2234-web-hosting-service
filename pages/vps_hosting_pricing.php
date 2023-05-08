@@ -37,7 +37,7 @@
 
             </div>
 
-            <iframe id="image-1" src="/assets/image/vps-hosting-server-icon.svg" title="logo"></iframe>
+            <iframe id="image-cover" src="/assets/image/vps-hosting-server-icon.svg" title="cover"></iframe>
 
         </header>
 

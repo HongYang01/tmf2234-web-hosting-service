@@ -41,7 +41,7 @@
 
             </div>
 
-            <iframe id="image-1" src="/assets/image/dedicated-server-icon2.svg" title="logo"></iframe>
+            <iframe id="image-cover" src="/assets/image/dedicated-server-icon2.svg" title="cover"></iframe>
 
         </header>
 

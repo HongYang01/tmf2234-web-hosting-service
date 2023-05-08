@@ -54,7 +54,7 @@
 
             </div>
 
-            <iframe id="image-1" src="/assets/image/index_image.svg" title="logo"></iframe>
+            <iframe id="image-cover" src="/assets/image/index_image.svg" title="logo"></iframe>
 
         </header>
 
