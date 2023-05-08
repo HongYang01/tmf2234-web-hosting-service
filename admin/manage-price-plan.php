@@ -36,7 +36,7 @@
 
         <?php
 
-        include($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
         $query = "SELECT DISTINCT prod_category FROM product";
         $result = $conn->query($query);
@@ -81,7 +81,7 @@
 
     </div>
 
-    <?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
 
 
 

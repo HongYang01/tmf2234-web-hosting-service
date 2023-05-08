@@ -30,14 +30,14 @@
                 <h1 class="c1 text-title">VPS Hosting</h1>
                 <p class="black text-normal font-w-400">Power up your website with reliable and affordable shared hosting that delivers exceptional performance.</p>
 
-                <div class="flex-row middle" style="margin-top:10px;">
+                <div class="flex-row middle" style="margin-top:30px;">
                     <span class="icon-tick"></span>
                     <p class="black text-normal font-w-400">30-Day Money-Back Guarantee</p>
                 </div>
 
             </div>
 
-            <iframe id="image-1" src="/assets/image/vps-hosting-server-icon.svg" title="logo"></iframe>
+            <iframe id="image-cover" src="/assets/image/vps-hosting-server-icon.svg" title="cover"></iframe>
 
         </header>
 
@@ -122,7 +122,7 @@
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
 
 

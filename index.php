@@ -54,7 +54,7 @@
 
             </div>
 
-            <iframe id="image-1" src="/assets/image/index_image.svg" title="logo"></iframe>
+            <iframe id="image-cover" src="/assets/image/index_image.svg" title="logo"></iframe>
 
         </header>
 
@@ -78,7 +78,7 @@
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
 
 </body>
