@@ -76,4 +76,5 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) { // Check if the log
 
 echo json_encode($response); //respond back to client JS
 
+
 mysqli_close($conn); // Close the database connection

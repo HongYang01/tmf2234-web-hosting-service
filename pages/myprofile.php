@@ -141,7 +141,7 @@
             if (!err_found) {
                 var xhr = new XMLHttpRequest();
 
-                xhr.open("POST", "/handlers/update-myprofile.php");
+                xhr.open("POST", "/handlers/update_myprofile_handler.php");
 
                 xhr.onload = function() {
                     if (xhr.status === 200) {

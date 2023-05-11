@@ -1,0 +1,19 @@
+# Redirect to custom error page
+
+ErrorDocument 404 /errors/404.php
+ErrorDocument 503 /errors/503.php
+
+# Preventing unwanted attack request
+
+# - Directory traversal attacks
+
+# - URL parameter attacks
+
+# - Server-side request forgery (SSRF) attacks
+
+# - File inclusion attacks
+
+<FilesMatch "\.(htaccess|htpasswd|log|ini|phps|fla|psd|log|sh|zip|tar|tgz|gz|rar)$">
+Order Allow,Deny
+Deny from all
+</FilesMatch>
