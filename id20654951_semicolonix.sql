@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2023 at 11:09 AM
+-- Generation Time: May 11, 2023 at 04:20 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -87,27 +87,29 @@ INSERT INTO `billdetail` (`bill_id`, `prod_id`) VALUES
 
 CREATE TABLE `product` (
   `prod_id` int(10) NOT NULL,
-  `prod_name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `prod_title` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `prod_subtitle` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `prod_category` enum('Shared','VPS','Dedicated','') COLLATE utf8_unicode_ci NOT NULL,
-  `prod_price` float(5,2) NOT NULL
+  `prod_price` float(5,2) NOT NULL,
+  `prod_status` enum('Active','Disabled') COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`prod_id`, `prod_name`, `prod_title`, `prod_subtitle`, `prod_category`, `prod_price`) VALUES
-(1, 'Dedicated Hosting (Basic)', 'Basic', 'Best for rookies ', 'Dedicated', 9.55),
-(2, 'Dedicated Hosting (Popular)', 'Popular', 'Intermediate user', 'Dedicated', 15.55),
-(3, 'Dedicated Hosting (Premium)', 'Premium', 'The pros', 'Dedicated', 33.55),
-(4, 'Shared Hosting (Basic)', 'Basic', 'Best for rookies', 'Shared', 1.55),
-(5, 'Shared Hosting (Popular)', 'Popular', 'Intermediate user', 'Shared', 2.55),
-(6, 'Shared Hosting (Premium)', 'Premium', 'The pros', 'Shared', 3.55),
-(7, 'VPS (Basic)', 'Basic', 'Best for rookies ', 'VPS', 3.55),
-(8, 'VPS (Popular)', 'Popular', 'Intermediate user', 'VPS', 10.55),
-(9, 'VPS (Premium)', 'Premium', 'The pros', 'VPS', 57.55);
+INSERT INTO `product` (`prod_id`, `prod_title`, `prod_subtitle`, `prod_category`, `prod_price`, `prod_status`) VALUES
+(1, 'Basic', 'Best for rookies ', 'Dedicated', 9.55, 'Disabled'),
+(2, 'Popular', 'Intermediate user', 'Dedicated', 15.55, 'Active'),
+(3, 'Premium', 'The pros', 'Dedicated', 33.55, 'Active'),
+(4, 'Basic', 'Best for rookies', 'Shared', 1.55, 'Active'),
+(5, 'Popular', 'Intermediate user', 'Shared', 2.55, 'Active'),
+(6, 'Premium', 'The pros', 'Shared', 3.55, 'Active'),
+(7, 'Basic', 'Best for rookies ', 'VPS', 3.55, 'Active'),
+(8, 'Popular', 'Intermediate user', 'VPS', 10.55, 'Active'),
+(9, 'Premium', 'The pros', 'VPS', 57.55, 'Active'),
+(10, 'Testing Edited', 'Good for testing Edited', 'VPS', 1.12, 'Active'),
+(11, 'Testing Title 2', 'Testing Subtitle 2', 'Shared', 12.50, 'Active');
 
 --
 -- Triggers `product`
@@ -118,8 +120,7 @@ VALUES(
     null,
     NOW(), 
     'INSERT',
-    NEW.prod_id, 
-    NEW.prod_name, 
+    NEW.prod_id,
     NEW.prod_title, 
     NEW.prod_subtitle, 
     NEW.prod_category, 
@@ -132,8 +133,7 @@ VALUES(
     null,
     NOW(), 
     'DELETE',    
-    OLD.prod_id, 
-    OLD.prod_name, 
+    OLD.prod_id,
     OLD.prod_title, 
     OLD.prod_subtitle, 
     OLD.prod_category, 
@@ -146,8 +146,7 @@ VALUES(
     null,
     NOW(), 
     'UPDATE',    
-    OLD.prod_id, 
-    OLD.prod_name, 
+    OLD.prod_id,
     OLD.prod_title, 
     OLD.prod_subtitle, 
     OLD.prod_category, 
@@ -280,7 +279,13 @@ INSERT INTO `productdetail` (`auto_num`, `prod_id`, `feature`, `status`) VALUES
 (105, 3, 'Isolated Resources', 1),
 (106, 3, 'Free SSL Certificates', 1),
 (107, 3, '99.9% Uptime Guarantee', 1),
-(108, 3, '24/7 Support', 1);
+(108, 3, '24/7 Support', 1),
+(109, 10, 'Feature included Edited', 0),
+(110, 10, 'Feature excluded Edited', 1),
+(111, 11, 'Feature 2.1', 1),
+(112, 11, 'Feature 2.2', 0),
+(113, 11, 'Feature 2.3', 1),
+(114, 10, 'Add New Product Feature', 0);
 
 -- --------------------------------------------------------
 
@@ -293,7 +298,6 @@ CREATE TABLE `productlog` (
   `datetime` timestamp NOT NULL DEFAULT current_timestamp(),
   `action` text NOT NULL,
   `prod_id` int(10) NOT NULL,
-  `prod_name` varchar(255) NOT NULL,
   `prod_title` varchar(255) NOT NULL,
   `prod_subtitle` varchar(255) NOT NULL,
   `prod_category` varchar(255) NOT NULL,
@@ -320,6 +324,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`u_email`, `u_firstName`, `u_lastName`, `u_password`, `signupDate`) VALUES
 ('cynthia@gmail.com', 'Cynthia', 'Kim', '$2y$10$ac2hDcbtxiZ/Cus3eOBMmesFBvvWjXcDqXHI9fQ0.qG4/.36nuNve', '2023-05-01 08:06:54'),
+('hongyanglim01@gmail.com', 'Hong Yang', 'Lim', '$2y$10$74kuckngGtyaqnVU6jhAJOOQAStp9OQF8i1aLla2Iv3roTyP/xDfe', '2023-05-10 14:58:15'),
 ('michelle@gmail.com', 'Michelle', 'Chan', 'Michelle@12', '2023-05-02 08:06:54'),
 ('name1@gmail.com', 'Name 1', 'Testing', '$2y$10$7gUExs92yWTFyWs5cyE1kuYI61bTOOE.vHY2Iq2sa9n2VcWnQaIGq', '2023-05-02 16:00:00'),
 ('name2@gmail.com', 'Name 2', 'Testing', '$2y$10$L0h3sGaJwkXyyLjNjoSqiex.KiJqedwvp.uokO3jtGvmnQrHUMzcq', '2023-05-04 08:07:30'),
@@ -400,13 +405,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `productdetail`
 --
 ALTER TABLE `productdetail`
-  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `productlog`
 --
 ALTER TABLE `productlog`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Constraints for dumped tables
