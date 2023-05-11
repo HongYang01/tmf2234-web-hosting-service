@@ -70,7 +70,7 @@
             <div id="hosting-type-grid">
                 <a href="/pages/shared_hosting_pricing.php">Shared</a>
                 <a href="/pages/vps_hosting_pricing.php">VPS</a>
-                <a href="">Dedicated</a>
+                <a href="/pages/dedicated_hosting_pricing.php">Dedicated</a>
             </div>
 
         </section>
