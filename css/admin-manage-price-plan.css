@@ -23,16 +23,21 @@ fieldset {
 [id-add-btn] {
 	display: flex;
 	flex-direction: row;
-	align-self: flex-end;
+	align-items: center;
+	width: fit-content;
 	margin-bottom: 24px;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: none;
+	background-color: transparent;
 	transition: all 0.6s ease;
 }
 
 .price-component:hover {
-	scale: 1.02;
-	box-shadow: 0 0 10px 5px #00000042;
+	box-shadow: 0 0 10px 3px #00000022;
 }
 
 [id-add-btn]:hover {
-	scale: 1.02;
+	box-shadow: 0 0 10px 3px #00000022;
 }
