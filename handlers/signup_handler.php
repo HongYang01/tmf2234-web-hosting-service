@@ -1,9 +1,8 @@
 <?php
 
-//NOTE: using array method to pass value back to js (separated using success[Bool], redirect[string], error[string])
+//NOTE: using JSON method to pass value back to js (separated using success[Bool], redirect[string], error[string])
 // $response = array('success' => true, 'redirect' => "String");
 // $response = array('success' => false, 'error' => "String");
-
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
@@ -29,10 +28,10 @@ if (!empty($_POST['email']) && !empty($_POST['fname']) && !empty($_POST['lname']
         $hash = password_hash($_POST['password'], PASSWORD_BCRYPT); //hasing password using Bcrypt
 
         // using prepared statement (stmt) to prevent SQL injection
-        $stmt = $conn->prepare("INSERT INTO user (u_email, u_firstName, u_lastName, u_password) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $email, $fname, $lname, $hash);
+        $stmt = mysqli_prepare($conn, "INSERT INTO user (u_email, u_firstName, u_lastName, u_password) VALUES (?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt, "ssss", $email, $fname, $lname, $hash);
 
-        if ($stmt->execute()) { //login success
+        if (mysqli_stmt_execute($stmt)) { //login success
 
             $_SESSION['loggedin'] = true;
             $_SESSION['id'] = session_id();

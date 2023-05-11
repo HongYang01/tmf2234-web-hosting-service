@@ -1,9 +1,13 @@
 //loader
+let oriURL;
+
 window.addEventListener("load", function () {
-	let test = document.getElementById("loader");
+	const loader = document.getElementById("loader");
+
+	oriURL = document.getElementById("logo").href; //get ori home URL
 
 	setTimeout(function () {
-		test.style.display = "none"; //set display to none
+		loader.style.display = "none"; //set display to none for loader
 	}, 1000); //set time out to 1s (same with css)
 
 	//modify href of dropdown menu
@@ -22,11 +26,11 @@ window.addEventListener("scroll", function () {
 	const logo = document.getElementById("logo");
 
 	if (window.scrollY > 0) {
-		nav_bar.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.1)";
+		nav_bar.style.boxShadow = "0px 0px 10px 3px #00000022";
 		logo.href = "#";
 	} else {
 		nav_bar.style.boxShadow = "none";
-		logo.href = "/index.php";
+		logo.href = oriURL;
 	}
 });
 
@@ -65,6 +69,24 @@ window.showPopup = function (msg) {
 		setTimeout(function () {
 			popup.style.display = "none";
 			popup.style.opacity = "1";
-		}, 2000);
-	}, 2000);
+		}, 3600);
+	}, 3600);
+
+	// add mouseover event listener to stop the popup from fading away
+	popup.addEventListener("mouseover", function () {
+		clearTimeout(timeoutId);
+	});
+
+	popup.addEventListener("mouseout", function () {
+		// only set timeout if mouse is not over the element
+		timeoutId = setTimeout(function () {
+			popup.style.opacity = "0";
+			setTimeout(function () {
+				popup.style.display = "none";
+				popup.style.opacity = "1";
+			}, 3600);
+		}, 3600);
+	});
+
+	// add event listener to reset flag when mouse leaves element
 };

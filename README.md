@@ -69,3 +69,7 @@ project/
 ├── pages/
 └── index.php
 ```
+
+# Tips on SQL
+
+1. Reset auto increment using `ALTER TABLE table_name AUTO_INCREMENT = value`

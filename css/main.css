@@ -10,12 +10,19 @@
 	/* Hong Yang */
 	/* #31708E #88BDBC #EEE2DC #B1A296 */
 
-	--color-black: black;
+	--color-black: #000000;
 	--color-white: #ffffff;
 	--color-c1: #31708e;
 	--color-c2: #88bdbc;
 	--color-c3: #eee2dc;
 	--color-c4: #b1a296;
+
+	--rgb-black: 0, 0, 0;
+	--rgb-white: 255, 255, 255;
+	--rgb-c1: 49, 112, 142;
+	--rgb-c2: 136, 189, 188;
+	--rgb-c3: 238, 226, 220;
+	--rgb-c4: 177, 162, 150;
 
 	--font-primary: "Syncopate", sans-serif;
 	--font-second: "Quicksand", sans-serif;
@@ -26,6 +33,10 @@
 	--font-size-small: 12px;
 
 	font-family: var(--font-primary);
+}
+
+::selection {
+	background-color: rgba(var(--rgb-c1), 0.2);
 }
 
 ::-webkit-scrollbar,
@@ -213,11 +224,11 @@ span {
 	flex-direction: column;
 }
 
-.flex-row.between {
+.between {
 	justify-content: space-between;
 }
 
-.flex-row.around {
+.around {
 	justify-content: space-around;
 }
 
@@ -321,6 +332,7 @@ footer {
 	width: 100%;
 	padding: 24px 40px;
 	box-sizing: border-box;
+	z-index: 1;
 }
 
 #image-cover {
@@ -378,7 +390,7 @@ footer {
 
 #popup-fade-msg {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 5%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -387,7 +399,7 @@ footer {
 	background-color: var(--color-white);
 	box-shadow: 0 0 30px 3px rgba(0, 0, 0, 0.2);
 	transition: opacity 1s;
-	z-index: 999;
+	z-index: 999999;
 }
 
 [id^="err-msg-"] {

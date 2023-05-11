@@ -36,7 +36,7 @@ submitBtn.addEventListener("click", (event) => {
 				}
 			})
 			.catch((error) => {
-				showPopup("Error: " + error.message);
+				showPopup("Error: Internal Error, Try again later");
 				console.error("Error:", error);
 			});
 	}
