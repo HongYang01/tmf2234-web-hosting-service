@@ -18,7 +18,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) { // Check if the log
 
     // Check on user table
     $query = "SELECT * FROM user WHERE u_email='$email'";
-    $result = $conn->query($query);
+    $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
 
@@ -44,7 +44,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) { // Check if the log
 
         //Check on admin table
         $query = "SELECT * FROM admin WHERE a_email='$email'";
-        $result = $conn->query($query);
+        $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) == 1) {
 

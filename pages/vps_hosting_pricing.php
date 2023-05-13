@@ -48,17 +48,15 @@
 
             require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
-            $query = "SELECT * FROM product WHERE prod_category='vps'";
+            $query = "SELECT * FROM product WHERE prod_category='vps' AND prod_status='Active'";
+            $result = mysqli_query($conn, $query);
 
-
-            if ($conn->query($query)) {
-
-                $result = $conn->query($query);
-
+            if (mysqli_num_rows($result) > 0) {
 
                 while ($row = $result->fetch_array()) {
 
                     echo "<div class='pricing-card'>";
+                    echo "<div class='flex-grow-1'>";
 
                     echo "<h1 class='font-primary text-h1'>" . $row['prod_title'] . "</h1>";
                     echo "<span class='text-small'>" . $row['prod_subtitle'] . "</span>";
@@ -76,12 +74,12 @@
                     echo "<p class='font-w-600'>Features</p>";
                     echo "</div>";
 
-                    $query2 = "SELECT * FROM productdetail WHERE prod_id='" . $row['prod_id'] . "'";
+                    $query2 = "SELECT * FROM productdetail WHERE prod_id='" . $row['prod_id'] . "' ORDER BY status DESC";
+                    $result2 = mysqli_query($conn, $query2);
+                    $total_row = mysqli_num_rows($result2);
 
-                    if ($conn->query($query2)) {
+                    if ($total_row > 0) {
 
-                        $result2 = $conn->query($query2);
-                        $total_row = mysqli_num_rows($result2);
                         $counter = 0;
 
                         while ($row2 = $result2->fetch_array()) {
@@ -104,9 +102,8 @@
                             }
                         }
                     }
-
+                    echo "</div>"; // close flex-grow-1
                     echo "<button class='text-h1' type='submit' value='" . $row['prod_id'] . "'>Select</button>";
-
                     echo "</div>";
                 }
             } else {

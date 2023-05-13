@@ -32,6 +32,10 @@
 	--font-size-normal: 15px;
 	--font-size-small: 12px;
 
+	/* @media query reference */
+	/* half screen = max 800px */
+	/* phone screen = max 500px */
+
 	font-family: var(--font-primary);
 }
 
@@ -58,6 +62,13 @@
 ::-webkit-scrollbar-thumb:hover {
 	background: var(--color-c1);
 	width: 5px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 html,
@@ -281,7 +292,7 @@ span {
 	height: 100%;
 
 	z-index: 9999;
-	background-image: linear-gradient(210deg, var(--color-white), var(--color-c3));
+	background-image: linear-gradient(210deg, rgba(var(--rgb-white), 0.8), rgba(var(--rgb-c3), 0.8));
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 

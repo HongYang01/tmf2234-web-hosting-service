@@ -6,7 +6,9 @@
 	max-width: 100%;
 }
 
-.pricing-layout .pricing-card {
+.pricing-card {
+	display: flex;
+	flex-direction: column;
 	padding: 40px;
 	border-radius: 5px;
 	border: 2px solid var(--color-c3);
@@ -14,7 +16,7 @@
 	transition: all 0.6s ease;
 }
 
-.pricing-layout .pricing-card:hover {
+.pricing-card:hover {
 	transform: scale(1.02);
 	box-shadow: 0 0 30px 3px #0000002a;
 }

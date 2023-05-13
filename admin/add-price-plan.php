@@ -68,7 +68,7 @@
                     <input type="text" name="prod_subtitle" id="prod_subtitle" tabindex="4" placeholder="Best for rookie" require autocomplete="false">
 
                     <label for="prod_price">Monthly Price ($):</label>
-                    <input type="number" name="prod_price" id="prod_price" tabindex="5" step="0.10" placeholder="1.00" require autocomplete="false">
+                    <input type="number" name="prod_price" id="prod_price" tabindex="5" step="0.01" placeholder="1.00" require autocomplete="false">
 
                     <button type="submit" tabindex="6" id="submitBtn">Submit</button>
 
