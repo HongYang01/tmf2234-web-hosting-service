@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/image/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/admin-manage-price-plan.css">
     <script src="/js/effect.js"></script>
@@ -17,9 +18,11 @@
         <iframe src="/assets/loading.svg" title="logo"></iframe>
     </div>
 
-    <?php
+    <div id="popup-fade-msg"></div>
 
+    <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
     if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { //check if signned in
         header("Location: /pages/login_form.php");
@@ -36,47 +39,59 @@
 
         <?php
 
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+        try {
+            $query = "SELECT DISTINCT prod_category FROM product";
+            $result = mysqli_query($conn, $query);
 
-        $query = "SELECT DISTINCT prod_category FROM product";
-        $result = $conn->query($query);
-
-        foreach ($result as $row) {
-
-            $category = $row['prod_category'];
-            $query = "SELECT * FROM product WHERE prod_category = '" . $category . "'";
-            $result2 = $conn->query($query);
-
-            if ($result2) {
-                echo "<fieldset>";
-                echo "<legend class='text-h1 font-primary font-w-600'>" . $row['prod_category'] . " Hosting</legend>";
-                echo "<div class='w-100 flex-col'>";
-                echo "<a id-add-btn href=''>"; //to-do: set href to add new page
-                echo "<span class='icon-addBtn'></span>";
-                echo "<span>Add New Plan</span>";
-                echo "</a>";
-                echo "</div>";
-                echo "<div class='price-layout'>";
-
-                foreach ($result2 as $row) {
-                    echo "<a class='w-100' target='_blank' href='/admin/edit-price-plan.php?prod_id=" . $row['prod_id'] . "'> ";
-                    echo "<div class='price-component flex-row between'>";
-                    echo "<div>";
-                    echo "<h3>" . $row['prod_title'] . "</h3>";
-                    echo "<p>id: " . $row['prod_id'] . "</p>";
-                    echo "</div>";
-                    echo "<p class='font-primary text-h1 margin-0'><b>$" . $row['prod_price'] . "</b></p>";
-                    echo "</div>";
-                    echo "</a>";
-                }
-
-                echo "</div>";
-                echo "</fieldset>";
+            if (mysqli_num_rows($result) == 0) {
+                echo "<p class='black text-title'>0 Result</p>";
             } else {
-                echo "No data found";
-            }
-        }
+                foreach ($result as $row) {
 
+                    echo "<fieldset>";
+                    echo "<legend class='text-h1 font-primary font-w-600'>" . $row['prod_category'] . " Hosting</legend>";
+
+                    echo "<div class='w-100 flex-col'>";
+                    echo "<form action='/admin/add-price-plan.php' method='post'>";
+                    echo "<input type='hidden' name='prod_category' value='" . $row['prod_category'] . "'>";
+                    echo "<button id-add-btn type='submit'><span class='icon-addBtn'></span> Add New Plan</button>";
+                    echo "</form>";
+                    echo "</div>";
+
+                    $query = "SELECT * FROM product WHERE prod_category = '" . $row['prod_category'] . "'";
+                    $result2 = mysqli_query($conn, $query);
+
+                    if (mysqli_num_rows($result) == 0) {
+                        echo "<p class='black text-title'>0 Result</p>";
+                    } else {
+
+                        echo "<div class='price-layout'>";
+
+                        foreach ($result2 as $row) {
+
+                            echo "<a class='w-100' href='/admin/edit-price-plan.php?prod_id=" . $row['prod_id'] . "'> ";
+                            echo "<div class='price-component flex-row between'>";
+                            echo "<div>";
+                            echo "<h3>" . $row['prod_title'] . "</h3>";
+                            echo "<p>id: " . $row['prod_id'] . "</p>";
+                            echo "</div>";
+                            echo "<p class='font-primary text-h1 margin-0'><b>$" . $row['prod_price'] . "</b></p>";
+                            echo "</div>";
+                            echo "<span class='text-small'>" . $row['prod_status'] . "</span>";
+                            echo "</a>";
+                        }
+
+                        echo "</div>"; //price-layout
+                    }
+
+                    echo "</fieldset>";
+                }
+            }
+        } catch (Exception $e) {
+            $errorMessage = "Error: " . $e->getMessage();
+            $encodedMessage = json_encode($errorMessage);
+            echo "<script>showPopup($encodedMessage);</script>";
+        }
         ?>
 
     </div>

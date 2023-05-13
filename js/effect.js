@@ -51,11 +51,11 @@ function saveChanges(form) {
 	xhr.send(new FormData(form));
 }
 
-// popup and fade message
-// to-use: <div id="popup-fade-msg"></div>
-// accept one string parameter only
+/*
+Popup and fade message (top)
+to-use: <div id="popup-fade-msg"></div>
+*/
 let timeoutId; // declare timeoutId as a global variable
-
 window.showPopup = function (msg) {
 	let popup = document.getElementById("popup-fade-msg");
 

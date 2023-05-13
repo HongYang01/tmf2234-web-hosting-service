@@ -1,0 +1,142 @@
+.grid-layout {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	/* grid-auto-rows: 500px; */
+	grid-auto-flow: row;
+	column-gap: 24px;
+	z-index: 90;
+	flex-grow: 1;
+}
+
+@media (max-width: 600px) {
+	.grid-layout {
+		grid-template-columns: 1fr;
+	}
+}
+
+h2 {
+	font-family: var(--font-second);
+	font-size: var(--font-size-h1);
+	color: var(--color-c1);
+	font-weight: 600;
+	margin-bottom: 30px;
+}
+
+label {
+	font-size: var(--font-size-normal);
+	font-weight: 600;
+}
+
+input:focus {
+	border: 0;
+	outline: 0;
+}
+
+input::placeholder {
+	color: var(--color-black);
+	opacity: 0.2;
+}
+
+select:hover {
+	cursor: pointer;
+}
+
+/* Left */
+
+.left-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 24px 0;
+	box-sizing: border-box;
+}
+
+.left-container > input,
+.left-container > select,
+.left-container > option {
+	padding: 6px;
+	box-sizing: border-box;
+	font-family: var(--font-second);
+	font-size: var(--font-size-normal);
+	font-weight: 600;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 0;
+}
+
+/* Right */
+
+.right-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 24px 0;
+	box-sizing: border-box;
+	/* justify-content: center; */
+	/* align-items: center; */
+}
+
+#feature-container {
+	display: flex;
+	flex-direction: column;
+}
+
+#feature-wrap {
+	display: grid;
+	grid-template-columns: 1fr 5fr 2fr 0.3fr;
+	column-gap: 15px;
+	margin-bottom: 10px;
+	width: 100%;
+	align-items: center;
+}
+@media (max-width: 800px) {
+	#feature-wrap {
+		grid-template-columns: 2.5fr 6fr 3fr 0.3fr;
+		column-gap: 10px;
+		margin-bottom: 6px;
+	}
+}
+
+@media (max-width: 500px) {
+	#feature-wrap {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		column-gap: 0;
+		row-gap: 5px;
+		margin-bottom: 5px;
+	}
+}
+
+#feature-wrap > input,
+#feature-wrap > select,
+#feature-wrap > option {
+	width: 100%;
+	padding: 6px;
+	box-sizing: border-box;
+	font-family: var(--font-second);
+	font-size: var(--font-size-normal);
+	font-weight: 600;
+	border-radius: 5px;
+	border: 0;
+}
+
+[id^="removeBtn-"] {
+	border: none;
+	font-family: var(--font-second);
+	font-size: var(--font-size-normal);
+	font-weight: 600;
+	border-radius: 5px;
+	background-color: transparent;
+	height: 100%;
+	transition: all 0.6s ease;
+}
+
+[id^="removeBtn-"]:hover {
+	box-shadow: 0 0 5px 3px rgba(var(--rgb-black), 0.2);
+}
+
+#add-feature {
+	margin: 24px 0;
+}

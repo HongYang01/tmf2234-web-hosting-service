@@ -55,16 +55,3 @@
 .switch input[type="checkbox"]:checked + .slider {
 	background-color: red;
 }
-
-/* Feature Table */
-
-.feature-table {
-	width: 50%;
-	margin: 30px 0;
-	border-collapse: collapse;
-}
-
-.feature-table tr,
-.feature-table td {
-	border: 1px solid black;
-}

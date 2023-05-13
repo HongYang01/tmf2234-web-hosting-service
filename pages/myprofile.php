@@ -40,7 +40,7 @@
         $query = "SELECT * FROM admin WHERE a_email = '" . $_SESSION['email'] . "'";
     }
 
-    $result = $conn->query($query);
+    $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
 
