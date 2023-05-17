@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 11, 2023 at 04:24 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 17, 2023 at 08:21 AM
+-- Server version: 8.0.31
+-- PHP Version: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,12 +27,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
-  `a_email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `a_firstName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `a_lastName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `a_password` varchar(256) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `a_email` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `a_firstName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `a_lastName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `a_password` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`a_email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `admin`
@@ -47,11 +49,14 @@ INSERT INTO `admin` (`a_email`, `a_firstName`, `a_lastName`, `a_password`) VALUE
 -- Table structure for table `bill`
 --
 
-CREATE TABLE `bill` (
-  `bill_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `bill`;
+CREATE TABLE IF NOT EXISTS `bill` (
+  `bill_id` int NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
-  `u_email` varchar(256) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `u_email` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`bill_id`),
+  KEY `u_email` (`u_email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `bill`
@@ -66,10 +71,13 @@ INSERT INTO `bill` (`bill_id`, `date`, `u_email`) VALUES
 -- Table structure for table `billdetail`
 --
 
-CREATE TABLE `billdetail` (
-  `bill_id` int(11) NOT NULL,
-  `prod_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+DROP TABLE IF EXISTS `billdetail`;
+CREATE TABLE IF NOT EXISTS `billdetail` (
+  `bill_id` int NOT NULL AUTO_INCREMENT,
+  `prod_id` int NOT NULL,
+  PRIMARY KEY (`bill_id`,`prod_id`),
+  KEY `prod_id` (`prod_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `billdetail`
@@ -85,14 +93,16 @@ INSERT INTO `billdetail` (`bill_id`, `prod_id`) VALUES
 -- Table structure for table `product`
 --
 
-CREATE TABLE `product` (
-  `prod_id` int(10) NOT NULL,
-  `prod_title` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `prod_subtitle` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `prod_category` enum('Shared','VPS','Dedicated','') COLLATE utf8_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE IF NOT EXISTS `product` (
+  `prod_id` int NOT NULL AUTO_INCREMENT,
+  `prod_title` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `prod_subtitle` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `prod_category` enum('Shared','VPS','Dedicated','') CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `prod_price` float(5,2) NOT NULL,
-  `prod_status` enum('Active','Disabled') COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `prod_status` enum('Active','Disabled') CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`prod_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `product`
@@ -114,6 +124,7 @@ INSERT INTO `product` (`prod_id`, `prod_title`, `prod_subtitle`, `prod_category`
 --
 -- Triggers `product`
 --
+DROP TRIGGER IF EXISTS `prod_add`;
 DELIMITER $$
 CREATE TRIGGER `prod_add` AFTER INSERT ON `product` FOR EACH ROW INSERT INTO productlog 
 VALUES(
@@ -127,6 +138,7 @@ VALUES(
     NEW.prod_price)
 $$
 DELIMITER ;
+DROP TRIGGER IF EXISTS `prod_del`;
 DELIMITER $$
 CREATE TRIGGER `prod_del` BEFORE DELETE ON `product` FOR EACH ROW INSERT INTO productlog
 VALUES(
@@ -140,6 +152,7 @@ VALUES(
     OLD.prod_price)
 $$
 DELIMITER ;
+DROP TRIGGER IF EXISTS `prod_edit`;
 DELIMITER $$
 CREATE TRIGGER `prod_edit` BEFORE UPDATE ON `product` FOR EACH ROW INSERT INTO productlog
 VALUES(
@@ -160,12 +173,15 @@ DELIMITER ;
 -- Table structure for table `productdetail`
 --
 
-CREATE TABLE `productdetail` (
-  `auto_num` int(11) NOT NULL,
-  `prod_id` int(10) NOT NULL,
-  `feature` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+DROP TABLE IF EXISTS `productdetail`;
+CREATE TABLE IF NOT EXISTS `productdetail` (
+  `auto_num` int NOT NULL AUTO_INCREMENT,
+  `prod_id` int NOT NULL,
+  `feature` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`auto_num`),
+  KEY `prod_id` (`prod_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `productdetail`
@@ -293,16 +309,18 @@ INSERT INTO `productdetail` (`auto_num`, `prod_id`, `feature`, `status`) VALUES
 -- Table structure for table `productlog`
 --
 
-CREATE TABLE `productlog` (
-  `id` int(10) NOT NULL,
-  `datetime` timestamp NOT NULL DEFAULT current_timestamp(),
+DROP TABLE IF EXISTS `productlog`;
+CREATE TABLE IF NOT EXISTS `productlog` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `action` text NOT NULL,
-  `prod_id` int(10) NOT NULL,
+  `prod_id` int NOT NULL,
   `prod_title` varchar(255) NOT NULL,
   `prod_subtitle` varchar(255) NOT NULL,
   `prod_category` varchar(255) NOT NULL,
-  `prod_price` float(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `prod_price` float(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -310,108 +328,37 @@ CREATE TABLE `productlog` (
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
-  `u_email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `u_firstName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `u_lastName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `u_password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `signupDate` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `u_email` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `u_firstName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `u_lastName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `u_password` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `signupDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`u_email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`u_email`, `u_firstName`, `u_lastName`, `u_password`, `signupDate`) VALUES
-('cynthia@gmail.com', 'Cynthia', 'Kim', '$2y$10$ac2hDcbtxiZ/Cus3eOBMmesFBvvWjXcDqXHI9fQ0.qG4/.36nuNve', '2023-05-01 08:06:54'),
+('alex@gmail.com', 'Alex', 'Anderson', '$2y$10$ngNaOIuWtZuOiQSGsuWTz.uQha2NON3dBR6TbXuZR7GzdtOsvX0AO', '2023-05-01 07:45:30'),
+('alice@outlook.com', 'Alice', 'Williams', '$2y$10$KHvOaXOpRxVIOoiT27uv8u2wDz2RajT.RfSsX6AMlAnAe/A/O1/l6', '2023-01-25 02:39:44'),
+('bob@hotmail.com', 'Bob', 'Johnson', '$2y$10$nypN9i0pjX2vXVjRhUYjsO9q1Iete/xYKN6xDZ8P8zBYmA.iUBI1m', '2023-03-30 07:38:45'),
+('cynthia@gmail.com', 'Cynthia', 'Kim', '$2y$10$ac2hDcbtxiZ/Cus3eOBMmesFBvvWjXcDqXHI9fQ0.qG4/.36nuNve', '2023-05-01 10:06:54'),
+('emily@hotmail.com', 'Emily', 'Wilson', '$2y$10$P6DMtHQchFdkQZMkI/FAhem5T6XpKqve7Nbn/uxvcpgJlAqo/wIlG', '2023-03-11 03:42:44'),
 ('hongyanglim01@gmail.com', 'Hong Yang', 'Lim', '$2y$10$74kuckngGtyaqnVU6jhAJOOQAStp9OQF8i1aLla2Iv3roTyP/xDfe', '2023-05-10 14:58:15'),
+('james@gmail.com', 'James', 'Brown', '$2y$10$1Fvi5M4Kx44bjABj8zq6bOrEEhheFbe2uTv07vgA8fwpaaArvpRuK', '2023-01-20 05:40:43'),
+('jane@yahoo.com', 'Jane', 'Smith', '$2y$10$VhkmYJyeU5JsmWcqD/Pxz.ky2e8dn3UWTBQ2ZvN4Si3QkzK7inPem', '2023-02-15 06:37:17'),
+('john@gmail.com', 'John', 'Doe', '$2y$10$.qDSH0Kt5i6jmZgOziFJPe.c6qKyF4NCObigVyjZffEZ4ede.cckK', '2023-04-01 07:36:42'),
+('laura@gamil.com', 'Laura', 'Taylor', '$2y$10$2PnQULtHBaBmxR.FMTaCaerSmugPPaAqPXEuH9YScKyJK1TwakrhC', '2023-02-15 09:45:37'),
+('michael@yahoo.com', 'Michael', 'Smith', '$2y$10$hgjOSuB3.AxjFsFSnS/Qzuudo5qvPGsHVmzrI8ywHPZwJb0uBVfhK', '2023-03-15 04:42:15'),
 ('michelle@gmail.com', 'Michelle', 'Chan', 'Michelle@12', '2023-05-02 08:06:54'),
 ('name1@gmail.com', 'Name 1', 'Testing', '$2y$10$7gUExs92yWTFyWs5cyE1kuYI61bTOOE.vHY2Iq2sa9n2VcWnQaIGq', '2023-05-02 16:00:00'),
 ('name2@gmail.com', 'Name 2', 'Testing', '$2y$10$L0h3sGaJwkXyyLjNjoSqiex.KiJqedwvp.uokO3jtGvmnQrHUMzcq', '2023-05-04 08:07:30'),
-('name3@gmail.com', 'Name 3', 'Testing', '$2y$10$jD326liszmITGRmtwQMjK.yTkrVGQe9zExgdoAHRLZwxUxSj6BI5C', '2023-05-02 08:09:00');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`a_email`);
-
---
--- Indexes for table `bill`
---
-ALTER TABLE `bill`
-  ADD PRIMARY KEY (`bill_id`),
-  ADD KEY `u_email` (`u_email`);
-
---
--- Indexes for table `billdetail`
---
-ALTER TABLE `billdetail`
-  ADD PRIMARY KEY (`bill_id`,`prod_id`),
-  ADD KEY `prod_id` (`prod_id`);
-
---
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`prod_id`);
-
---
--- Indexes for table `productdetail`
---
-ALTER TABLE `productdetail`
-  ADD PRIMARY KEY (`auto_num`),
-  ADD KEY `prod_id` (`prod_id`);
-
---
--- Indexes for table `productlog`
---
-ALTER TABLE `productlog`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`u_email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `bill`
---
-ALTER TABLE `bill`
-  MODIFY `bill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `billdetail`
---
-ALTER TABLE `billdetail`
-  MODIFY `bill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `product`
---
-ALTER TABLE `product`
-  MODIFY `prod_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `productdetail`
---
-ALTER TABLE `productdetail`
-  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
-
---
--- AUTO_INCREMENT for table `productlog`
---
-ALTER TABLE `productlog`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+('name3@gmail.com', 'Name 3', 'Testing', '$2y$10$jD326liszmITGRmtwQMjK.yTkrVGQe9zExgdoAHRLZwxUxSj6BI5C', '2023-05-02 08:09:00'),
+('sarah@gmail.com', 'Sarah', 'Johnson', '$2y$10$GTBA0UJBW9rQgfBs4/.DUeq29MPMLztXBQ0cl0XqAmmI1MpPM9ydC', '2023-04-05 11:41:15');
 
 --
 -- Constraints for dumped tables
