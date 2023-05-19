@@ -7,6 +7,10 @@
 ||                            ||
 ################################
 
+USAGE:
+Allow admin to edit & delete products & product features
+
+PROCESS:
 1. Get the $_POST variable from the submitted form (including form data handling from edit_price_plan.js)
     - the js array is decoded using json_decode(myArray,true)
 
@@ -24,8 +28,9 @@
 5. Return JSON format message (to determine the execution is success)
 
 NOTE:
-    - Using mysqli_real_escape_string() to prevent SQL injection (sanitization)
-    - Using mysqli_stmt_bind_param() to prevent SQL injection
+- - using JSON method to pass value back to client JS (separated using success[Bool], redirect[string], message[string])
+- Using mysqli_real_escape_string() to prevent SQL injection (sanitization)
+- Using mysqli_stmt_bind_param() to prevent SQL injection
 */
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
@@ -36,17 +41,25 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
 ||       Check isset()        ||
 ||                            ||
 ################################
+
+- check only "prod_id", "prod_title", "prod_subtitle", "prod_category", "prod_price", "prod_status"
+- DONT check "js_featureID", "feature", "feature-status"
+    - because scenerio: might have totally NEW features
+
 */
 
 $field = ["prod_id", "prod_title", "prod_subtitle", "prod_category", "prod_price", "prod_status", "js_featureID", "feature", "feature-status"];
 
-foreach ($field as $temp) {
+for ($i = 0; $i < count($field) - 3; $i++) { // NOTE: -3 because dont check "js_featureID", "feature", "feature-status"
+    $temp = $field[$i];
+
     if (!isset($_POST[$temp])) {
-        $response = array('success' => false, 'message' => "Missing data, check input: " . $temp . "");
+        $response = array('success' => false, 'message' => "Missing data, check input: " . $temp);
         echo json_encode($response);
-        exit();
+        exit;
     }
 }
+
 
 /*
 ################################
@@ -66,10 +79,13 @@ $prod_category = mysqli_real_escape_string($conn, $_POST[$field[3]]);
 $prod_price = mysqli_real_escape_string($conn, $_POST[$field[4]]);
 $prod_status = mysqli_real_escape_string($conn, $_POST[$field[5]]);
 
-// OLD feature Array
-$prod_feature_id = json_decode($_POST[$field[6]], true); // decode JSON
-$prod_feature = $_POST[$field[7]];
-$prod_feature_status = $_POST[$field[8]];
+// Get OLD feature Array (only if feature & status are set)
+// because sometime can be completely new features only
+if (isset($_POST[$field[7]]) && isset($_POST[$field[8]])) {
+    $prod_feature_id = json_decode($_POST[$field[6]], true); // decode JSON
+    $prod_feature = $_POST[$field[7]];
+    $prod_feature_status = $_POST[$field[8]];
+}
 
 // NEW feature Array
 $new_prod_feature = array();
@@ -158,7 +174,7 @@ if ($success && !empty($removed_prod_feature)) { // DELETE feature
 ################################
 
 */
-if ($success) { // UPDATE OLD Product feature
+if ($success && isset($_POST[$field[7]]) && isset($_POST[$field[8]])) { // UPDATE OLD Product feature (only if feature & status are set)
     $success = false;
     $query = "UPDATE productdetail SET feature = ?, status = ? WHERE auto_num = ?";
     $stmt = mysqli_prepare($conn, $query);

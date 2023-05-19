@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/myprofile.css">
     <script src="/js/effect.js"></script>
-    <script src="/js/function.js" async defer></script>
-    <script src="/js/confirm_logout.js" async defer></script>
+    <script src="/js/confirm_logout.js" defer></script>
     <title>My Profile</title>
 </head>
 
@@ -24,8 +23,9 @@
 
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
 
-    if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    if (!checkLoggedIn()) {
         header("Location: /pages/login_form.php");
         exit;
     }
