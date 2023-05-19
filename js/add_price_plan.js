@@ -1,6 +1,22 @@
+/*
+################################
+||                            ||
+|| Run once after page loaded ||
+||                            ||
+################################
+*/
+
 document.addEventListener("DOMContentLoaded", function () {
 	addButton.dispatchEvent(new Event("click")); //simulate click
 });
+
+/*
+########################################
+||                                    ||
+||  Dynamically Create Form Element   ||
+||                                    ||
+########################################
+*/
 
 let counter = 0; // Counter to track the number of features
 const addButton = document.getElementById("add-feature"); // Button to add new features
@@ -67,9 +83,16 @@ addButton.addEventListener("click", function () {
 	updateAddButtonState(); // Update the state of the add button
 });
 
+/*
+########################################
+||                                    ||
+||   Update ADD & SAVE button state   ||
+||                                    ||
+########################################
+*/
+
 featureContainer.addEventListener("input", updateAddButtonState); // Event listener for input changes in the feature container
 
-// Function to update the state of the add button
 function updateAddButtonState() {
 	// Get all input elements with IDs starting with "feature-"
 	const textboxes = Array.from(featureContainer.querySelectorAll('input[id^="feature-"]'));
@@ -88,9 +111,18 @@ function updateAddButtonState() {
 	submitBtn.disabled = isEmpty || hasUnselected;
 }
 
+/*
+################################
+||                            ||
+||       Update counter       ||
+||                            ||
+################################
+- to track the number of feature
+*/
+
 function updateCounter() {
 	const featureWraps = Array.from(featureContainer.querySelectorAll("#feature-wrap"));
-	counter = featureWraps.length; // Update the counter with the current number of inputs
+	counter = featureWraps.length; // Update the counter with the current number of features
 
 	if (counter === 0) {
 		submitBtn.disabled = true;

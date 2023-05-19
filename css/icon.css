@@ -40,3 +40,10 @@
 	height: 24px;
 	margin-right: 9px;
 }
+
+.icon-lock {
+	background-image: url(/assets/icon/lock.svg);
+	width: 24px;
+	height: 24px;
+	margin-right: 9px;
+}

@@ -313,7 +313,6 @@ INSERT INTO `user` (`u_email`, `u_firstName`, `u_lastName`, `u_password`, `signu
 ('bob@hotmail.com', 'Bob', 'Johnson', '$2y$10$nypN9i0pjX2vXVjRhUYjsO9q1Iete/xYKN6xDZ8P8zBYmA.iUBI1m', '2023-03-30 07:38:45'),
 ('cynthia@gmail.com', 'Cynthia', 'Kim', '$2y$10$ac2hDcbtxiZ/Cus3eOBMmesFBvvWjXcDqXHI9fQ0.qG4/.36nuNve', '2023-05-01 08:06:54'),
 ('emily@hotmail.com', 'Emily', 'Wilson', '$2y$10$P6DMtHQchFdkQZMkI/FAhem5T6XpKqve7Nbn/uxvcpgJlAqo/wIlG', '2023-03-11 03:42:44'),
-('hongyanglim01@gmail.com', 'Hong Yang', 'Lim', '$2y$10$74kuckngGtyaqnVU6jhAJOOQAStp9OQF8i1aLla2Iv3roTyP/xDfe', '2023-05-10 14:58:15'),
 ('james@gmail.com', 'James', 'Brown', '$2y$10$1Fvi5M4Kx44bjABj8zq6bOrEEhheFbe2uTv07vgA8fwpaaArvpRuK', '2023-01-20 05:40:43'),
 ('jane@yahoo.com', 'Jane', 'Smith', '$2y$10$VhkmYJyeU5JsmWcqD/Pxz.ky2e8dn3UWTBQ2ZvN4Si3QkzK7inPem', '2023-02-15 06:37:17'),
 ('john@gmail.com', 'John', 'Doe', '$2y$10$.qDSH0Kt5i6jmZgOziFJPe.c6qKyF4NCObigVyjZffEZ4ede.cckK', '2023-04-01 07:36:42'),

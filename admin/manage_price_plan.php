@@ -52,7 +52,7 @@
                     echo "<legend class='text-h1 font-primary font-w-600'>" . $row['prod_category'] . " Hosting</legend>";
 
                     echo "<div class='w-100 flex-col'>";
-                    echo "<form action='/admin/add-price-plan.php' method='post'>";
+                    echo "<form action='/admin/add_price_plan.php' method='post'>";
                     echo "<input type='hidden' name='prod_category' value='" . $row['prod_category'] . "'>";
                     echo "<button id-add-btn type='submit'><span class='icon-addBtn'></span> Add New Plan</button>";
                     echo "</form>";
@@ -69,7 +69,7 @@
 
                         foreach ($result2 as $row) {
 
-                            echo "<a class='w-100' href='/admin/edit-price-plan.php?prod_id=" . $row['prod_id'] . "'> ";
+                            echo "<a class='w-100' href='/admin/edit_price_plan.php?prod_id=" . $row['prod_id'] . "'> ";
                             echo "<div class='price-component flex-row between'>";
                             echo "<div>";
                             echo "<h3>" . $row['prod_title'] . "</h3>";

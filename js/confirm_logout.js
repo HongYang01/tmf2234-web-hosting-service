@@ -1,4 +1,12 @@
-//logout confirmation popup
+/*
+########################################
+||                                    ||
+||     logout confirmation popup      ||
+||                                    ||
+########################################
+ - using "dialog" html element to create logout confirmation
+*/
+
 const modal = document.querySelector("[data-modal]");
 const logoutBtn = document.querySelector("[data-open-modal]");
 const cancelBtn = document.querySelector("[data-close-modal]");

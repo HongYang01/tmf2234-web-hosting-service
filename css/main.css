@@ -346,6 +346,12 @@ footer {
 	z-index: 1;
 }
 
+@media (max-width: 500px) {
+	footer {
+		display: none;
+	}
+}
+
 #image-cover {
 	height: 450px;
 	width: 450px;

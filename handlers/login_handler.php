@@ -1,8 +1,33 @@
 <?php
 
-//NOTE: using array method to pass value back to js (separated using success[Bool], redirect[string], error[string])
-// $response = array('success' => true, 'redirect' => "String");
-// $response = array('success' => false, 'error' => "String");
+/*
+################################
+||                            ||
+||       Handler Guide        ||
+||                            ||
+################################
+
+USAGE:
+Allow public user to login
+
+PROCESS:
+1. Get $_POST variable from submitted form (/pages/login-form.php)
+2. Check if the any $_POST variables are empty (return fail)
+3. Check if public user is ADMIN or USER
+    - check password using password_verify(), password hashing using Bcrypt in signup form
+
+4. Redirect user
+    - Success
+        - to myprofile (user)
+        - to dashboard (admin)
+    - Failed
+        - to login in page
+
+NOTE:
+- using JSON method to pass value back to client JS (separated using success[Bool], redirect[string], error[string])
+- Using mysqli_real_escape_string() to sanitize $_POST variables to prevent SQL injection
+
+*/
 
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
@@ -27,7 +52,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) { // Check if the log
         $hash = $row['u_password'];
 
         if (!password_verify($password, $hash)) {
-            $response = array('success' => false, 'error' => "Wrong Credentials");
+            $response = array('success' => false, 'error' => "Wrong Credentials, Try Again");
         } else {
 
             $_SESSION['role'] = "user";
@@ -75,6 +100,4 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) { // Check if the log
 }
 
 echo json_encode($response); //respond back to client JS
-
-
 mysqli_close($conn); // Close the database connection
