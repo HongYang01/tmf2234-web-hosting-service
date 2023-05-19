@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 17, 2023 at 08:21 AM
--- Server version: 8.0.31
--- PHP Version: 8.0.26
+-- Host: 127.0.0.1
+-- Generation Time: May 19, 2023 at 11:40 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,14 +27,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `a_email` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `a_firstName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `a_lastName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `a_password` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  PRIMARY KEY (`a_email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+CREATE TABLE `admin` (
+  `a_email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `a_firstName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `a_lastName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `a_password` varchar(256) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `admin`
@@ -46,46 +44,29 @@ INSERT INTO `admin` (`a_email`, `a_firstName`, `a_lastName`, `a_password`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bill`
+-- Table structure for table `payments`
 --
 
-DROP TABLE IF EXISTS `bill`;
-CREATE TABLE IF NOT EXISTS `bill` (
-  `bill_id` int NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `u_email` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  PRIMARY KEY (`bill_id`),
-  KEY `u_email` (`u_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+CREATE TABLE `payments` (
+  `payment_id` int(11) NOT NULL,
+  `user_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `transaction_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `payment_amount` float(10,2) NOT NULL,
+  `currency_code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `payment_status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `invoice_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `product_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `createdtime` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `bill`
+-- Dumping data for table `payments`
 --
 
-INSERT INTO `bill` (`bill_id`, `date`, `u_email`) VALUES
-(1, '2023-04-12', 'cynthia@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `billdetail`
---
-
-DROP TABLE IF EXISTS `billdetail`;
-CREATE TABLE IF NOT EXISTS `billdetail` (
-  `bill_id` int NOT NULL AUTO_INCREMENT,
-  `prod_id` int NOT NULL,
-  PRIMARY KEY (`bill_id`,`prod_id`),
-  KEY `prod_id` (`prod_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-
---
--- Dumping data for table `billdetail`
---
-
-INSERT INTO `billdetail` (`bill_id`, `prod_id`) VALUES
-(1, 1),
-(1, 4);
+INSERT INTO `payments` (`payment_id`, `user_email`, `product_id`, `transaction_id`, `payment_amount`, `currency_code`, `payment_status`, `invoice_id`, `product_name`, `createdtime`) VALUES
+(3, 'name1@gmail.com', 6, 'PAYID-MRRQYJQ6B0869062J305464N', 3.55, 'USD', 'approved', '64630c261cd84', 'Shared Hosting (Premium)', '2023-04-18 00:00:00'),
+(5, 'name1@gmail.com', 6, 'PAYID-MRSZWBI19R47509T7485015N', 3.55, 'USD', 'approved', '64659b04af38e', 'Shared Hosting (Premium)', '2023-05-18 11:27:53');
 
 -- --------------------------------------------------------
 
@@ -93,23 +74,21 @@ INSERT INTO `billdetail` (`bill_id`, `prod_id`) VALUES
 -- Table structure for table `product`
 --
 
-DROP TABLE IF EXISTS `product`;
-CREATE TABLE IF NOT EXISTS `product` (
-  `prod_id` int NOT NULL AUTO_INCREMENT,
-  `prod_title` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `prod_subtitle` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `prod_category` enum('Shared','VPS','Dedicated','') CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+CREATE TABLE `product` (
+  `prod_id` int(10) NOT NULL,
+  `prod_title` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `prod_subtitle` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `prod_category` enum('Shared','VPS','Dedicated','') COLLATE utf8_unicode_ci NOT NULL,
   `prod_price` float(5,2) NOT NULL,
-  `prod_status` enum('Active','Disabled') CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  PRIMARY KEY (`prod_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+  `prod_status` enum('Active','Disabled') COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`prod_id`, `prod_title`, `prod_subtitle`, `prod_category`, `prod_price`, `prod_status`) VALUES
-(1, 'Basic', 'Best for rookies ', 'Dedicated', 9.55, 'Disabled'),
+(1, 'Basic', 'Best for rookies ', 'Dedicated', 9.55, 'Active'),
 (2, 'Popular', 'Intermediate user', 'Dedicated', 15.55, 'Active'),
 (3, 'Premium', 'The pros', 'Dedicated', 33.55, 'Active'),
 (4, 'Basic', 'Best for rookies', 'Shared', 1.55, 'Active'),
@@ -118,13 +97,11 @@ INSERT INTO `product` (`prod_id`, `prod_title`, `prod_subtitle`, `prod_category`
 (7, 'Basic', 'Best for rookies ', 'VPS', 3.55, 'Active'),
 (8, 'Popular', 'Intermediate user', 'VPS', 10.55, 'Active'),
 (9, 'Premium', 'The pros', 'VPS', 57.55, 'Active'),
-(10, 'Testing Edited', 'Good for testing Edited', 'VPS', 1.12, 'Active'),
-(11, 'Testing Title 2', 'Testing Subtitle 2', 'Shared', 12.50, 'Active');
+(10, 'Testing Edited', 'Good for testing Edited', 'Dedicated', 1.00, 'Active');
 
 --
 -- Triggers `product`
 --
-DROP TRIGGER IF EXISTS `prod_add`;
 DELIMITER $$
 CREATE TRIGGER `prod_add` AFTER INSERT ON `product` FOR EACH ROW INSERT INTO productlog 
 VALUES(
@@ -138,7 +115,6 @@ VALUES(
     NEW.prod_price)
 $$
 DELIMITER ;
-DROP TRIGGER IF EXISTS `prod_del`;
 DELIMITER $$
 CREATE TRIGGER `prod_del` BEFORE DELETE ON `product` FOR EACH ROW INSERT INTO productlog
 VALUES(
@@ -152,7 +128,6 @@ VALUES(
     OLD.prod_price)
 $$
 DELIMITER ;
-DROP TRIGGER IF EXISTS `prod_edit`;
 DELIMITER $$
 CREATE TRIGGER `prod_edit` BEFORE UPDATE ON `product` FOR EACH ROW INSERT INTO productlog
 VALUES(
@@ -173,15 +148,12 @@ DELIMITER ;
 -- Table structure for table `productdetail`
 --
 
-DROP TABLE IF EXISTS `productdetail`;
-CREATE TABLE IF NOT EXISTS `productdetail` (
-  `auto_num` int NOT NULL AUTO_INCREMENT,
-  `prod_id` int NOT NULL,
-  `feature` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`auto_num`),
-  KEY `prod_id` (`prod_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+CREATE TABLE `productdetail` (
+  `auto_num` int(11) NOT NULL,
+  `prod_id` int(10) NOT NULL,
+  `feature` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `productdetail`
@@ -296,12 +268,9 @@ INSERT INTO `productdetail` (`auto_num`, `prod_id`, `feature`, `status`) VALUES
 (106, 3, 'Free SSL Certificates', 1),
 (107, 3, '99.9% Uptime Guarantee', 1),
 (108, 3, '24/7 Support', 1),
-(109, 10, 'Feature included Edited', 0),
-(110, 10, 'Feature excluded Edited', 1),
-(111, 11, 'Feature 2.1', 1),
-(112, 11, 'Feature 2.2', 0),
-(113, 11, 'Feature 2.3', 1),
-(114, 10, 'Add New Product Feature', 0);
+(153, 10, 'te', 1),
+(154, 10, 'tet', 1),
+(155, 10, 'tete', 1);
 
 -- --------------------------------------------------------
 
@@ -309,18 +278,16 @@ INSERT INTO `productdetail` (`auto_num`, `prod_id`, `feature`, `status`) VALUES
 -- Table structure for table `productlog`
 --
 
-DROP TABLE IF EXISTS `productlog`;
-CREATE TABLE IF NOT EXISTS `productlog` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE `productlog` (
+  `id` int(10) NOT NULL,
+  `datetime` timestamp NOT NULL DEFAULT current_timestamp(),
   `action` text NOT NULL,
-  `prod_id` int NOT NULL,
+  `prod_id` int(10) NOT NULL,
   `prod_title` varchar(255) NOT NULL,
   `prod_subtitle` varchar(255) NOT NULL,
   `prod_category` varchar(255) NOT NULL,
-  `prod_price` float(10,2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `prod_price` float(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -328,15 +295,13 @@ CREATE TABLE IF NOT EXISTS `productlog` (
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `u_email` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `u_firstName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `u_lastName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `u_password` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `signupDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`u_email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+CREATE TABLE `user` (
+  `u_email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `u_firstName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `u_lastName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `u_password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `signupDate` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user`
@@ -361,27 +326,92 @@ INSERT INTO `user` (`u_email`, `u_firstName`, `u_lastName`, `u_password`, `signu
 ('sarah@gmail.com', 'Sarah', 'Johnson', '$2y$10$GTBA0UJBW9rQgfBs4/.DUeq29MPMLztXBQ0cl0XqAmmI1MpPM9ydC', '2023-04-05 11:41:15');
 
 --
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`a_email`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_email` (`user_email`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`prod_id`);
+
+--
+-- Indexes for table `productdetail`
+--
+ALTER TABLE `productdetail`
+  ADD PRIMARY KEY (`auto_num`),
+  ADD KEY `prod_id` (`prod_id`);
+
+--
+-- Indexes for table `productlog`
+--
+ALTER TABLE `productlog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`u_email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `prod_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `productdetail`
+--
+ALTER TABLE `productdetail`
+  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+
+--
+-- AUTO_INCREMENT for table `productlog`
+--
+ALTER TABLE `productlog`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
+
+--
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `bill`
+-- Constraints for table `payments`
 --
-ALTER TABLE `bill`
-  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`u_email`) REFERENCES `user` (`u_email`);
-
---
--- Constraints for table `billdetail`
---
-ALTER TABLE `billdetail`
-  ADD CONSTRAINT `billDetail_ibfk_1` FOREIGN KEY (`bill_id`) REFERENCES `bill` (`bill_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `billDetail_ibfk_2` FOREIGN KEY (`prod_id`) REFERENCES `product` (`prod_id`) ON UPDATE CASCADE;
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`prod_id`),
+  ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`user_email`) REFERENCES `user` (`u_email`);
 
 --
 -- Constraints for table `productdetail`
 --
 ALTER TABLE `productdetail`
-  ADD CONSTRAINT `productdetail_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `product` (`prod_id`);
+  ADD CONSTRAINT `productdetail_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `product` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
