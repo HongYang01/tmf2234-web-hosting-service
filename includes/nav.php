@@ -29,7 +29,7 @@
 
         <h1 class="black font-w-400 text-title margin-0">Semicolonix</h1>
     </div>
-    </a>
+    </a> <!-- close logo tag -->
 
     <!-- nav -->
     <div class="flex-row">
@@ -39,7 +39,7 @@
 
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 
-            if ($_SESSION['role'] == "admin") {
+            if ($_SESSION['role'] == "admin") { //admin
                 // echo "<a class='c1 text-normal font-w-600' href='/admin/dashboard.php'>Dashboard</a>";
                 echo "<div class='dropdown flex-row'>";
 
@@ -49,13 +49,13 @@
                 </div>";
 
                 echo "<div class='dropdown-content'>
-                    <a id='link-price-plan' href='/admin/manage-price-plan.php'>Manage Price Plan</a>
+                    <a id='link-price-plan' href='/admin/manage_price_plan.php'>Manage Price Plan</a>
                     <a id='link-sales' href=''>Sales Analytics</a>
                     <a id='link-trans-history' href=''>Transaction History</a>
                 </div>";
 
                 echo "</div>";
-            } else {
+            } else { // user
                 echo "<div class='dropdown flex-row'>";
 
                 echo "<div class='flex-row middle'>
@@ -72,6 +72,8 @@
                 echo "</div>";
 
                 echo "<a class='c1 text-normal font-w-600' href='/pages/about.php'>About</a>";
+
+                // echo "<a class='c1 text-normal font-w-600' href='/pages/cart.php'>Cart</a>";
             }
 
             echo "<a class='c1 text-normal font-w-600' href='/pages/myprofile.php'>My Profile</a>";

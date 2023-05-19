@@ -31,12 +31,14 @@
     <?php
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
 
-    if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['id'] !== session_id()) { //check if signned in
+    if (!checkLoggedIn()) {
         header("Location: /pages/login_form.php");
-    } else {
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+        exit;
     }
+
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
 
     ?>
 
@@ -50,7 +52,7 @@
         <div class="dashboard-layout">
 
             <div class="dashboard-component">
-                <a href="/admin/manage-price-plan.php">Manage <br> Pricing Plan</a>
+                <a href="/admin/manage_price_plan.php">Manage <br> Pricing Plan</a>
             </div>
 
             <div class="dashboard-component">

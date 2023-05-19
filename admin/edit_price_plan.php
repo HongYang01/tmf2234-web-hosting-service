@@ -9,15 +9,9 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/admin-add-price-plan.css">
     <script src="/js/effect.js"></script>
-    <script src="/js/edit_price_plan.js" async defer></script>
+    <script src="/js/edit_price_plan.js" defer></script>
     <title>Edit Price Plan</title>
 </head>
-
-<!--
-    to-do:
-    - user can delete whole product (with warning like delete feature)
-    - create separate PHP (delete_price_plan_handler.php)
--->
 
 <body class="flex-col">
 
@@ -27,9 +21,6 @@
 
     <div id="popup-fade-msg"></div>
 
-    <div id="popup-comfirmation">
-    </div>
-
     <?php
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
@@ -37,8 +28,13 @@
     if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { //check if signned in
         header("Location: /pages/login_form.php");
     } else {
-
         require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+    }
+
+    if (!isset($_GET['prod_id']) || empty($_GET['prod_id'])) { // check if prod_id is set & is not empty
+        header("Location: /admin/manage_price_plan.php");
+        exit;
+    } else {
 
         $prod_id = $_GET['prod_id'];
 
@@ -57,7 +53,10 @@
             $prod_price = $row['prod_price'];
             $prod_status = $row['prod_status'];
         } else {
-            echo "Nothing was found.";
+            echo "<div class='flex-grow-1 center middle'>";
+            echo "<p>Product not found for: " . $prod_id . "</p>";
+            echo "</div>";
+            exit;
         }
     }
 
@@ -65,7 +64,7 @@
 
     <div class="main-container">
 
-        <form id="edit-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="flex-col">
+        <form id="edit-form" action="" method="post" class="flex-col">
 
             <div class="grid-layout">
 

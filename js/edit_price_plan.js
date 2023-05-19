@@ -4,7 +4,7 @@
 ||    Check if form Dirty     ||
 ||                            ||
 ################################
- */
+*/
 
 let formIsDirty = false;
 

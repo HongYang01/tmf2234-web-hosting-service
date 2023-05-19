@@ -1,5 +1,26 @@
 <?php
 
+/*
+################################
+||                            ||
+||       Handler Guide        ||
+||                            ||
+################################
+
+USAGE:
+Allow admin to add NEW plan to any existing hosting type
+
+PROCESS:
+1. Get $_POST variable from submitted form (/admin/add_price_plan.php)
+2. Check if the any $_POST variables are empty (return fail)
+3. Return response (success of fail)
+
+NOTE:
+- Using mysqli_real_escape_string() to sanitize $_POST variables to prevent SQL injection
+- using mysqli_stmt_bind_param() to prevent SQL injection
+
+*/
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
 
@@ -30,7 +51,7 @@ if (!empty($_POST['prod_title']) && !empty($_POST['prod_subtitle']) && !empty($_
             mysqli_stmt_bind_param($stmt, "sss", $prod_id, $prod_feature[$i], $prod_feature_status[$i]);
 
             if (mysqli_stmt_execute($stmt)) {
-                header("Location: /admin/manage-price-plan.php");
+                header("Location: /admin/manage_price_plan.php");
             } else {
                 echo "Failed to add the new plan details";
             }

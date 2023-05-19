@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/pricing.css">
     <script src="/js/effect.js"></script>
+    <script src="/js/add_to_cart.js" defer></script>
     <title>VPS Hosting</title>
 </head>
 
@@ -67,7 +68,7 @@
                     echo "</div>";
 
                     echo "<span>USD/month</span>";
-                    echo "<button class='text-h1' type='submit' value='" . $row['prod_id'] . "'>Add to cart</button>";
+                    echo "<button class='text-h1' type='submit' id='addToCartBtn' data-prod-id='" . $row['prod_id'] . "'>Add to cart</button>";
                     echo "<hr style='width: 100%; margin: 20px 0;'>";
 
                     echo "<div class='pricing-feature-line'>";
@@ -103,7 +104,7 @@
                         }
                     }
                     echo "</div>"; // close flex-grow-1
-                    echo "<button class='text-h1' type='submit' value='" . $row['prod_id'] . "'>Select</button>";
+                    echo "<button class='text-h1' type='submit' id='addToCartBtn' data-prod-id='" . $row['prod_id'] . "'>Select</button>";
                     echo "</div>";
                 }
             } else {

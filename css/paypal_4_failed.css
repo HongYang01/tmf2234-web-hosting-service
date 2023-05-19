@@ -1,0 +1,15 @@
+h1 {
+	margin: 24px 0;
+}
+
+#home {
+	display: block;
+	box-shadow: 0 0 10px 2px #00000010;
+	padding: 12px 40px;
+	border-radius: 5px;
+	transition: all 0.6s ease;
+}
+
+#home:hover {
+	box-shadow: 0 0 10px 2px #00000030;
+}

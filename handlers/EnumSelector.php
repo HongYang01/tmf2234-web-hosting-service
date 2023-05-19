@@ -1,9 +1,10 @@
 <?php
 
 /**
- * EnumSelector is a class that renders an HTML select element populated with enum values from a database table column.
+ * Return the enum value of a column table from database
  *
- * Usage:
+ * USAGE:
+ *
  * 1. Include the class file: require_once($_SERVER['DOCUMENT_ROOT'] . "/handlers/EnumSelector.php");
  * 2. Create an instance of the class: $EnumSelector = new EnumSelector($table, $column, $conn);
  * 3. Render the select element: $EnumSelector->render($prod_category);

@@ -1,13 +1,24 @@
-//loader
-let oriURL;
+/*
+################################
+||                            ||
+||        Loader Popup        ||
+||                            ||
+################################
+*/
+
+let oriURL; //temp variable to store original URL (to be toggled)
 
 window.addEventListener("load", function () {
 	const loader = document.getElementById("loader");
+	// Disable scroll behavior
+	document.body.style.overflow = "hidden";
 
 	oriURL = document.getElementById("logo").href; //get ori home URL
 
 	setTimeout(function () {
 		loader.style.display = "none"; //set display to none for loader
+		// Enable scroll behavior
+		document.body.style.overflow = "auto";
 	}, 1000); //set time out to 1s (same with css)
 
 	//modify href of dropdown menu
@@ -20,7 +31,15 @@ window.addEventListener("load", function () {
 	}
 });
 
-//add shadow to nav bar when scrolling
+/*
+################################
+||                            ||
+||      Scroll Listener       ||
+||                            ||
+################################
+- add shadow to nav bar when scrolling
+- change the href to # or oriURL
+*/
 window.addEventListener("scroll", function () {
 	const nav_bar = document.getElementById("nav-bar");
 	const logo = document.getElementById("logo");
@@ -34,59 +53,49 @@ window.addEventListener("scroll", function () {
 	}
 });
 
-//hide the post query in the URL
-function saveChanges(form) {
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", form.action);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.onload = function () {
-		if (xhr.status === 200) {
-			// handle successful response
-			console.log(xhr.responseText);
-		} else {
-			// handle error
-			console.error(xhr.statusText);
-		}
-	};
-	xhr.send(new FormData(form));
-}
-
 /*
 Popup and fade message (top)
 to-use: <div id="popup-fade-msg"></div>
 */
 let timeoutId; // declare timeoutId as a global variable
-window.showPopup = function (msg) {
-	let popup = document.getElementById("popup-fade-msg");
 
+window.showPopup = function (msg) {
+	const popup = document.getElementById("popup-fade-msg");
 	popup.innerHTML = msg;
 	popup.style.display = "block";
+	popup.style.opacity = "1";
 
-	clearTimeout(timeoutId); // clear the previous timeout, if any
+	const duration = 3600; // total duration for fading (in milliseconds)
+	const interval = 10; // interval for updating opacity (in milliseconds)
+	const delta = 1 / (duration / interval); // change in opacity per interval
 
-	timeoutId = setTimeout(function () {
-		popup.style.opacity = "0";
-		setTimeout(function () {
+	clearTimeout(timeoutId); // clear the previous timeout
+
+	const fadeOut = function () {
+		let opacity = parseFloat(popup.style.opacity) || 1;
+		opacity -= delta;
+		popup.style.opacity = opacity;
+
+		if (opacity > 0) {
+			timeoutId = setTimeout(fadeOut, interval);
+		} else {
 			popup.style.display = "none";
 			popup.style.opacity = "1";
-		}, 3600);
-	}, 3600);
+		}
+	};
+
+	timeoutId = setTimeout(fadeOut, interval);
 
 	// add mouseover event listener to stop the popup from fading away
 	popup.addEventListener("mouseover", function () {
 		clearTimeout(timeoutId);
+		popup.style.opacity = "1";
 	});
 
+	//continue to fade
 	popup.addEventListener("mouseout", function () {
-		// only set timeout if mouse is not over the element
-		timeoutId = setTimeout(function () {
-			popup.style.opacity = "0";
-			setTimeout(function () {
-				popup.style.display = "none";
-				popup.style.opacity = "1";
-			}, 3600);
-		}, 3600);
+		if (parseFloat(popup.style.opacity) > 0) {
+			timeoutId = setTimeout(fadeOut, interval);
+		}
 	});
-
-	// add event listener to reset flag when mouse leaves element
 };
