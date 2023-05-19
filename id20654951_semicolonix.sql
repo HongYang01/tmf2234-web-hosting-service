@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2023 at 04:24 PM
+-- Generation Time: May 19, 2023 at 11:40 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -44,40 +44,29 @@ INSERT INTO `admin` (`a_email`, `a_firstName`, `a_lastName`, `a_password`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bill`
+-- Table structure for table `payments`
 --
 
-CREATE TABLE `bill` (
-  `bill_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `u_email` varchar(256) COLLATE utf8_unicode_ci NOT NULL
+CREATE TABLE `payments` (
+  `payment_id` int(11) NOT NULL,
+  `user_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `transaction_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `payment_amount` float(10,2) NOT NULL,
+  `currency_code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `payment_status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `invoice_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `product_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `createdtime` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `bill`
+-- Dumping data for table `payments`
 --
 
-INSERT INTO `bill` (`bill_id`, `date`, `u_email`) VALUES
-(1, '2023-04-12', 'cynthia@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `billdetail`
---
-
-CREATE TABLE `billdetail` (
-  `bill_id` int(11) NOT NULL,
-  `prod_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `billdetail`
---
-
-INSERT INTO `billdetail` (`bill_id`, `prod_id`) VALUES
-(1, 1),
-(1, 4);
+INSERT INTO `payments` (`payment_id`, `user_email`, `product_id`, `transaction_id`, `payment_amount`, `currency_code`, `payment_status`, `invoice_id`, `product_name`, `createdtime`) VALUES
+(3, 'name1@gmail.com', 6, 'PAYID-MRRQYJQ6B0869062J305464N', 3.55, 'USD', 'approved', '64630c261cd84', 'Shared Hosting (Premium)', '2023-04-18 00:00:00'),
+(5, 'name1@gmail.com', 6, 'PAYID-MRSZWBI19R47509T7485015N', 3.55, 'USD', 'approved', '64659b04af38e', 'Shared Hosting (Premium)', '2023-05-18 11:27:53');
 
 -- --------------------------------------------------------
 
@@ -99,7 +88,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`prod_id`, `prod_title`, `prod_subtitle`, `prod_category`, `prod_price`, `prod_status`) VALUES
-(1, 'Basic', 'Best for rookies ', 'Dedicated', 9.55, 'Disabled'),
+(1, 'Basic', 'Best for rookies ', 'Dedicated', 9.55, 'Active'),
 (2, 'Popular', 'Intermediate user', 'Dedicated', 15.55, 'Active'),
 (3, 'Premium', 'The pros', 'Dedicated', 33.55, 'Active'),
 (4, 'Basic', 'Best for rookies', 'Shared', 1.55, 'Active'),
@@ -108,8 +97,7 @@ INSERT INTO `product` (`prod_id`, `prod_title`, `prod_subtitle`, `prod_category`
 (7, 'Basic', 'Best for rookies ', 'VPS', 3.55, 'Active'),
 (8, 'Popular', 'Intermediate user', 'VPS', 10.55, 'Active'),
 (9, 'Premium', 'The pros', 'VPS', 57.55, 'Active'),
-(10, 'Testing Edited', 'Good for testing Edited', 'VPS', 1.12, 'Active'),
-(11, 'Testing Title 2', 'Testing Subtitle 2', 'Shared', 12.50, 'Active');
+(10, 'Testing Edited', 'Good for testing Edited', 'Dedicated', 1.00, 'Active');
 
 --
 -- Triggers `product`
@@ -280,12 +268,9 @@ INSERT INTO `productdetail` (`auto_num`, `prod_id`, `feature`, `status`) VALUES
 (106, 3, 'Free SSL Certificates', 1),
 (107, 3, '99.9% Uptime Guarantee', 1),
 (108, 3, '24/7 Support', 1),
-(109, 10, 'Feature included Edited', 0),
-(110, 10, 'Feature excluded Edited', 1),
-(111, 11, 'Feature 2.1', 1),
-(112, 11, 'Feature 2.2', 0),
-(113, 11, 'Feature 2.3', 1),
-(114, 10, 'Add New Product Feature', 0);
+(153, 10, 'te', 1),
+(154, 10, 'tet', 1),
+(155, 10, 'tete', 1);
 
 -- --------------------------------------------------------
 
@@ -323,12 +308,21 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_email`, `u_firstName`, `u_lastName`, `u_password`, `signupDate`) VALUES
+('alex@gmail.com', 'Alex', 'Anderson', '$2y$10$ngNaOIuWtZuOiQSGsuWTz.uQha2NON3dBR6TbXuZR7GzdtOsvX0AO', '2023-05-01 07:45:30'),
+('alice@outlook.com', 'Alice', 'Williams', '$2y$10$KHvOaXOpRxVIOoiT27uv8u2wDz2RajT.RfSsX6AMlAnAe/A/O1/l6', '2023-01-25 02:39:44'),
+('bob@hotmail.com', 'Bob', 'Johnson', '$2y$10$nypN9i0pjX2vXVjRhUYjsO9q1Iete/xYKN6xDZ8P8zBYmA.iUBI1m', '2023-03-30 07:38:45'),
 ('cynthia@gmail.com', 'Cynthia', 'Kim', '$2y$10$ac2hDcbtxiZ/Cus3eOBMmesFBvvWjXcDqXHI9fQ0.qG4/.36nuNve', '2023-05-01 08:06:54'),
-('hongyanglim01@gmail.com', 'Hong Yang', 'Lim', '$2y$10$74kuckngGtyaqnVU6jhAJOOQAStp9OQF8i1aLla2Iv3roTyP/xDfe', '2023-05-10 14:58:15'),
+('emily@hotmail.com', 'Emily', 'Wilson', '$2y$10$P6DMtHQchFdkQZMkI/FAhem5T6XpKqve7Nbn/uxvcpgJlAqo/wIlG', '2023-03-11 03:42:44'),
+('james@gmail.com', 'James', 'Brown', '$2y$10$1Fvi5M4Kx44bjABj8zq6bOrEEhheFbe2uTv07vgA8fwpaaArvpRuK', '2023-01-20 05:40:43'),
+('jane@yahoo.com', 'Jane', 'Smith', '$2y$10$VhkmYJyeU5JsmWcqD/Pxz.ky2e8dn3UWTBQ2ZvN4Si3QkzK7inPem', '2023-02-15 06:37:17'),
+('john@gmail.com', 'John', 'Doe', '$2y$10$.qDSH0Kt5i6jmZgOziFJPe.c6qKyF4NCObigVyjZffEZ4ede.cckK', '2023-04-01 07:36:42'),
+('laura@gamil.com', 'Laura', 'Taylor', '$2y$10$2PnQULtHBaBmxR.FMTaCaerSmugPPaAqPXEuH9YScKyJK1TwakrhC', '2023-02-15 09:45:37'),
+('michael@yahoo.com', 'Michael', 'Smith', '$2y$10$hgjOSuB3.AxjFsFSnS/Qzuudo5qvPGsHVmzrI8ywHPZwJb0uBVfhK', '2023-03-15 04:42:15'),
 ('michelle@gmail.com', 'Michelle', 'Chan', 'Michelle@12', '2023-05-02 08:06:54'),
 ('name1@gmail.com', 'Name 1', 'Testing', '$2y$10$7gUExs92yWTFyWs5cyE1kuYI61bTOOE.vHY2Iq2sa9n2VcWnQaIGq', '2023-05-02 16:00:00'),
 ('name2@gmail.com', 'Name 2', 'Testing', '$2y$10$L0h3sGaJwkXyyLjNjoSqiex.KiJqedwvp.uokO3jtGvmnQrHUMzcq', '2023-05-04 08:07:30'),
-('name3@gmail.com', 'Name 3', 'Testing', '$2y$10$jD326liszmITGRmtwQMjK.yTkrVGQe9zExgdoAHRLZwxUxSj6BI5C', '2023-05-02 08:09:00');
+('name3@gmail.com', 'Name 3', 'Testing', '$2y$10$jD326liszmITGRmtwQMjK.yTkrVGQe9zExgdoAHRLZwxUxSj6BI5C', '2023-05-02 08:09:00'),
+('sarah@gmail.com', 'Sarah', 'Johnson', '$2y$10$GTBA0UJBW9rQgfBs4/.DUeq29MPMLztXBQ0cl0XqAmmI1MpPM9ydC', '2023-04-05 11:41:15');
 
 --
 -- Indexes for dumped tables
@@ -341,18 +335,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`a_email`);
 
 --
--- Indexes for table `bill`
+-- Indexes for table `payments`
 --
-ALTER TABLE `bill`
-  ADD PRIMARY KEY (`bill_id`),
-  ADD KEY `u_email` (`u_email`);
-
---
--- Indexes for table `billdetail`
---
-ALTER TABLE `billdetail`
-  ADD PRIMARY KEY (`bill_id`,`prod_id`),
-  ADD KEY `prod_id` (`prod_id`);
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_email` (`user_email`);
 
 --
 -- Indexes for table `product`
@@ -384,57 +372,45 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `bill`
+-- AUTO_INCREMENT for table `payments`
 --
-ALTER TABLE `bill`
-  MODIFY `bill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `billdetail`
---
-ALTER TABLE `billdetail`
-  MODIFY `bill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `prod_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `prod_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `productdetail`
 --
 ALTER TABLE `productdetail`
-  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT for table `productlog`
 --
 ALTER TABLE `productlog`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `bill`
+-- Constraints for table `payments`
 --
-ALTER TABLE `bill`
-  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`u_email`) REFERENCES `user` (`u_email`);
-
---
--- Constraints for table `billdetail`
---
-ALTER TABLE `billdetail`
-  ADD CONSTRAINT `billDetail_ibfk_1` FOREIGN KEY (`bill_id`) REFERENCES `bill` (`bill_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `billDetail_ibfk_2` FOREIGN KEY (`prod_id`) REFERENCES `product` (`prod_id`) ON UPDATE CASCADE;
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`prod_id`),
+  ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`user_email`) REFERENCES `user` (`u_email`);
 
 --
 -- Constraints for table `productdetail`
 --
 ALTER TABLE `productdetail`
-  ADD CONSTRAINT `productdetail_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `product` (`prod_id`);
+  ADD CONSTRAINT `productdetail_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `product` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

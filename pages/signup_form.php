@@ -23,6 +23,12 @@
 
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
+
+    if (checkLoggedIn()) {
+        header("Location: /pages/myprofile.php");
+        exit;
+    }
     ?>
 
     <div class="main-container center middle">

@@ -51,6 +51,12 @@ email: admin1@semicolonix.com
 pwd  : 12356
 
 hashing method: password_hash("YOUR_PASSWORD", PASSWORD_BCRYPT);
+
+PAYPAL:
+email: sb-tehix25986425@personal.example.com
+pwd:iH!y;g8r
+
+
 ```
 
 # Folder Hierarchy
