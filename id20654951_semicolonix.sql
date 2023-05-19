@@ -308,10 +308,21 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_email`, `u_firstName`, `u_lastName`, `u_password`, `signupDate`) VALUES
+('alex@gmail.com', 'Alex', 'Anderson', '$2y$10$ngNaOIuWtZuOiQSGsuWTz.uQha2NON3dBR6TbXuZR7GzdtOsvX0AO', '2023-05-01 07:45:30'),
+('alice@outlook.com', 'Alice', 'Williams', '$2y$10$KHvOaXOpRxVIOoiT27uv8u2wDz2RajT.RfSsX6AMlAnAe/A/O1/l6', '2023-01-25 02:39:44'),
+('bob@hotmail.com', 'Bob', 'Johnson', '$2y$10$nypN9i0pjX2vXVjRhUYjsO9q1Iete/xYKN6xDZ8P8zBYmA.iUBI1m', '2023-03-30 07:38:45'),
 ('cynthia@gmail.com', 'Cynthia', 'Kim', '$2y$10$ac2hDcbtxiZ/Cus3eOBMmesFBvvWjXcDqXHI9fQ0.qG4/.36nuNve', '2023-05-01 08:06:54'),
+('emily@hotmail.com', 'Emily', 'Wilson', '$2y$10$P6DMtHQchFdkQZMkI/FAhem5T6XpKqve7Nbn/uxvcpgJlAqo/wIlG', '2023-03-11 03:42:44'),
+('james@gmail.com', 'James', 'Brown', '$2y$10$1Fvi5M4Kx44bjABj8zq6bOrEEhheFbe2uTv07vgA8fwpaaArvpRuK', '2023-01-20 05:40:43'),
+('jane@yahoo.com', 'Jane', 'Smith', '$2y$10$VhkmYJyeU5JsmWcqD/Pxz.ky2e8dn3UWTBQ2ZvN4Si3QkzK7inPem', '2023-02-15 06:37:17'),
+('john@gmail.com', 'John', 'Doe', '$2y$10$.qDSH0Kt5i6jmZgOziFJPe.c6qKyF4NCObigVyjZffEZ4ede.cckK', '2023-04-01 07:36:42'),
+('laura@gamil.com', 'Laura', 'Taylor', '$2y$10$2PnQULtHBaBmxR.FMTaCaerSmugPPaAqPXEuH9YScKyJK1TwakrhC', '2023-02-15 09:45:37'),
+('michael@yahoo.com', 'Michael', 'Smith', '$2y$10$hgjOSuB3.AxjFsFSnS/Qzuudo5qvPGsHVmzrI8ywHPZwJb0uBVfhK', '2023-03-15 04:42:15'),
+('michelle@gmail.com', 'Michelle', 'Chan', 'Michelle@12', '2023-05-02 08:06:54'),
 ('name1@gmail.com', 'Name 1', 'Testing', '$2y$10$7gUExs92yWTFyWs5cyE1kuYI61bTOOE.vHY2Iq2sa9n2VcWnQaIGq', '2023-05-02 16:00:00'),
 ('name2@gmail.com', 'Name 2', 'Testing', '$2y$10$L0h3sGaJwkXyyLjNjoSqiex.KiJqedwvp.uokO3jtGvmnQrHUMzcq', '2023-05-04 08:07:30'),
-('name3@gmail.com', 'Name 3', 'Testing', '$2y$10$jD326liszmITGRmtwQMjK.yTkrVGQe9zExgdoAHRLZwxUxSj6BI5C', '2023-05-02 08:09:00');
+('name3@gmail.com', 'Name 3', 'Testing', '$2y$10$jD326liszmITGRmtwQMjK.yTkrVGQe9zExgdoAHRLZwxUxSj6BI5C', '2023-05-02 08:09:00'),
+('sarah@gmail.com', 'Sarah', 'Johnson', '$2y$10$GTBA0UJBW9rQgfBs4/.DUeq29MPMLztXBQ0cl0XqAmmI1MpPM9ydC', '2023-04-05 11:41:15');
 
 --
 -- Indexes for dumped tables
