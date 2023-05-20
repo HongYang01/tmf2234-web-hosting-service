@@ -40,3 +40,11 @@
 	height: 24px;
 	margin-right: 9px;
 }
+
+.icon-email {
+	background-image: url(/assets/icon/email.svg);
+	width: 50px;
+	height: 50px;
+	margin-right: 9px;
+	background-size: contain;
+}

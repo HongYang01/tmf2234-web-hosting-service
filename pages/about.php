@@ -84,8 +84,9 @@
     </div>
 
     <div class="flex-col middle center">
-        
+        <span class='icon-email'></span>
         <a href="mailto:admin1@semicolonix.com" target="_blank">
+            
             <h3>Contact US</h3>
         </a>
     
