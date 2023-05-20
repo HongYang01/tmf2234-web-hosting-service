@@ -34,6 +34,12 @@
                     <h1 style="margin: 24px 0;">Organizational Chart</h1>
                     <img src="https://img.freepik.com/premium-vector/corporate-organizational-chart-with-business-avatar-icons_122818-1311.jpg?w=2000" alt="Organizational Chart" width="500px">
                 </div>
+                
+                <div class="flex-col middle">
+                    <h1 style="margin: 24px 0;">Contact Us</h1>
+                    <p class="font-second text-normal" style="width: 45%;text-align: center;">Need help? Please don't worry, our team can help you. Call us at <b>012-3456789</b> or send an email to <b>Semicolonix@gmail.com</b></p>
+                    <p class="font-second text-normal" style="width: 45%;text-align: center;">Hours of operation: Monday - Friday (9AM – 6PM)</p>
+                </div>
 
             </div>
         </header>
