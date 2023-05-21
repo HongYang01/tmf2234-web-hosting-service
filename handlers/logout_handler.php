@@ -1,8 +1,24 @@
 <?php
 
-//start a new session because previous session cookie still exists in the user's browser and may be used to initiate a new session
-//Therefore to make sure it is destroyed properly
-session_start();
+/*
+################################
+||                            ||
+||       Handler Guide        ||
+||                            ||
+################################
+
+USAGE:
+Allow ALL user to logout
+
+PROCESS:
+1. empty all session variables
+2. Destroy the session
+2. Delete all cookies
+3. Redirect to index.php
+
+*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
 
 //Destroy the opened session
 session_destroy();

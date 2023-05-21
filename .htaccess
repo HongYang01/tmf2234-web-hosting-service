@@ -1,9 +1,21 @@
-# Redirect to custom error page
+RewriteEngine On
 
-ErrorDocument 404 /errors/404.php
-ErrorDocument 503 /errors/503.php
+# Redirect user access to 404 and 503 pages to index.php using "/"
 
-# Preventing unwanted attack request
+RewriteCond %{THE_REQUEST} /(Error/404|Error/503)\.php [NC]
+RewriteRule ^ / [R=302,L]
+
+RewriteCond %{REQUEST_URI} ^/(admin|assets|auth|config|css|Error|handlers|includes|js|pages|vendor)/ [NC]
+RewriteCond %{REQUEST_URI} !\.(php|html?|css|js|svg)$ [NC]
+RewriteRule ^ - [R=403,L]
+
+# Redirect to custom error pages
+
+ErrorDocument 404 /Error/404.php
+ErrorDocument 403 /Error/403.php
+ErrorDocument 503 /Error/503.php
+
+# Preventing unwanted attack requests
 
 # - Directory traversal attacks
 
