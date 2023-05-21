@@ -1,0 +1,36 @@
+.grid-container-left {
+    display: grid;
+    column-gap: 32px;
+    grid-template-columns: 0.25fr 1.5fr;
+    padding: 40px 220px 20px 220px;
+  }
+
+  .grid-container-right {
+    display: grid;
+    column-gap: 32px;
+    grid-template-columns: 1.5fr 0.25fr ;
+    padding: 40px 220px 20px 220px;
+  }
+
+.name{
+  font-size: 16px;
+}
+
+.position{
+  display: flex;
+}
+
+.spacebar{
+  padding-bottom: 12px;
+}
+
+.description{
+  row-gap: 20px;
+}
+
+
+
+
+
+
+  
