@@ -48,6 +48,20 @@
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+@media screen and (max-width: 720px){
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		top: 50px;
+		left: 0;
+		z-index: 1;
+		background-color: var(--color-white);
+		min-width: 220px;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	}
+}
+
+
 .dropdown-content a {
 	display: block;
 	height: 100%;
