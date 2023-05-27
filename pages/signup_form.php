@@ -13,7 +13,7 @@
     <title>Sign Up Semicolonix</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>

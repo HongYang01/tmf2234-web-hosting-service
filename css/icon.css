@@ -1,7 +1,7 @@
 /* icon setup */
 
 [class*="icon-"] {
-	display: block;
+	display: inline-block;
 	align-self: center;
 	background-repeat: no-repeat;
 	text-align: right;
@@ -47,6 +47,7 @@
 	height: 50px;
 	margin-right: 9px;
 	background-size: contain;
+}
 
 .icon-lock {
 	background-image: url(/assets/icon/lock.svg);

@@ -1,3 +1,7 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +17,7 @@
     <title>Dedicated Hosting</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>
@@ -50,8 +54,6 @@
         <div class="pricing-layout font-second">
 
             <?php
-
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
             $query = "SELECT * FROM product WHERE prod_category='dedicated' AND prod_status='Active'";
             $result = mysqli_query($conn, $query);
@@ -115,21 +117,18 @@
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
 
-            mysqli_close($conn);
-
             ?>
-
-
         </div>
-
     </div>
-
 
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
 
-
 </body>
 
 </html>
+
+<?php
+mysqli_close($conn);
+?>

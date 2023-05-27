@@ -1,3 +1,7 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +17,7 @@
     <title>VPS Hosting</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>
@@ -46,8 +50,6 @@
         <div class="pricing-layout font-second">
 
             <?php
-
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
             $query = "SELECT * FROM product WHERE prod_category='vps' AND prod_status='Active'";
             $result = mysqli_query($conn, $query);
@@ -127,3 +129,7 @@
 </body>
 
 </html>
+
+<?php
+mysqli_close($conn);
+?>
