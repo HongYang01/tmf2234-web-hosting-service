@@ -46,6 +46,36 @@ USER:
 email: cynthia@gmail.com
 pwd  : 123
 
+email: alex@gmail.com
+pwd  : alex456@
+
+email: alice@outlook.com
+pwd  : Alicepass
+
+email: bob@hotmail.com
+pwd  : qwerty789
+
+email: emily@hotmail.com
+pwd  : emily123
+
+email: james@gmail.com
+pwd  : brown123
+
+email: jane@yahoo.com
+pwd  : secret456
+
+email: john@gmail.com
+pwd  : password123
+
+email: laura@gamil.com
+pwd  : laura524
+
+email: michael@yahoo.com
+pwd  : mike78900
+
+email: sarah@gmail.com
+pwd  : sarah456
+
 ADMIN:
 email: admin1@semicolonix.com
 pwd  : 12356
