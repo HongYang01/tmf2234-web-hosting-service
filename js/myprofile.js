@@ -384,7 +384,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 	// Function to handle the click event on plan rows
 	function handlePlanRowClick(event) {
-		event.preventDefault();
 		const planRow = event.target.closest("#plan-row");
 
 		if (planRow) {
@@ -404,8 +403,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 */
 
 document.addEventListener("keydown", function (event) {
-	const planDetail = document.getElementById("popup-details");
-
 	if (event.key === "Escape" || event.key === "Esc") {
 		closePopupDetail();
 	}
