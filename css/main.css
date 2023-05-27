@@ -12,6 +12,8 @@
 
 	--color-black: #000000;
 	--color-white: #ffffff;
+	--color-green: #008000;
+	--color-red: #ff0000;
 	--color-c1: #31708e;
 	--color-c2: #88bdbc;
 	--color-c3: #eee2dc;
@@ -79,6 +81,11 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	scroll-behavior: smooth;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
 }
 
 a {
@@ -163,8 +170,13 @@ span {
 	color: var(--color-current);
 }
 
+.green {
+	--color-current: var(--color-green);
+	color: var(--color-current);
+}
+
 .red {
-	--color-current: #ff0000;
+	--color-current: var(--color-red);
 	color: var(--color-current);
 }
 
@@ -259,6 +271,10 @@ span {
 .w-100 {
 	width: 100%;
 	max-width: 100%;
+}
+
+.w-fit {
+	width: fit-content;
 }
 
 .center {

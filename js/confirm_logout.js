@@ -24,7 +24,7 @@ confirmBtn.addEventListener("click", () => {
 			if (response.ok) {
 				window.location.href = "/index.php";
 			} else {
-				// to-do: Handle error
+				showPopup("Failed to logout");
 			}
 		})
 		.catch((error) => console.error(error));

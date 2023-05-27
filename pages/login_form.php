@@ -13,7 +13,7 @@
     <title>Login Semicolonix</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>
@@ -31,7 +31,6 @@
         exit;
     }
 
-
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     ?>
 
@@ -39,7 +38,7 @@
 
         <div class="w-100 flex-row around ">
 
-            <iframe id="image-cover" src="/assets/image/login-cover.svg" title="cover"></iframe>
+            <iframe id="image-cover" src="/assets/image/login-cover.svg" title=""></iframe>
 
             <div id="form-layout">
 
