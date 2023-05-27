@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2023 at 11:40 AM
+-- Generation Time: May 27, 2023 at 06:33 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
+DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `a_email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `a_firstName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
@@ -47,6 +48,7 @@ INSERT INTO `admin` (`a_email`, `a_firstName`, `a_lastName`, `a_password`) VALUE
 -- Table structure for table `payments`
 --
 
+DROP TABLE IF EXISTS `payments`;
 CREATE TABLE `payments` (
   `payment_id` int(11) NOT NULL,
   `user_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -57,16 +59,18 @@ CREATE TABLE `payments` (
   `payment_status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `invoice_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `product_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `createdtime` datetime DEFAULT NULL
+  `bill_date` datetime DEFAULT NULL,
+  `maturity_date` datetime NOT NULL,
+  `plan_status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `payments`
 --
 
-INSERT INTO `payments` (`payment_id`, `user_email`, `product_id`, `transaction_id`, `payment_amount`, `currency_code`, `payment_status`, `invoice_id`, `product_name`, `createdtime`) VALUES
-(3, 'name1@gmail.com', 6, 'PAYID-MRRQYJQ6B0869062J305464N', 3.55, 'USD', 'approved', '64630c261cd84', 'Shared Hosting (Premium)', '2023-04-18 00:00:00'),
-(5, 'name1@gmail.com', 6, 'PAYID-MRSZWBI19R47509T7485015N', 3.55, 'USD', 'approved', '64659b04af38e', 'Shared Hosting (Premium)', '2023-05-18 11:27:53');
+INSERT INTO `payments` (`payment_id`, `user_email`, `product_id`, `transaction_id`, `payment_amount`, `currency_code`, `payment_status`, `invoice_id`, `product_name`, `bill_date`, `maturity_date`, `plan_status`) VALUES
+(25, 'name1@gmail.com', 4, 'PAYID-MRY2AMY3UM65337M0310635Y', 1.55, 'USD', 'approved', '6471a03539f85', 'Shared Hosting (Basic)', '2023-05-27 14:16:30', '2023-06-27 14:16:30', 1),
+(26, 'name1@gmail.com', 8, 'PAYID-MRY5HVA9XY46109XF334473L', 10.55, 'USD', 'approved', '6471d3d69387a', 'VPS Hosting (Popular)', '2023-05-27 17:58:10', '2023-06-27 17:58:10', 1);
 
 -- --------------------------------------------------------
 
@@ -74,6 +78,7 @@ INSERT INTO `payments` (`payment_id`, `user_email`, `product_id`, `transaction_i
 -- Table structure for table `product`
 --
 
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `prod_id` int(10) NOT NULL,
   `prod_title` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
@@ -102,6 +107,7 @@ INSERT INTO `product` (`prod_id`, `prod_title`, `prod_subtitle`, `prod_category`
 --
 -- Triggers `product`
 --
+DROP TRIGGER IF EXISTS `prod_add`;
 DELIMITER $$
 CREATE TRIGGER `prod_add` AFTER INSERT ON `product` FOR EACH ROW INSERT INTO productlog 
 VALUES(
@@ -115,6 +121,7 @@ VALUES(
     NEW.prod_price)
 $$
 DELIMITER ;
+DROP TRIGGER IF EXISTS `prod_del`;
 DELIMITER $$
 CREATE TRIGGER `prod_del` BEFORE DELETE ON `product` FOR EACH ROW INSERT INTO productlog
 VALUES(
@@ -128,6 +135,7 @@ VALUES(
     OLD.prod_price)
 $$
 DELIMITER ;
+DROP TRIGGER IF EXISTS `prod_edit`;
 DELIMITER $$
 CREATE TRIGGER `prod_edit` BEFORE UPDATE ON `product` FOR EACH ROW INSERT INTO productlog
 VALUES(
@@ -148,6 +156,7 @@ DELIMITER ;
 -- Table structure for table `productdetail`
 --
 
+DROP TABLE IF EXISTS `productdetail`;
 CREATE TABLE `productdetail` (
   `auto_num` int(11) NOT NULL,
   `prod_id` int(10) NOT NULL,
@@ -278,6 +287,7 @@ INSERT INTO `productdetail` (`auto_num`, `prod_id`, `feature`, `status`) VALUES
 -- Table structure for table `productlog`
 --
 
+DROP TABLE IF EXISTS `productlog`;
 CREATE TABLE `productlog` (
   `id` int(10) NOT NULL,
   `datetime` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -295,6 +305,7 @@ CREATE TABLE `productlog` (
 -- Table structure for table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `u_email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `u_firstName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
@@ -308,21 +319,21 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_email`, `u_firstName`, `u_lastName`, `u_password`, `signupDate`) VALUES
-('alex@gmail.com', 'Alex', 'Anderson', '$2y$10$ngNaOIuWtZuOiQSGsuWTz.uQha2NON3dBR6TbXuZR7GzdtOsvX0AO', '2023-05-01 07:45:30'),
-('alice@outlook.com', 'Alice', 'Williams', '$2y$10$KHvOaXOpRxVIOoiT27uv8u2wDz2RajT.RfSsX6AMlAnAe/A/O1/l6', '2023-01-25 02:39:44'),
-('bob@hotmail.com', 'Bob', 'Johnson', '$2y$10$nypN9i0pjX2vXVjRhUYjsO9q1Iete/xYKN6xDZ8P8zBYmA.iUBI1m', '2023-03-30 07:38:45'),
+('alex@gmail.com', 'Alex', 'Anderson', '$2y$10$ngNaOIuWtZuOiQSGsuWTz.uQha2NON3dBR6TbXuZR7GzdtOsvX0AO', '2023-04-30 23:45:30'),
+('alice@outlook.com', 'Alice', 'Williams', '$2y$10$KHvOaXOpRxVIOoiT27uv8u2wDz2RajT.RfSsX6AMlAnAe/A/O1/l6', '2023-01-24 18:39:44'),
+('bob@hotmail.com', 'Bob', 'Johnson', '$2y$10$nypN9i0pjX2vXVjRhUYjsO9q1Iete/xYKN6xDZ8P8zBYmA.iUBI1m', '2023-03-29 23:38:45'),
 ('cynthia@gmail.com', 'Cynthia', 'Kim', '$2y$10$ac2hDcbtxiZ/Cus3eOBMmesFBvvWjXcDqXHI9fQ0.qG4/.36nuNve', '2023-05-01 08:06:54'),
-('emily@hotmail.com', 'Emily', 'Wilson', '$2y$10$P6DMtHQchFdkQZMkI/FAhem5T6XpKqve7Nbn/uxvcpgJlAqo/wIlG', '2023-03-11 03:42:44'),
-('james@gmail.com', 'James', 'Brown', '$2y$10$1Fvi5M4Kx44bjABj8zq6bOrEEhheFbe2uTv07vgA8fwpaaArvpRuK', '2023-01-20 05:40:43'),
-('jane@yahoo.com', 'Jane', 'Smith', '$2y$10$VhkmYJyeU5JsmWcqD/Pxz.ky2e8dn3UWTBQ2ZvN4Si3QkzK7inPem', '2023-02-15 06:37:17'),
-('john@gmail.com', 'John', 'Doe', '$2y$10$.qDSH0Kt5i6jmZgOziFJPe.c6qKyF4NCObigVyjZffEZ4ede.cckK', '2023-04-01 07:36:42'),
-('laura@gamil.com', 'Laura', 'Taylor', '$2y$10$2PnQULtHBaBmxR.FMTaCaerSmugPPaAqPXEuH9YScKyJK1TwakrhC', '2023-02-15 09:45:37'),
-('michael@yahoo.com', 'Michael', 'Smith', '$2y$10$hgjOSuB3.AxjFsFSnS/Qzuudo5qvPGsHVmzrI8ywHPZwJb0uBVfhK', '2023-03-15 04:42:15'),
-('michelle@gmail.com', 'Michelle', 'Chan', 'Michelle@12', '2023-05-02 08:06:54'),
+('emily@hotmail.com', 'Emily', 'Wilson', '$2y$10$P6DMtHQchFdkQZMkI/FAhem5T6XpKqve7Nbn/uxvcpgJlAqo/wIlG', '2023-03-10 19:42:44'),
+('james@gmail.com', 'James', 'Brown', '$2y$10$1Fvi5M4Kx44bjABj8zq6bOrEEhheFbe2uTv07vgA8fwpaaArvpRuK', '2023-01-19 21:40:43'),
+('jane@yahoo.com', 'Jane', 'Smith', '$2y$10$VhkmYJyeU5JsmWcqD/Pxz.ky2e8dn3UWTBQ2ZvN4Si3QkzK7inPem', '2023-02-14 22:37:17'),
+('john@gmail.com', 'John', 'Doe', '$2y$10$.qDSH0Kt5i6jmZgOziFJPe.c6qKyF4NCObigVyjZffEZ4ede.cckK', '2023-03-31 23:36:42'),
+('laura@gamil.com', 'Laura', 'Taylor', '$2y$10$2PnQULtHBaBmxR.FMTaCaerSmugPPaAqPXEuH9YScKyJK1TwakrhC', '2023-02-15 01:45:37'),
+('michael@yahoo.com', 'Michael', 'Smith', '$2y$10$hgjOSuB3.AxjFsFSnS/Qzuudo5qvPGsHVmzrI8ywHPZwJb0uBVfhK', '2023-03-14 20:42:15'),
+('michelle@gmail.com', 'Michelle', 'Chan', 'Michelle@12', '2023-05-02 00:06:54'),
 ('name1@gmail.com', 'Name 1', 'Testing', '$2y$10$7gUExs92yWTFyWs5cyE1kuYI61bTOOE.vHY2Iq2sa9n2VcWnQaIGq', '2023-05-02 16:00:00'),
 ('name2@gmail.com', 'Name 2', 'Testing', '$2y$10$L0h3sGaJwkXyyLjNjoSqiex.KiJqedwvp.uokO3jtGvmnQrHUMzcq', '2023-05-04 08:07:30'),
 ('name3@gmail.com', 'Name 3', 'Testing', '$2y$10$jD326liszmITGRmtwQMjK.yTkrVGQe9zExgdoAHRLZwxUxSj6BI5C', '2023-05-02 08:09:00'),
-('sarah@gmail.com', 'Sarah', 'Johnson', '$2y$10$GTBA0UJBW9rQgfBs4/.DUeq29MPMLztXBQ0cl0XqAmmI1MpPM9ydC', '2023-04-05 11:41:15');
+('sarah@gmail.com', 'Sarah', 'Johnson', '$2y$10$GTBA0UJBW9rQgfBs4/.DUeq29MPMLztXBQ0cl0XqAmmI1MpPM9ydC', '2023-04-05 03:41:15');
 
 --
 -- Indexes for dumped tables
@@ -375,7 +386,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `product`
