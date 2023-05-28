@@ -11,7 +11,7 @@
     <title>Error 403</title>
 </head>
 
-<body class="flex-col">
+<body>
     <div class="flex-grow-1 flex-col middle center">
         <iframe id="image-cover" src="/assets/image/403-error-image.svg" title=""></iframe>
         <h1 class="c1 text-h1" style="margin: 50px 0;">We are watching you!</h1>

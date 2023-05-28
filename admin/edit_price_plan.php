@@ -13,7 +13,7 @@
     <title>Edit Price Plan</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>
@@ -24,12 +24,14 @@
     <?php
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
 
-    if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { //check if signned in
+    if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
         header("Location: /pages/login_form.php");
-    } else {
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+        exit;
     }
+
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
 
     if (!isset($_GET['prod_id']) || empty($_GET['prod_id'])) { // check if prod_id is set & is not empty
         header("Location: /admin/manage_price_plan.php");

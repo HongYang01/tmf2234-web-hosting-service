@@ -13,7 +13,7 @@
     <title>Cart | Semicolonix</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>
@@ -21,9 +21,8 @@
 
     <?php
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
 
     if (!checkLoggedIn()) {
@@ -31,6 +30,8 @@
         mysqli_close($conn);
         exit;
     }
+
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
 
     if (!isset($_POST['prod_id']) || empty($_POST['prod_id'])) {
         // Handle the error gracefully, such as displaying an error message or redirecting

@@ -1,10 +1,7 @@
 <?php
 
 
-// to-do:
-// need to get user email and store in payment table
-// try subscribtion
-// check date is it monthly payment (cannot subscribe to the same plan within a month as of payment date)
+// TODO: try subscribtion payment (recurring payment)
 
 /*
 ################################
@@ -49,7 +46,6 @@ $requestBody = file_get_contents('php://input');
 $requestData = json_decode($requestBody, true);
 
 if (!isset($requestData['prod_id']) || empty($requestData['prod_id'])) {
-    // Handle the error gracefully, such as displaying an error message or redirecting
     $response = array('success' => false, 'message' => "This script should not be called directly, expected post data");
     echo json_encode($response);
     exit;
@@ -113,7 +109,7 @@ try {
 
     $query2 = "SELECT 
         payments.product_id AS pay_prod_id, 
-        DATE(payments.createdtime) AS pay_date,
+        DATE(payments.bill_date) AS pay_date,
         product.prod_category AS pay_product_cat
         FROM payments 
         INNER JOIN product ON payments.product_id = product.prod_id
@@ -122,7 +118,6 @@ try {
     $result2 = mysqli_query($conn, $query2);
 
     if (!$result2) {
-        // Handle the error gracefully, such as displaying an error message or redirecting
         $response = array('success' => false, 'message' => "Failed to execute query");
         echo json_encode($response);
         exit;

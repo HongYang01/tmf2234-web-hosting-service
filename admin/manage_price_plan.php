@@ -1,3 +1,8 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +17,7 @@
     <title>Manage Price Plan</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>
@@ -21,14 +26,16 @@
     <div id="popup-fade-msg"></div>
 
     <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
-    if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { //check if signned in
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
+
+    if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
         header("Location: /pages/login_form.php");
-    } else {
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+        exit;
     }
+
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
+
     ?>
 
     <div class="main-container">

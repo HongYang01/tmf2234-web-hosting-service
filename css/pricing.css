@@ -12,13 +12,13 @@
 	padding: 40px;
 	border-radius: 6px;
 	border: 2px solid var(--color-c3);
-	box-shadow: 0 0 10px 2px #0000002a;
+	box-shadow: 0 0 5px 1px rgba(var(--rgb-black), 0.06);
 	transition: all 0.6s ease;
 }
 
 .pricing-card:hover {
 	transform: scale(1.02);
-	box-shadow: 0 0 30px 3px #0000002a;
+	box-shadow: 0 0 5px 1px rgba(var(--rgb-black), 0.24);
 }
 
 .pricing-card h1 {
