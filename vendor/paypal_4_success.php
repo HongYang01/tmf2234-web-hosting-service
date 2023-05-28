@@ -17,7 +17,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
     <title>Payment Successful</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>

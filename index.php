@@ -11,7 +11,7 @@
     <title>Semicolonix</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <!-- <div class="flex-row">
     <p class="middle">Color Palette</p>

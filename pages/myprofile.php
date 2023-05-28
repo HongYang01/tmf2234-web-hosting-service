@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="/css/myprofile.css">
     <script src="/js/effect.js"></script>
     <script src="/js/confirm_logout.js" defer></script>
+    <script src="/js/myprofile.js"></script>
     <title>My Profile</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>
@@ -22,8 +23,10 @@
     <div id="popup-fade-msg"></div>
 
     <?php
+
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
     if (!checkLoggedIn()) {
         header("Location: /pages/login_form.php");
@@ -31,7 +34,6 @@
     }
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
     //query without sanitization
     if ($_SESSION['role'] == "user") {
@@ -42,7 +44,7 @@
 
     $result = mysqli_query($conn, $query);
 
-    if (mysqli_num_rows($result) == 1) {
+    if ($result && mysqli_num_rows($result) == 1) {
 
         $row = mysqli_fetch_array($result);
 
@@ -55,11 +57,13 @@
         }
     }
 
+    mysqli_close($conn);
+
     ?>
 
     <div class="main-container">
 
-        <div class="flex-grow-1 flex-row">
+        <div class="grid-container">
 
             <section class="left-container">
 
@@ -68,7 +72,7 @@
 
                     <form id="myprofile-form" method="post">
                         <label for="email">Registered Email</label>
-                        <input type="email" name="email" value="<?php echo $_SESSION['email']; ?>" readonly>
+                        <input type="email" name="email" id="email" value="<?php echo $_SESSION['email']; ?>" readonly>
 
                         <label for="fname">Firstname</label>
                         <input type="text" autocomplete="off" name="fname" id="fname" value="<?php echo $_SESSION['fname']; ?>" onblur="saveChanges()" required>
@@ -86,7 +90,49 @@
             </section>
 
             <section class="right-container">
-                <h1 class="c1 text-h1">Subscribed Plan</h1>
+
+                <div class="filter">
+                    <h1 class="c1 text-h1">Subscribed Plan</h1>
+                    <div class="filter-content">
+                        <span>Sort by:</span>
+                        <button onclick="sortPlan('default')">Default</button>
+                        <button onclick="sortPlan('name')">Plan</button>
+                        <button onclick="sortPlan('date')">Maturity Date</button>
+                    </div>
+                </div>
+
+                <div class="right-container-bottom">
+
+                    <div id="render-plan">
+                        <!-- Dynamic sub plan element here -->
+                    </div>
+
+                </div>
+
+                <div id="popup-details">
+                    <button id="escBtn" onclick="closePopupDetail()">ESC</button>
+                    <h1>Plan Details</h1>
+                    <div id="popup-content-1">
+                        <div id="popup-content-1-header">
+                            <p>Plan Name</p>
+                            <p>Invoice ID</p>
+                            <p>Payment Date</p>
+                            <p>Maturity Date</p>
+                            <p>Countdown</p>
+                            <p>Status</p>
+                        </div>
+                        <div id="popup-content-1-value">
+                        </div>
+                    </div>
+
+                    <h1>Features</h1>
+
+                    <div id="popup-content-2">
+                        <div id="popup-content-2-include"></div>
+                        <div id="popup-content-2-exclude"></div>
+                    </div>
+                </div>
+
             </section>
 
         </div>
@@ -109,55 +155,6 @@
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
-
-    <script>
-        //the post query URL is hidden (effect.js)
-
-        function saveChanges() {
-            // Get form data
-            var formData = new FormData(document.getElementById("myprofile-form"));
-            var fnameInput = document.getElementById("fname");
-            var lnameInput = document.getElementById("lname");
-            var fnameErrMsg = document.getElementById("err-msg-fname");
-            var lnameErrMsg = document.getElementById("err-msg-lname");
-            var err_found = false;
-
-            fnameErrMsg.style.display = "none";
-            lnameErrMsg.style.display = "none";
-
-            if (fnameInput.value === "") {
-                fnameErrMsg.innerHTML = "First Name is required";
-                fnameErrMsg.style.display = "block";
-                err_found = true;
-            }
-
-            if (lnameInput.value === "") {
-                lnameErrMsg.innerHTML = "Last Name is required";
-                lnameErrMsg.style.display = "block";
-                err_found = true;
-            }
-
-            // Send AJAX request, iff err_found is false
-            if (!err_found) {
-                var xhr = new XMLHttpRequest();
-
-                xhr.open("POST", "/handlers/update_myprofile_handler.php");
-
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-
-                        showPopup(xhr.responseText);
-
-                    } else {
-                        // console.log("Error: " + xhr.statusText);
-                        showPopup("AJAX status: " + xhr.statusText);
-                    }
-                };
-
-                xhr.send(formData);
-            }
-        }
-    </script>
 
 </body>
 

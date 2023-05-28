@@ -250,7 +250,7 @@ class PayPalModel
 
     private function assignValue($key, $value)
     {
-        $setter = 'set'. $this->convertToCamelCase($key);
+        $setter = 'set' . $this->convertToCamelCase($key);
         // If we find the setter, use that, otherwise use magic method.
         if (method_exists($this, $setter)) {
             $this->$setter($value);
