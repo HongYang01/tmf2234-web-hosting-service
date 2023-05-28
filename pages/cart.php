@@ -126,7 +126,7 @@
                     <p style="text-align: justify;">By checking out you agree with our <b>Terms of Service</b>. We will process your personal data for the fulfillment of your order and other purposes as per our Privacy Policy. This payment is one-time only, if you wish to continue the plan you may renew it after ONE month</p><br>
 
 
-                    <p style="text-align: justify;">This plan is only valid for <b>ONE month (30 days)</b> as of payment date, to renew the plan you need to do a separate payment. You you receive an email a week in advance before the maturity date.</p>
+                    <p style="text-align: justify;">This plan is only valid for <b>ONE month (30 days)</b> as of payment date, to renew the plan you need to do a separate payment. You will receive an email a week in advance before the maturity date.</p>
                 </div>
 
             </div>
