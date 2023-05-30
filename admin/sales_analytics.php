@@ -32,7 +32,13 @@
         require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
 
         try {
-            $query = "SELECT YEAR(bill_date) AS year, MONTHNAME(bill_date) AS month, SUM(payment_amount) AS total_sales FROM payments GROUP BY year, month ORDER BY year, MONTH(bill_date)";
+            /* --------------- Line Chart ---------------*/
+            $query = "SELECT YEAR(bill_date) AS year, 
+                        MONTHNAME(bill_date) AS month, 
+                        SUM(payment_amount) AS total_sales 
+                        FROM payments 
+                        GROUP BY year, month 
+                        ORDER BY year, MONTH(bill_date)";
             $result = mysqli_query($conn, $query);
 
             //initialize empty array
@@ -52,6 +58,29 @@
             $encodedData = json_encode($data);
             echo "<script>var labels = $encodedLabels; var data = $encodedData; </script>";
             
+            /* --------------- Pie Chart ---------------*/
+            $query1 = "SELECT product_name AS ProductName, 
+                        COUNT(product_id) AS Quantity 
+                        FROM payments 
+                        GROUP BY product_name";
+            $result1 = mysqli_query($conn, $query1);
+
+            $pieLabels = [];
+            $pieData = [];
+
+            if(mysqli_num_rows($result1) > 0){
+                while ($row = $result1->fetch_array()) {
+                    $category = $row['ProductName'];
+                    $pieLabels[] = $category;
+                    $pieData[] = $row['Quantity'];
+                }
+            }
+
+            $encodedPieLabels = json_encode($pieLabels);
+            $encodedPieData = json_encode($pieData);
+            echo "<script>var pieLabels = $encodedPieLabels; var pieData = $encodedPieData; </script>";
+
+
         } catch (Exception $e) {
             $errorMessage = "Error: " . $e->getMessage();
             $encodedMessage = json_encode($errorMessage);
@@ -70,9 +99,15 @@
 
         <div class="charts">
             <div class="charts-card">
-                    <div class="chartBox">
-                        <canvas id="lineChart"></canvas>
-                    </div>
+                <div class="chartBox">
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+
+            <div class="charts-card">
+                <div class="chartBox">
+                    <canvas id="pieChart"></canvas>
+                </div>
             </div>
         </div>
         

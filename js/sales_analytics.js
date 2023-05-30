@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    /* --------------- Line Chart ---------------*/
     new Chart("lineChart", {
         type: "line",
         data: {
@@ -52,4 +53,45 @@ document.addEventListener("DOMContentLoaded", function() {
             maintainAspectRatio: false, // Respect the height previously added to the canvas
         }
     });
+
+    /* --------------- Pie Chart ---------------*/
+    new Chart("pieChart", {
+        type: "pie",
+        data: {
+            labels: pieLabels,
+            datasets: [{
+                backgroundColor: [
+                    'rgba(134, 227, 206, 1)',
+                    'rgba(250, 173, 172, 1)',
+                    'rgba(208, 230, 165, 1)',
+                    'rgba(253, 183, 142, 1)',
+                    'rgba(231, 211, 237, 1)',
+                    'rgba(194, 215, 243, 1)',
+                    'rgba(253, 199, 205, 1)',
+                    'rgba(252, 237, 190, 1)',
+                    'rgba(246, 214, 195, 1)'
+                    // Add more colors as needed
+                ],
+                data: pieData
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Sales by Category',
+                    align: 'center',
+                    font: {
+                        size: 16
+                    }
+                },
+                legend: {
+                    position: 'bottom', // Move legend to bottom
+                    spacing: 20 // Adjust the value as needed
+                },
+            },
+            maintainAspectRatio: false // Adjust as needed
+        }
+    });
+    
 });
