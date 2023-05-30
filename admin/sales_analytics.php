@@ -98,6 +98,7 @@
         </div>
 
         <div class="charts">
+
             <div class="charts-card">
                 <div class="chartBox">
                     <canvas id="lineChart"></canvas>
@@ -109,6 +110,7 @@
                     <canvas id="pieChart"></canvas>
                 </div>
             </div>
+            
         </div>
         
     </main>
