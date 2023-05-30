@@ -25,8 +25,8 @@
     <?php
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
 
     if (!checkLoggedIn()) {
         header("Location: /pages/login_form.php");

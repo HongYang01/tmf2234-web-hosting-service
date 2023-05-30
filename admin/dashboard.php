@@ -33,7 +33,6 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
-
     if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
         header("Location: /pages/login_form.php");
         exit;

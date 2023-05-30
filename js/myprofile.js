@@ -216,11 +216,11 @@ function sortPlan(sortBy) {
 	getSubPlan(sortBy)
 		.then((data) => {
 			if (data !== null) {
-				renderSubPlan(data); // Handle the returned data
+				renderSubPlan(data);
 			}
 		})
 		.catch((error) => {
-			console.error(error); // Handle the error
+			console.error(error);
 		});
 }
 
@@ -378,7 +378,7 @@ function renderSubPlanDetail(productId, invoiceId) {
 }
 
 // Click Listener
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
 	// Attach event listener to a parent element
 	document.addEventListener("click", handlePlanRowClick);
 
@@ -397,7 +397,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 /*
 ################################
 ||                            ||
-||        Esc Listener        ||
+||        ESC Listener        ||
 ||                            ||
 ################################
 */
