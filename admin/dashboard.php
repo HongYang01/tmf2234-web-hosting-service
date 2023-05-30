@@ -12,7 +12,7 @@
     <title>Semicolonix Admin</title>
 </head>
 
-<body class="flex-col">
+<body>
 
     <!-- 
         show admin
@@ -31,15 +31,15 @@
     <?php
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
 
-    if (!checkLoggedIn()) {
+    if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
         header("Location: /pages/login_form.php");
         exit;
     }
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
-
     ?>
 
     <div class="main-container">
@@ -52,6 +52,7 @@
         <div class="dashboard-layout">
 
             <div class="dashboard-component">
+                <span></span>
                 <a href="/admin/manage_price_plan.php">Manage <br> Pricing Plan</a>
             </div>
 

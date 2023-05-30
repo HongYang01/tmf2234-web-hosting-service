@@ -2,10 +2,10 @@ RewriteEngine On
 
 # Redirect user access to 404 and 503 pages to index.php using "/"
 
-RewriteCond %{THE_REQUEST} /(Error/404|Error/503)\.php [NC]
-RewriteRule ^ / [R=302,L]
+# RewriteCond %{THE_REQUEST} /(Error/404|Error/503)\.php [NC]
+# RewriteRule ^ / [R=302,L]
 
-RewriteCond %{REQUEST_URI} ^/(admin|assets|auth|config|css|Error|handlers|includes|js|pages|vendor)/ [NC]
+RewriteCond %{REQUEST_URI} ^/(admin|assets|auth|config|css|Error|handlers|includes|js|pages|vendor|analytics)/ [NC]
 RewriteCond %{REQUEST_URI} !\.(php|html?|css|js|svg)$ [NC]
 RewriteRule ^ - [R=403,L]
 

@@ -2,6 +2,7 @@ const checkoutBtn = document.getElementById("checkoutBtn");
 
 checkoutBtn.addEventListener("click", function (event) {
 	event.preventDefault();
+
 	// Retrieve the value of data-product-id
 	const productId = this.getAttribute("data-prod-id");
 

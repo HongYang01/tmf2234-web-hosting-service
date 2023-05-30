@@ -15,7 +15,7 @@ $paypalConfig = [
     'client_id' => 'AcGiJABvQOLZrBw6RVcGvIRfjb7hUqlsbBVjvmake2oKdTjC3RtPMfvFI2wv0u99rKmkZpgTddQyva1v',
     'client_secret' => 'EMgusAapAohRmqlHBxQSuBJaO5BV9zJL2hZwMzk3LyRLsxiH4NYQqwqGpHTL8kGeksPiLWAah5fUgvwo',
     'return_url' => 'http://localhost/vendor/paypal_3_response.php',
-    'cancel_url' => 'http://localhost/vendor/paypal_5_failed.php' //to-do: need to change LINK
+    'cancel_url' => 'http://localhost/vendor/paypal_5_failed.php'
 ];
 
 // Database settings. Change these for your database configuration.
@@ -27,7 +27,9 @@ $dbConfig = [
 ];
 
 $apiContext = getApiContext($paypalConfig['client_id'], $paypalConfig['client_secret'], $enableSandbox);
-$apiContext->addRequestHeader('Accept-Language', 'en_GB'); // only in Great Britain english
+$apiContext->addRequestHeader('Accept-Language', 'en_GB'); // only in Great Britain english\
+
+
 /**
  * Set up a connection to the API
  *

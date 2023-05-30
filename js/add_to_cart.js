@@ -1,4 +1,5 @@
 // Add event listeners to the buttons
+//NOTE: not using "fetch()" because it need to be redirec to the cart page
 const buyBtns = document.querySelectorAll("#addToCartBtn");
 
 buyBtns.forEach(function (buyBtn) {
