@@ -97,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 legend: {
                     position: 'bottom', // Move legend to bottom
-                    spacing: 20 // Adjust the value as needed
                 },
             },
             maintainAspectRatio: false // Adjust as needed
