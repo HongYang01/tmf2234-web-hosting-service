@@ -129,7 +129,3 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 </body>
 
 </html>
-
-<?php
-mysqli_close($conn);
-?>
