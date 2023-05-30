@@ -58,7 +58,7 @@
 
             <div class="dashboard-component">
                 <span></span>
-                <a href="">Sales Analytics</a>
+                <a href="/admin/sales_analytics.php">Sales Analytics</a>
             </div>
 
             <div class="dashboard-component">
