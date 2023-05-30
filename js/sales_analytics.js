@@ -55,23 +55,33 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     /* --------------- Pie Chart ---------------*/
+    // Define the number of categories
+    const numCategories = pieLabels.length;
+
+    // Generate random background colors
+    const backgroundColors = generateBackgroundColors(numCategories);
+
+    // Function to generate random background colors
+    function generateBackgroundColors(numColors) {
+        const colors = [];
+        for (let i = 0; i < numColors; i++) {
+            const color = `rgba(${getRandomNumber(0, 255)}, ${getRandomNumber(0,255)}, ${getRandomNumber(0, 255)}, 1)`;
+            colors.push(color);
+        }
+        return colors;
+    }
+
+    // Function to generate random number within a range
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
     new Chart("pieChart", {
         type: "pie",
         data: {
             labels: pieLabels,
             datasets: [{
-                backgroundColor: [
-                    'rgba(134, 227, 206, 1)',
-                    'rgba(250, 173, 172, 1)',
-                    'rgba(208, 230, 165, 1)',
-                    'rgba(253, 183, 142, 1)',
-                    'rgba(231, 211, 237, 1)',
-                    'rgba(194, 215, 243, 1)',
-                    'rgba(253, 199, 205, 1)',
-                    'rgba(252, 237, 190, 1)',
-                    'rgba(246, 214, 195, 1)'
-                    // Add more colors as needed
-                ],
+                backgroundColor: backgroundColors,
                 data: pieData
             }]
         },
