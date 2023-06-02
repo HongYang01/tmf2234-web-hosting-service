@@ -339,20 +339,14 @@ span {
 	width: 100%;
 	max-width: 100%;
 	box-sizing: border-box; /*prevent overflow caused by padding*/
-	padding: 120px 40px 40px 40px;
+	padding: 6rem 40px 40px 40px;
 	justify-content: space-around;
 }
 
 @media screen and (max-width: 720px){
 	.header-container {
-		width: 100%;
-		max-width: 100%;
-		box-sizing: border-box; /*prevent overflow caused by padding*/
-		padding: 150px 50px 80px 50px;
-		justify-content: space-around;
 		flex-direction: column;
 	}
-	
 }
 
 .header-left {

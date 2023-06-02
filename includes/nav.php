@@ -1,3 +1,5 @@
+<script src="/js/mobile_menu.js"></script>
+
 <nav id="nav-bar" class="w-100 flex-row between" role="navigation">
 
     <!-- logo -->
@@ -17,7 +19,7 @@
 
     ?>
 
-    <div class="flex-row middle">
+    <div class="flex-row middle" id='mobile-nav'>
 
         <svg class="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="71 71 358 358" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
 
@@ -27,12 +29,19 @@
 
         </svg>
 
-        <h1 class="black font-w-400 text-title margin-0">Semicolonix</h1>
+        <h1 class="black font-w-400 text-title margin-0" id='home'>Semicolonix</h1>
+               
     </div>
+
     </a> <!-- close logo tag -->
+    <div class="logo" id="navSwitch">
+        <img class="nav-toggle" id='menu' src="/assets/icon/menu.svg" alt="">
+        <img class="nav-toggle hidden" src="/assets/icon/close.svg" alt="">
+    </div>
+        
 
     <!-- nav -->
-    <div class="flex-row">
+    <div class="flex-row" id='nav-bar2'>
 
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
@@ -58,7 +67,7 @@
             } else { // user
                 echo "<div class='dropdown flex-row'>";
 
-                echo "<div class='flex-row middle'>
+                echo "<div class='flex-row middle' id='nav-price'>
                     <span class='c1 text-normal font-w-600'>Pricing</span>
                     <img class='rotate-180' src='/assets/icon/drop-down.svg' alt=''>
                 </div>";
@@ -81,7 +90,7 @@
 
             echo "<div class='dropdown flex-row'>";
 
-            echo "<div class='flex-row middle'>
+            echo "<div class='flex-row middle' id='nav-price'>
                     <span class='c1 text-normal font-w-600'>Pricing</span>
                     <img class='rotate-180' src='/assets/icon/drop-down.svg' alt=''>
                 </div>";
