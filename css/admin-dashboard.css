@@ -40,8 +40,18 @@
 	.dashboard-layout {
 		display: grid;
 		width: fit-content;
-		grid-template-columns: repeat(2, 215px);
-		grid-template-rows: repeat(2, 215px);
+		grid-template-columns: repeat(2, 170px);
+		grid-template-rows: repeat(2, 170px);
 		gap: 30px;
+	}
+
+	.dashboard-component {
+		display: flex;
+		border: 1px solid black;
+		border-radius: 5px;
+		justify-content: center;
+		align-items: center;
+		transition: all 0.6s ease;
+		text-align: center;
 	}
 }

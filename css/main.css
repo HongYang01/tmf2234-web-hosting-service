@@ -429,7 +429,6 @@ footer {
 		justify-content: center;
 		overflow: auto;
 		box-sizing: border-box;
-		/* flex-direction: column; */
 	}
 
 }
