@@ -35,3 +35,13 @@
 	align-items: center;
 	margin-bottom: 24px;
 }
+
+@media screen and (max-width: 720px){
+	.dashboard-layout {
+		display: grid;
+		width: fit-content;
+		grid-template-columns: repeat(2, 215px);
+		grid-template-rows: repeat(2, 215px);
+		gap: 30px;
+	}
+}

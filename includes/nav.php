@@ -52,7 +52,7 @@
                 // echo "<a class='c1 text-normal font-w-600' href='/admin/dashboard.php'>Dashboard</a>";
                 echo "<div class='dropdown flex-row'>";
 
-                echo "<div class='flex-row middle'>
+                echo "<div class='flex-row middle' id='nav-dashboard'>
                     <span class='c1 text-normal font-w-600'><a class='c1 text-normal font-w-600' href='/admin/dashboard.php'>Dashboard</a></span>
                     <img class='rotate-180' src='/assets/icon/drop-down.svg' alt=''>
                 </div>";

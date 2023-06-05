@@ -421,15 +421,17 @@ footer {
 }
 
 @media screen and (max-width: 720px){
-#hosting-type-grid {
+	#hosting-type-grid {
 		display: grid;
-		grid-template-columns: repeat(1, 300px);
-		gap: 50px;
+		grid-template-rows: repeat(3, 130px);
+		grid-template-columns:none;
+		gap: 30px;
 		justify-content: center;
 		overflow: auto;
 		box-sizing: border-box;
-		flex-direction: column;
+		/* flex-direction: column; */
 	}
+
 }
 
 #hosting-type-grid > a {
@@ -446,6 +448,24 @@ footer {
 	font-size: var(--font-size-h1);
 	color: var(--color-c1);
 	font-weight: 600;
+}
+
+@media screen and (max-width: 720px){
+	#hosting-type-grid > a {
+		display: flex;
+		width: 300px;
+		height: 100px;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid var(--color-c1);
+		border-radius: 5px;
+		transition: all 0.6s ease;
+	
+		font-family: var(--font-primary);
+		font-size: var(--font-size-h1);
+		color: var(--color-c1);
+		font-weight: 600;
+	}
 }
 
 #hosting-type-grid > a:hover {
