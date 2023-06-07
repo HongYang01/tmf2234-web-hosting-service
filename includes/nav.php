@@ -1,5 +1,3 @@
-<script src="/js/mobile_menu.js"></script>
-
 <nav id="nav-bar" class="w-100 flex-row between" role="navigation">
 
     <!-- logo -->
@@ -19,7 +17,7 @@
 
     ?>
 
-    <div class="flex-row middle" id='mobile-nav'>
+    <div class="flex-row middle">
 
         <svg class="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="71 71 358 358" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
 
@@ -29,19 +27,12 @@
 
         </svg>
 
-        <h1 class="black font-w-400 text-title margin-0" id='home'>Semicolonix</h1>
-               
+        <h1 class="black font-w-400 text-title margin-0">Semicolonix</h1>
     </div>
-
     </a> <!-- close logo tag -->
-    <div class="logo" id="navSwitch">
-        <img class="nav-toggle" id='menu' src="/assets/icon/menu.svg" alt="">
-        <img class="nav-toggle hidden" src="/assets/icon/close.svg" alt="">
-    </div>
-        
 
     <!-- nav -->
-    <div class="flex-row" id='nav-bar2'>
+    <div class="flex-row">
 
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
@@ -52,7 +43,7 @@
                 // echo "<a class='c1 text-normal font-w-600' href='/admin/dashboard.php'>Dashboard</a>";
                 echo "<div class='dropdown flex-row'>";
 
-                echo "<div class='flex-row middle' id='nav-dashboard'>
+                echo "<div class='flex-row middle'>
                     <span class='c1 text-normal font-w-600'><a class='c1 text-normal font-w-600' href='/admin/dashboard.php'>Dashboard</a></span>
                     <img class='rotate-180' src='/assets/icon/drop-down.svg' alt=''>
                 </div>";
@@ -67,7 +58,7 @@
             } else { // user
                 echo "<div class='dropdown flex-row'>";
 
-                echo "<div class='flex-row middle' id='nav-price'>
+                echo "<div class='flex-row middle'>
                     <span class='c1 text-normal font-w-600'>Pricing</span>
                     <img class='rotate-180' src='/assets/icon/drop-down.svg' alt=''>
                 </div>";
@@ -90,7 +81,7 @@
 
             echo "<div class='dropdown flex-row'>";
 
-            echo "<div class='flex-row middle' id='nav-price'>
+            echo "<div class='flex-row middle'>
                     <span class='c1 text-normal font-w-600'>Pricing</span>
                     <img class='rotate-180' src='/assets/icon/drop-down.svg' alt=''>
                 </div>";
