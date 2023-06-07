@@ -227,3 +227,25 @@ td {
 #escBtn:hover {
 	border: 1px solid rgba(var(--rgb-black), 40%);
 }
+
+@media screen and (max-width: 720px){
+	.filter {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		width: 100%;
+		margin-bottom: 24px;
+		box-sizing: border-box;
+	}
+
+	.filter-content {
+		display: flex;
+		flex-direction: row;
+		width: 80%;
+		justify-content: space-between;
+		/* border: 1px solid rgba(var(--rgb-black), 10%); */
+		/* border-radius: 5px; */
+		align-items: center;
+	}
+}

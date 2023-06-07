@@ -41,3 +41,21 @@ fieldset {
 [id-add-btn]:hover {
 	box-shadow: 0 0 10px 3px #00000022;
 }
+
+@media screen and (max-width: 720px){
+	.price-layout {
+		display: grid;
+		width: 100%;
+		grid-template-columns: none;
+		gap: 30px;
+	}
+
+	.price-component {
+		border: 1px solid black;
+		border-radius: 5px;
+		padding: 24px 40px;
+		box-sizing: border-box;
+		transition: all 0.6s ease;
+		flex-direction: column;
+	}
+}
