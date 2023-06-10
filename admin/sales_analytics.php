@@ -27,10 +27,10 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/assets/image/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/sales-analytics.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/css/admin-sales-analytics.css">
     <script src="/js/effect.js"></script>
-    <script src="/js/sales_analytics.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/admin_sales_analytics.js"></script>
     <title>Sales Analytics</title>
 </head>
 
@@ -42,53 +42,23 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php"); ?>
 
-    <?php
+    <div class="main-container middle">
+        <h1 class="c1 text-title" style="margin-bottom: 30px;">Sales Analytics</h1>
 
-    try {
-        $query = "SELECT YEAR(bill_date) AS year, MONTHNAME(bill_date) AS month, SUM(payment_amount) AS total_sales FROM payments GROUP BY year, month ORDER BY year, MONTH(bill_date)";
-        $result = mysqli_query($conn, $query);
-
-        //initialize empty array
-        $labels = [];
-        $data = [];
-
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = $result->fetch_array()) {
-                $year = $row['year'];
-                $month = $row['month'];
-                $labels[] = $year . "-" . $month; // Example format: 2023-January
-                $data[] = $row['total_sales'];
-            }
-        }
-
-        $encodedLabels = json_encode($labels);
-        $encodedData = json_encode($data);
-        echo "<script>var labels = $encodedLabels; var data = $encodedData; </script>";
-    } catch (Exception $e) {
-        $errorMessage = "Error: " . $e->getMessage();
-        $encodedMessage = json_encode($errorMessage);
-        echo "<script>showPopup('" . $encodedMessage . "');</script>";
-    }
-
-    $conn->close();
-
-    ?>
-
-    <main class="flex-grow-1 flex-col center middle">
-
-        <div class="header-container flex-row middle">
-            <h1 class="c1 text-title">Sales Analytics</h1>
-        </div>
-
-        <div class="charts">
+        <div class="charts flex-col">
             <div class="charts-card">
                 <div class="chartBox">
                     <canvas id="lineChart"></canvas>
                 </div>
             </div>
+            <div class="charts-card">
+                <div class="chartBox">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
         </div>
 
-    </main>
+    </div>
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
 

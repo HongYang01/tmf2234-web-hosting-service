@@ -133,10 +133,12 @@
     <!-- logout model -->
     <dialog data-modal>
 
-        <h1>Confirm Logout</h1>
-        <p>Are you sure you want to log out?</p>
+        <div>
+            <h1 class="text-h1">Confirm Logout</h1>
+            <p>Are you sure you want to log out?</p>
+        </div>
 
-        <div class="w-100 flex-row around center middle">
+        <div class="w-100 flex-row around">
             <button id="confirm-btn">Yes, Logout</button>
             <button data-close-modal id="cancel-btn">Cancel</button>
         </div>
