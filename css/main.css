@@ -396,12 +396,24 @@ p {
 	width: 100%;
 	max-width: 100%;
 	box-sizing: border-box; /*prevent overflow caused by padding*/
-	padding: 120px 40px 40px 40px;
+	padding: 6rem 40px 40px 40px;
 	justify-content: space-around;
+}
+
+@media screen and (max-width: 720px){
+	.header-container {
+		flex-direction: column;
+	}
 }
 
 .header-left {
 	width: 35%;
+}
+
+@media screen and (max-width: 720px){
+	.header-left {
+		width: 100%;
+	}
 }
 
 .header-left > h1 {
@@ -428,6 +440,13 @@ footer {
 #image-cover {
 	height: 450px;
 	width: 450px;
+}
+
+@media screen and (max-width: 720px){
+	#image-cover {
+		height: 300px;
+		width: 300px;
+	}
 }
 
 #image-2 {
@@ -457,6 +476,18 @@ footer {
 	overflow: auto;
 	box-sizing: border-box;
 }
+
+@media screen and (max-width: 720px){
+	#hosting-type-grid {
+			display: grid;
+			grid-template-columns: repeat(1, 300px);
+			gap: 50px;
+			justify-content: center;
+			overflow: auto;
+			box-sizing: border-box;
+			flex-direction: column;
+		}
+	}
 
 #hosting-type-grid > a {
 	display: flex;
