@@ -12,7 +12,8 @@ buyBtns.forEach(function (buyBtn) {
 		// Create a form dynamically
 		const form = document.createElement("form");
 		form.method = "POST";
-		form.action = "/pages/cart.php";
+		form.action = "/pages/cart.php"; // one-time checkout
+		// form.action = location.origin "/vendor/test/paypal_5_cart.php";
 
 		// Create an input field for the product ID
 		const input = document.createElement("input");
