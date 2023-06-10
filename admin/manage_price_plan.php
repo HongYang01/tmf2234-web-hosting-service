@@ -1,6 +1,21 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+/*######################################*
+||              Includes              ||
+*######################################*/
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+
+/*######################################*
+||           Check Identity           ||
+*######################################*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
+if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
+    mysqli_close($conn);
+    header("Location: /pages/login_form.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,88 +40,109 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
     <div id="popup-fade-msg"></div>
 
-    <?php
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
-
-    if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
-        header("Location: /pages/login_form.php");
-        exit;
-    }
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
-
-    ?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php"); ?>
 
     <div class="main-container">
         <h1>Price Plan Management</h1>
-        <!-- //hosting type
-        //plan title - plan price (click to edit)
-        //add button (add plan type) -->
 
-        <?php
+        <div class="grid-layout">
 
-        try {
-            $query = "SELECT DISTINCT prod_category FROM product";
-            $result = mysqli_query($conn, $query);
+            <div class="grid-layout-content-1">
 
-            if (mysqli_num_rows($result) == 0) {
-                echo "<p class='black text-title'>0 Result</p>";
-            } else {
-                foreach ($result as $row) {
+                <h1 class="text-h1">Hosting Type</h1>
 
-                    echo "<fieldset>";
-                    echo "<legend class='text-h1 font-primary font-w-600'>" . $row['prod_category'] . " Hosting</legend>";
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method='GET'>
 
-                    echo "<div class='w-100 flex-col'>";
-                    echo "<form action='/admin/add_price_plan.php' method='post'>";
-                    echo "<input type='hidden' name='prod_category' value='" . $row['prod_category'] . "'>";
-                    echo "<button id-add-btn type='submit'><span class='icon-addBtn'></span> Add New Plan</button>";
-                    echo "</form>";
-                    echo "</div>";
+                    <?php
+                    require_once($_SERVER['DOCUMENT_ROOT'] . "/handlers/get_all_product.php");
 
-                    $query = "SELECT * FROM product WHERE prod_category = '" . $row['prod_category'] . "'";
-                    $result2 = mysqli_query($conn, $query);
+                    try {
+                        $allProduct = getAllProduct();
 
-                    if (mysqli_num_rows($result) == 0) {
-                        echo "<p class='black text-title'>0 Result</p>";
-                    } else {
-
-                        echo "<div class='price-layout'>";
-
-                        foreach ($result2 as $row) {
-
-                            echo "<a class='w-100' href='/admin/edit_price_plan.php?prod_id=" . $row['prod_id'] . "'> ";
-                            echo "<div class='price-component flex-row between'>";
-                            echo "<div>";
-                            echo "<h3>" . $row['prod_title'] . "</h3>";
-                            echo "<p>id: " . $row['prod_id'] . "</p>";
-                            echo "</div>";
-                            echo "<p class='font-primary text-h1 margin-0'><b>$" . $row['prod_price'] . "</b></p>";
-                            echo "</div>";
-                            echo "<span class='text-small'>" . $row['prod_status'] . "</span>";
-                            echo "</a>";
+                        if (in_array("error", $allProduct)) {
+                            throw new Exception($allProduct['error']);
                         }
 
-                        echo "</div>"; //price-layout
+                        foreach ($allProduct as $prod) {
+                            echo "<button type='submit' name='prod_id' value='" . $prod['prod_id'] . "'>" . $prod['prod_name'] . "</button>";
+                        }
+                    } catch (Exception $e) {
+                        echo $e->getMessage();
+                    }
+                    ?>
+
+                </form>
+            </div>
+
+            <div class="grid-layout-content-2">
+
+                <?php
+
+                try {
+
+                    if (!isset($_GET['prod_id']) || empty($_GET['prod_id'])) {
+                        throw new Exception("Choose a hosting type");
                     }
 
-                    echo "</fieldset>";
+                    require_once($_SERVER['DOCUMENT_ROOT'] . "/handlers/get_all_plan.php");
+
+                    $prodInfo = getAllProduct($_GET['prod_id'])[0]; // [0] to access the first index of the object array
+                    $prod_id = $prodInfo['prod_id'];
+                    $prod_name = $prodInfo['prod_name'];
+                    $planInfo = json_decode(getAllPlan($prod_name), true);
+
+                    if (array_key_exists('error', $planInfo)) {
+                        throw new Exception($planInfo['error']);
+                    }
+
+                    echo "<h1 class='text-h1'>" . $prod_name . " Hosting</h1>";
+                    echo "<form action='/admin/add_price_plan.php' method='POST'>";
+                    echo "<button type='submit' name='prod_id' value='" . $prod_id . "'><span class='icon-addBtn'></span> Add New Plan</button>";
+                    echo "</form>";
+
+                    echo "<table id='plan-table'>";
+                    echo "<colgroup>";
+                    echo "<col span='1' style='width: 40%;'>";
+                    echo "<col span='1' style='width: 20%;'>";
+                    echo "<col span='1' style='width: 20%;'>";
+                    echo "<col span='1' style='width: 20%;'>";
+                    echo "</colgroup>";
+
+                    // header
+                    echo "<tr>";
+                    echo "<th>Plan ID</th>";
+                    echo "<th>Plan Name</th>";
+                    echo "<th>Monthly Price ($)</th>";
+                    echo "<th>Plan Status</th>";
+                    echo "</tr>";
+
+                    // data
+                    foreach ($planInfo as $plan) {
+                        echo "<tr id='plan-row' data-plan-id='" . $plan['plan_id'] . "' data-plan-status='" . $plan['plan_status'] . "' title='click to edit'>";
+                        echo "<td>" . $plan['plan_id'] . "</td>";
+                        echo "<td>" . $plan['plan_name'] . "</td>";
+                        echo "<td>" . $plan['plan_price'] . "</td>";
+                        if ($plan['plan_status'] == "ACTIVE") {
+                            echo "<td class='green font-w-600'>" . $plan['plan_status'] . "</td>";
+                        } else {
+                            echo "<td class='red font-w-600'>" . $plan['plan_status'] . "</td>";
+                        }
+                        echo "<tr>";
+                    }
+                    echo "</table>";
+                } catch (Exception $e) {
+                    echo $e->getMessage();
                 }
-            }
-        } catch (Exception $e) {
-            $errorMessage = "Error: " . $e->getMessage();
-            $encodedMessage = json_encode($errorMessage);
-            echo "<script>showPopup($encodedMessage);</script>";
-        }
-        ?>
+                ?>
+
+            </div>
+
+        </div>
 
     </div>
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
-
-
-
+    <script src="/js/admin_manage_price_plan.js"></script>
 </body>
 
 </html>

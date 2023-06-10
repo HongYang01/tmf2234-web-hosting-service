@@ -1,43 +1,118 @@
-.price-layout {
+.grid-layout {
 	display: grid;
+	grid-template-columns: 1fr 3fr;
+	column-gap: 30px;
 	width: 100%;
-	grid-template-columns: repeat(3, minmax(100px, 1fr));
-	gap: 30px;
+	height: 100%;
+	margin: 30px 0 0 0;
 }
 
-.price-component {
-	border: 1px solid black;
-	border-radius: 5px;
-	padding: 24px 40px;
+.grid-layout-content-1,
+.grid-layout-content-2 {
+	width: 100%;
+	height: 100%;
+}
+
+.grid-layout-content-2 {
+	padding: 0 10px;
 	box-sizing: border-box;
-	transition: all 0.6s ease;
 }
 
-fieldset {
-	border-radius: 5px;
-	padding: 24px 40px 30px 40px;
-	box-sizing: border-box;
-	margin-top: 50px;
-}
+/*######################################*
+||           Left Container           ||
+*######################################*/
 
-[id-add-btn] {
+button {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	width: fit-content;
-	margin-bottom: 24px;
-	padding: 10px;
-	box-sizing: border-box;
+	justify-content: center;
+	width: 100%;
+	cursor: pointer;
+	padding: 10px 20px;
+	margin-bottom: 10px;
 	border-radius: 5px;
 	border: none;
 	background-color: transparent;
+	box-shadow: 0 0 2px 2px rgba(var(--rgb-black), 0.2);
 	transition: all 0.6s ease;
+	font-family: var(--font-second);
+	font-size: var(--font-seize);
 }
 
-.price-component:hover {
-	box-shadow: 0 0 10px 3px #00000022;
+button:hover {
+	box-shadow: 0 0 2px 2px rgba(var(--rgb-black), 0.5);
 }
 
-[id-add-btn]:hover {
-	box-shadow: 0 0 10px 3px #00000022;
+/*######################################*
+||          Right Container           ||
+*######################################*/
+.grid-layout-content-1 > h1,
+.grid-layout-content-2 > h1 {
+	margin-bottom: 30px;
+}
+
+#plan-table {
+	width: 100%;
+	text-align: left;
+}
+
+table {
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	padding: 6px;
+	border: 1px solid rgba(var(--rgb-black), 0.2);
+}
+
+#plan-row {
+	transition: all 0.3s ease;
+}
+
+#plan-row:hover {
+	cursor: pointer;
+	box-shadow: 0 0 5px 1px rgba(var(--rgb-black), 0.3);
+}
+
+/*######################################*
+||     Popup Reactivate Container     ||
+*######################################*/
+
+#popup-reactivate-container {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9;
+	background-image: linear-gradient(210deg, rgba(var(--rgb-white), 0.8), rgba(var(--rgb-c3), 0.5));
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	backdrop-filter: blur(5px);
+	border-radius: 15px;
+}
+
+#popup-reactivate-container > h1 {
+	margin-bottom: 30px;
+}
+
+#popup-reactivate-container > p {
+	margin-bottom: 10px;
+}
+
+#popup-reactivate-btn-container {
+	display: flex;
+	flex-direction: row;
+}
+
+#popup-reactivate-btn-container > button {
+	margin: 0 15px;
 }

@@ -1,3 +1,21 @@
+<?php
+/*######################################*
+||              Includes              ||
+*######################################*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+
+/*######################################*
+||           Check Identity           ||
+*######################################*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
+if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
+    header("Location: /pages/login_form.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,31 +32,11 @@
 
 <body>
 
-    <!-- 
-        show admin
-        show name
-        show email
-        show section 1 (product)
-        show section 2 (analytics)
-        show section 3 (transaction history)
-        show section 4 (registered customer - show registered date)
-    -->
-
     <div id="loader">
         <iframe src="/assets/loading.svg" title="logo"></iframe>
     </div>
 
     <?php
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
-
-    if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
-        header("Location: /pages/login_form.php");
-        exit;
-    }
-
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     ?>
 

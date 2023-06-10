@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="/css/myprofile.css">
     <script src="/js/effect.js"></script>
     <script src="/js/confirm_logout.js" defer></script>
-    <script src="/js/myprofile.js"></script>
+    <script src='/js/myprofile_edit.js'></script>
+
     <title>My Profile</title>
 </head>
 
@@ -24,9 +25,9 @@
 
     <?php
 
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
     if (!checkLoggedIn()) {
         header("Location: /pages/login_form.php");
@@ -35,7 +36,6 @@
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
 
-    //query without sanitization
     if ($_SESSION['role'] == "user") {
         $query = "SELECT * FROM user WHERE u_email = '" . $_SESSION['email'] . "'";
     } elseif ($_SESSION['role'] == "admin") {
@@ -95,9 +95,9 @@
                     <h1 class="c1 text-h1">Subscribed Plan</h1>
                     <div class="filter-content">
                         <span>Sort by:</span>
-                        <button onclick="sortPlan('default')">Default</button>
-                        <button onclick="sortPlan('name')">Plan</button>
-                        <button onclick="sortPlan('date')">Maturity Date</button>
+                        <button onclick="sortAllSub('default')">Default</button>
+                        <button onclick="sortAllSub('name')">Plan</button>
+                        <button onclick="sortAllSub('date')">Maturity Date</button>
                     </div>
                 </div>
 
@@ -112,24 +112,15 @@
                 <div id="popup-details">
                     <button id="escBtn" onclick="closePopupDetail()">ESC</button>
                     <h1>Plan Details</h1>
-                    <div id="popup-content-1">
-                        <div id="popup-content-1-header">
-                            <p>Plan Name</p>
-                            <p>Invoice ID</p>
-                            <p>Payment Date</p>
-                            <p>Maturity Date</p>
-                            <p>Countdown</p>
-                            <p>Status</p>
-                        </div>
-                        <div id="popup-content-1-value">
-                        </div>
-                    </div>
+
+                    <div id="plan-detail-table-container"></div>
 
                     <h1>Features</h1>
 
                     <div id="popup-content-2">
                         <div id="popup-content-2-include"></div>
                         <div id="popup-content-2-exclude"></div>
+                        <div id="popup-content-3-payment-history"></div>
                     </div>
                 </div>
 
@@ -156,6 +147,18 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
 
+
+    <!-- Import moment to guess user timezone -->
+    <?php
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+
+    if ($_SESSION['role'] == "user") {
+        echo "<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>";
+        echo "<script src='https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data-10-year-range.min.js'></script>";
+        echo "<script src='/js/myDateFormat.js'></script>";
+        echo "<script src='/js/myprofile_user.js'></script>";
+    }
+    ?>
 </body>
 
 </html>

@@ -1,10 +1,48 @@
-@import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap");
-
 @import url(/css/colour-palette.css);
 @import url(/css/nav.css);
 @import url(/css/icon.css);
+
+@font-face {
+	font-family: "Quicksand";
+	src: url("/assets/font/Quicksand/static/Quicksand-Light.ttf") format("truetype");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Quicksand";
+	src: url("/assets/font/Quicksand/static/Quicksand-Regular.ttf") format("truetype");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Quicksand";
+	src: url("/assets/font/Quicksand/static/Quicksand-Medium.ttf") format("truetype");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Quicksand";
+	src: url("/assets/font/Quicksand/static/Quicksand-SemiBold.ttf") format("truetype");
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "Quicksand";
+	src: url("/assets/font/Quicksand/static/Quicksand-Bold.ttf") format("truetype");
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Syncopate";
+	src: url("/assets/font/Syncopate/Syncopate-Regular.ttf") format("truetype");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Syncopate";
+	src: url("/assets/font/Syncopate/Syncopate-Bold.ttf") format("truetype");
+	font-weight: 700;
+}
 
 :root {
 	/* Hong Yang */
@@ -14,6 +52,7 @@
 	--color-white: #ffffff;
 	--color-green: #008000;
 	--color-red: #ff0000;
+	--color-orange: #ff6f00;
 	--color-c1: #31708e;
 	--color-c2: #88bdbc;
 	--color-c3: #eee2dc;
@@ -21,6 +60,8 @@
 
 	--rgb-black: 0, 0, 0;
 	--rgb-white: 255, 255, 255;
+	--rgb-red: 255, 0, 0;
+	--rgb-orange: 255, 111, 0;
 	--rgb-c1: 49, 112, 142;
 	--rgb-c2: 136, 189, 188;
 	--rgb-c3: 238, 226, 220;
@@ -30,7 +71,7 @@
 	--font-second: "Quicksand", sans-serif;
 
 	--font-size-title: 30px;
-	--font-size-h1: 20px;
+	--font-size-h1: 24px;
 	--font-size-normal: 15px;
 	--font-size-small: 12px;
 
@@ -100,6 +141,10 @@ button:hover {
 	cursor: pointer;
 }
 
+h1 {
+	font-size: var(--font-size-h1);
+}
+
 h1,
 h2,
 h3,
@@ -117,17 +162,22 @@ body,
 html,
 div,
 iframe,
-img,
+img {
+	margin: 0;
+	border: 0;
+	font-size: var(--font-size-normal);
+	text-decoration: none;
+}
+
 span {
 	margin: 0;
 	border: 0;
-	text-decoration: none;
+	font-size: inherit;
 }
 
 a,
 div,
-p,
-span {
+p {
 	display: block;
 	font-family: var(--font-second);
 }
@@ -177,6 +227,11 @@ span {
 
 .red {
 	--color-current: var(--color-red);
+	color: var(--color-current);
+}
+
+.orange {
+	--color-current: var(--color-orange);
 	color: var(--color-current);
 }
 
@@ -308,9 +363,11 @@ span {
 	height: 100%;
 
 	z-index: 9999;
-	background-image: linear-gradient(210deg, rgba(var(--rgb-white), 0.8), rgba(var(--rgb-c3), 0.8));
+	background-image: linear-gradient(210deg, rgba(var(--rgb-white), 0.8), rgba(var(--rgb-c3), 0.5));
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	/* background-color: rgba(255, 255, 255, 0.5); */
+	backdrop-filter: blur(5px);
 
 	opacity: 1;
 	transition: opacity 1s ease;
@@ -329,7 +386,7 @@ span {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
-	padding: 105px 40px 0px 40px;
+	padding: 105px 40px 0 40px;
 	width: 100%;
 	max-width: 100%;
 	box-sizing: border-box;
