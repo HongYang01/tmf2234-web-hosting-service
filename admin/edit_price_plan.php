@@ -1,3 +1,62 @@
+<?php
+
+/*######################################*
+||             Guideline              ||
+*######################################*
+
+Pre-requisite: $_POST['plan_id']
+
+Workflow:
+1. Check identity
+2. Check if $_POST['plan_id'] is set or empty (from: /admin/manage-price-plan.php)
+3. Get plan details from getAllPlanDetails()
+4. Send NEW plan details to handler (to: handlers/admin_edit_price_plan_handler.php)
+
+*/
+
+
+/*######################################*
+||              Includes              ||
+*######################################*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/handlers/get_plan_details.php");
+
+/*######################################*
+||           Check Identity           ||
+*######################################*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
+if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
+    mysqli_close($conn);
+    header("Location: /pages/login_form.php");
+    exit;
+}
+
+/*######################################*
+||          Check POST array          ||
+*######################################*/
+
+if (!isset($_POST['plan_id']) || empty($_POST['plan_id'])) { // check if plan_id is set or is empty
+    header("Location: /admin/manage_price_plan.php");
+    exit;
+}
+
+$plan_info = array();
+$plan_info = getAllPlanDetails($_POST['plan_id']);
+
+$plan_id = $plan_info['plan_id'];
+$prod_id = $plan_info['prod_id'];
+$prod_name = $plan_info['prod_name'];
+$plan_name = $plan_info['plan_name'];
+$plan_desc = $plan_info['plan_desc'];
+$plan_price = $plan_info['plan_price'];
+$plan_status = $plan_info['plan_status'];
+$plan_detail = $plan_info['plan_detail'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,9 +66,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/assets/image/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/admin-add-price-plan.css">
+    <link rel="stylesheet" href="/css/admin-add-edit-price-plan.css">
     <script src="/js/effect.js"></script>
-    <script src="/js/edit_price_plan.js" defer></script>
     <title>Edit Price Plan</title>
 </head>
 
@@ -23,44 +81,7 @@
 
     <?php
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
-    if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
-        header("Location: /pages/login_form.php");
-        exit;
-    }
-
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
-
-    if (!isset($_GET['prod_id']) || empty($_GET['prod_id'])) { // check if prod_id is set & is not empty
-        header("Location: /admin/manage_price_plan.php");
-        exit;
-    } else {
-
-        $prod_id = $_GET['prod_id'];
-
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
-
-        $query = "SELECT * FROM  product  WHERE prod_id ='" . $prod_id . "'";
-        $result = mysqli_query($conn, $query);
-
-        if (mysqli_num_rows($result) > 0) {
-
-            $row = mysqli_fetch_array($result);
-
-            $prod_title = $row['prod_title'];
-            $prod_subtitle = $row['prod_subtitle'];
-            $prod_category = $row['prod_category'];
-            $prod_price = $row['prod_price'];
-            $prod_status = $row['prod_status'];
-        } else {
-            echo "<div class='flex-grow-1 center middle'>";
-            echo "<p>Product not found for: " . $prod_id . "</p>";
-            echo "</div>";
-            exit;
-        }
-    }
 
     ?>
 
@@ -71,45 +92,30 @@
             <div class="grid-layout">
 
                 <div class="left-container">
-                    <h2 class="margin-0">Edit Product Details</h2>
+                    <h2 class="margin-0">Edit Plan Details</h2>
 
-                    <h2>Product ID: <i class="red"><?php echo $prod_id ?></i></h2>
+                    <h2>Plan ID: <i class="red"><?php echo $plan_id; ?></i></h2>
+                    <input type="hidden" name="plan_id" value="<?php echo $plan_id; ?>">
 
-                    <input type="hidden" name="prod_id" value="<?php echo $prod_id; ?>">
+                    <label for="plan_status">Current Status:</label>
+                    <input type="text" name="plan_status" id="plan_status" value="<?php echo $plan_status; ?>" readonly>
 
-                    <label for="prod_status">Status:</label>
-                    <select name="prod_status" id="prod_status">
-                        <?php
-                        //get the enum value
-                        require_once($_SERVER['DOCUMENT_ROOT'] . "/handlers/EnumSelector.php");
-                        $EnumSelector = new EnumSelector("product", "prod_status", $conn);
-                        $EnumSelector->render($prod_status); //pass in the selected category for pre-selection purpose
-                        ?>
-                    </select>
+                    <label for="prod_name">Hosting Type (Not allow to migrate):</label>
+                    <input type="text" name="prod_name" id="prod_name" value="<?php echo $prod_name; ?>" readonly>
 
-                    <label for="prod_title">Title:</label>
-                    <input type="text" name="prod_title" id="prod_title" value="<?php echo $prod_title; ?>" required>
+                    <label for="plan_name">Name:</label>
+                    <input type="text" name="plan_name" id="plan_name" value="<?php echo $plan_name; ?>" required>
 
-                    <label for="prod_subtitle">Subtitle:</label>
-                    <input type="text" name="prod_subtitle" id="prod_subtitle" value="<?php echo $prod_subtitle; ?>" required>
+                    <label for="plan_desc">Description:</label>
+                    <input type="text" name="plan_desc" id="plan_desc" value="<?php echo $plan_desc; ?>" required>
 
-                    <label for="prod_price">Price:</label>
-                    <input type="number" step="0.01" prefix="$" name="prod_price" id="prod_price" value="<?php echo $prod_price; ?>" required>
-
-                    <label for="prod_category">Hosting Type:</label>
-
-                    <select name="prod_category" id="prod_category">
-                        <?php
-                        //get the enum value
-                        require_once($_SERVER['DOCUMENT_ROOT'] . "/handlers/EnumSelector.php");
-                        $EnumSelector = new EnumSelector("product", "prod_category", $conn);
-                        $EnumSelector->render($prod_category); //pass in the selected category for pre-selection purpose
-                        ?>
-                    </select>
+                    <label for="plan_price">Price:</label>
+                    <input type="number" step="0.01" prefix="$" name="plan_price" id="plan_price" value="<?php echo $plan_price; ?>" required>
 
                     <div class="flex-row">
-                        <button type="submit" id="deleteBtn">Delete Plan</button>
+                        <button type="submit" id="deactivateBtn">Deactivate Plan</button>
                         <button type="submit" id="submitBtn">Save Changes</button>
+                        <button type="button" id="abortBtn" onclick="window.location.replace('/admin/manage_price_plan.php')">Abort</button>
                     </div>
 
                 </div>
@@ -119,47 +125,30 @@
 
                     <h2>Product Features</h2>
 
-                    <div id="feature-container"> </div>
-                    <button type="button" id="add-feature">Add Feature</button>
+                    <div id="feature-container"></div>
+                    <button type="button" id="add-feature" onclick="addFeature()">Add Feature</button>
 
                 </div>
 
             </div>
 
         </form>
-
     </div>
 
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>
 
-    <!-- make sure it run after every js file is loaded -->
+    <script src="/js/admin_edit_price_plan.js"></script>
     <script>
-        function executePHPAfterScriptLoad() {
-            <?php
-            // SQL SELECT statement
-            // sort by status first
-            // then sort by feature
-            $query = "SELECT * FROM productDetail WHERE prod_id = '" . $prod_id . "' ORDER BY status DESC, feature ASC";
+        <?php
 
-            $result = mysqli_query($conn, $query);
-
-            if (mysqli_num_rows($result) > 0) {
-
-                while ($row = mysqli_fetch_assoc($result)) {
-                    // Add the feature to the page
-                    echo "addFeature('" . $row["auto_num"] . "','" . $row["feature"] . "','" . $row["status"] . "');";
-                }
-                echo "checkDirty()"; // run once to get all the form element
-            } else {
-                echo "showPopup('0 feature found')";
-            }
-
-            mysqli_close($conn);
-            ?>
+        for ($i = 0; $i < count($plan_detail); $i++) {
+            echo "addFeature('" . $plan_detail[$i]['auto_num'] . "', '" . $plan_detail[$i]['feature'] . "','" . $plan_detail[$i]['status'] . "');";
         }
-        window.onload = executePHPAfterScriptLoad;
+        echo "checkDirty();";
+
+        ?>
     </script>
 
 </body>

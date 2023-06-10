@@ -1,3 +1,23 @@
+<?php
+
+/*######################################*
+||              Includes              ||
+*######################################*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+
+/*######################################*
+||           Check Identity           ||
+*######################################*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
+
+if (checkLoggedIn()) {
+    header("Location: /pages/myprofile.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,18 +41,7 @@
 
     <div id="popup-fade-msg"></div>
 
-    <?php
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
-
-    if (checkLoggedIn()) {
-        header("Location: /pages/myprofile.php");
-        exit;
-    }
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
-    ?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php"); ?>
 
     <div class="main-container center middle">
 

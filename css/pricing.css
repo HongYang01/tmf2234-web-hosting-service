@@ -1,8 +1,20 @@
+.main-pricing-container {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	padding: 105px 0 0 0;
+	width: 85%;
+	max-width: 85%;
+	box-sizing: border-box;
+	align-self: center;
+}
+
 .pricing-layout {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(385px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 	gap: 30px;
 	text-align: center;
+	width: 100%;
 	max-width: 100%;
 }
 

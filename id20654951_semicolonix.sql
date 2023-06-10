@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2023 at 06:33 PM
+-- Generation Time: Jun 10, 2023 at 07:52 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -45,32 +45,161 @@ INSERT INTO `admin` (`a_email`, `a_firstName`, `a_lastName`, `a_password`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payments`
+-- Table structure for table `plan`
 --
 
-DROP TABLE IF EXISTS `payments`;
-CREATE TABLE `payments` (
-  `payment_id` int(11) NOT NULL,
-  `user_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `transaction_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `payment_amount` float(10,2) NOT NULL,
-  `currency_code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-  `payment_status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `invoice_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `product_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `bill_date` datetime DEFAULT NULL,
-  `maturity_date` datetime NOT NULL,
-  `plan_status` tinyint(1) NOT NULL
+DROP TABLE IF EXISTS `plan`;
+CREATE TABLE `plan` (
+  `plan_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `prod_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `plan_name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `plan_desc` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `plan_price` float(5,2) NOT NULL,
+  `plan_status` enum('ACTIVE','INACTIVE') COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `payments`
+-- Dumping data for table `plan`
 --
 
-INSERT INTO `payments` (`payment_id`, `user_email`, `product_id`, `transaction_id`, `payment_amount`, `currency_code`, `payment_status`, `invoice_id`, `product_name`, `bill_date`, `maturity_date`, `plan_status`) VALUES
-(25, 'name1@gmail.com', 4, 'PAYID-MRY2AMY3UM65337M0310635Y', 1.55, 'USD', 'approved', '6471a03539f85', 'Shared Hosting (Basic)', '2023-05-27 14:16:30', '2023-06-27 14:16:30', 1),
-(26, 'name1@gmail.com', 8, 'PAYID-MRY5HVA9XY46109XF334473L', 10.55, 'USD', 'approved', '6471d3d69387a', 'VPS Hosting (Popular)', '2023-05-27 17:58:10', '2023-06-27 17:58:10', 1);
+INSERT INTO `plan` (`plan_id`, `prod_id`, `plan_name`, `plan_desc`, `plan_price`, `plan_status`) VALUES
+('P-0GM50921FC832453RMR2XKDY', 'PROD0002', 'Basic', 'Best for rookies ', 3.55, 'ACTIVE'),
+('P-0T4500702B9280615MR2XMDQ', 'PROD0003', 'Basic', 'Best for rookies ', 9.55, 'ACTIVE'),
+('P-11H60556R0411082MMR2L2FI', 'PROD0001', 'Premium', 'The pros', 3.55, 'ACTIVE'),
+('P-5UL64606MW856531PMR2XMUA', 'PROD0003', 'Premium', 'The pros', 33.55, 'ACTIVE'),
+('P-7HU86870CB6342615MR2LZNA', 'PROD0001', 'Popular', 'Intermediate user', 2.55, 'ACTIVE'),
+('P-8BN527251F239152TMR2XMMA', 'PROD0003', 'Popular', 'Intermediate user', 15.55, 'ACTIVE'),
+('P-8SM252323T120453TMR2K4SQ', 'PROD0001', 'Basic', 'Best for rookies', 1.55, 'ACTIVE'),
+('P-9M811001A39121528MR2XKYA', 'PROD0002', 'Premium', 'The pros', 57.55, 'ACTIVE'),
+('P-9PP23621SW0121423MR2XKPQ', 'PROD0002', 'Popular', 'Intermediate user', 10.55, 'ACTIVE');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plandetail`
+--
+
+DROP TABLE IF EXISTS `plandetail`;
+CREATE TABLE `plandetail` (
+  `auto_num` int(11) NOT NULL,
+  `plan_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `feature` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `plandetail`
+--
+
+INSERT INTO `plandetail` (`auto_num`, `plan_id`, `feature`, `status`) VALUES
+(1, 'P-8SM252323T120453TMR2K4SQ', '1 Website', 1),
+(2, 'P-8SM252323T120453TMR2K4SQ', '2 Subdomains per account', 1),
+(3, 'P-8SM252323T120453TMR2K4SQ', '100GB Bandwidth', 1),
+(4, 'P-8SM252323T120453TMR2K4SQ', '5 MySQL Databases', 1),
+(5, 'P-8SM252323T120453TMR2K4SQ', '1 CPU Core', 1),
+(6, 'P-8SM252323T120453TMR2K4SQ', '512GB RAM', 1),
+(7, 'P-8SM252323T120453TMR2K4SQ', '50GB SSD Storage', 1),
+(8, 'P-8SM252323T120453TMR2K4SQ', 'Unlimited Free SSL Certificates', 1),
+(9, 'P-8SM252323T120453TMR2K4SQ', 'Daily Backup', 0),
+(10, 'P-8SM252323T120453TMR2K4SQ', '99.9% Uptime Guarantee', 1),
+(11, 'P-8SM252323T120453TMR2K4SQ', '24/7 Support', 1),
+(12, 'P-8SM252323T120453TMR2K4SQ', 'Powerful Control Panel (cPanel)', 1),
+(13, 'P-8SM252323T120453TMR2K4SQ', 'DNS management', 1),
+(14, 'P-8SM252323T120453TMR2K4SQ', '10 Entry Processes', 1),
+(15, 'P-8SM252323T120453TMR2K4SQ', '20 Active Processes', 1),
+(16, 'P-7HU86870CB6342615MR2LZNA', '100 Website', 1),
+(17, 'P-7HU86870CB6342615MR2LZNA', '100 Subdomains per account', 1),
+(18, 'P-7HU86870CB6342615MR2LZNA', 'Unlimited Bandwidth', 1),
+(19, 'P-7HU86870CB6342615MR2LZNA', 'Unlimited MySQL Databases', 1),
+(20, 'P-7HU86870CB6342615MR2LZNA', '1 CPU Core', 1),
+(21, 'P-7HU86870CB6342615MR2LZNA', '1024GB RAM', 1),
+(22, 'P-7HU86870CB6342615MR2LZNA', '100GB SSD Storage', 1),
+(23, 'P-7HU86870CB6342615MR2LZNA', 'Unlimited Free SSL Certificates', 1),
+(24, 'P-7HU86870CB6342615MR2LZNA', 'Daily Backup', 0),
+(25, 'P-7HU86870CB6342615MR2LZNA', '99.9% Uptime Guarantee', 1),
+(26, 'P-7HU86870CB6342615MR2LZNA', '24/7 Support', 1),
+(27, 'P-7HU86870CB6342615MR2LZNA', 'Powerful Control Panel (cPanel)', 1),
+(28, 'P-7HU86870CB6342615MR2LZNA', 'DNS management', 1),
+(29, 'P-7HU86870CB6342615MR2LZNA', '20 Entry Processes', 1),
+(30, 'P-7HU86870CB6342615MR2LZNA', '45 Active Processes', 1),
+(31, 'P-11H60556R0411082MMR2L2FI', '150 Website', 1),
+(32, 'P-11H60556R0411082MMR2L2FI', '100 Subdomains per account', 1),
+(33, 'P-11H60556R0411082MMR2L2FI', 'Unlimited Bandwidth', 1),
+(34, 'P-11H60556R0411082MMR2L2FI', 'Unlimited MySQL Databases', 1),
+(35, 'P-11H60556R0411082MMR2L2FI', '2 CPU Core', 1),
+(36, 'P-11H60556R0411082MMR2L2FI', '1536GB RAM', 1),
+(37, 'P-11H60556R0411082MMR2L2FI', '300GB SSD Storage', 1),
+(38, 'P-11H60556R0411082MMR2L2FI', 'Unlimited Free SSL Certificates', 1),
+(39, 'P-11H60556R0411082MMR2L2FI', 'Daily Backup', 1),
+(40, 'P-11H60556R0411082MMR2L2FI', '99.9% Uptime Guarantee', 1),
+(41, 'P-11H60556R0411082MMR2L2FI', '24/7 Support', 1),
+(42, 'P-11H60556R0411082MMR2L2FI', 'Powerful Control Panel (cPanel)', 1),
+(43, 'P-11H60556R0411082MMR2L2FI', 'DNS management', 1),
+(44, 'P-11H60556R0411082MMR2L2FI', '35 Entry Processes', 1),
+(45, 'P-11H60556R0411082MMR2L2FI', '70 Active Processes', 1),
+(46, 'P-0GM50921FC832453RMR2XKDY', '1 vCPU core', 1),
+(47, 'P-0GM50921FC832453RMR2XKDY', '1GB RAM', 1),
+(48, 'P-0GM50921FC832453RMR2XKDY', '25GB SSD Storage', 1),
+(49, 'P-0GM50921FC832453RMR2XKDY', '1TB Bandwidth', 1),
+(50, 'P-0GM50921FC832453RMR2XKDY', '100Mbps Network', 1),
+(51, 'P-0GM50921FC832453RMR2XKDY', 'Weekly Backups', 1),
+(52, 'P-0GM50921FC832453RMR2XKDY', 'Full Root Access', 1),
+(53, 'P-0GM50921FC832453RMR2XKDY', 'Dedicated IP', 1),
+(54, 'P-0GM50921FC832453RMR2XKDY', '24/7 Support', 1),
+(55, 'P-9PP23621SW0121423MR2XKPQ', '4 vCPU core', 1),
+(56, 'P-9PP23621SW0121423MR2XKPQ', '4GB RAM', 1),
+(57, 'P-9PP23621SW0121423MR2XKPQ', '85GB SSD Storage', 1),
+(58, 'P-9PP23621SW0121423MR2XKPQ', '3TB Bandwidth', 1),
+(59, 'P-9PP23621SW0121423MR2XKPQ', '200Mbps Network', 1),
+(60, 'P-9PP23621SW0121423MR2XKPQ', 'Weekly Backups', 1),
+(61, 'P-9PP23621SW0121423MR2XKPQ', 'Full Root Access', 1),
+(62, 'P-9PP23621SW0121423MR2XKPQ', 'Dedicated IP', 1),
+(63, 'P-9PP23621SW0121423MR2XKPQ', '24/7 Support', 1),
+(64, 'P-9M811001A39121528MR2XKYA', '8 vCPU core', 1),
+(65, 'P-9M811001A39121528MR2XKYA', '12GB RAM', 1),
+(66, 'P-9M811001A39121528MR2XKYA', '250GB SSD Storage', 1),
+(67, 'P-9M811001A39121528MR2XKYA', '6TB Bandwidth', 1),
+(68, 'P-9M811001A39121528MR2XKYA', '300Mbps Network', 1),
+(69, 'P-9M811001A39121528MR2XKYA', 'Weekly Backups', 1),
+(70, 'P-9M811001A39121528MR2XKYA', 'Full Root Access', 1),
+(71, 'P-9M811001A39121528MR2XKYA', 'Dedicated IP', 1),
+(72, 'P-9M811001A39121528MR2XKYA', '24/7 Support', 1),
+(73, 'P-0T4500702B9280615MR2XMDQ', 'Friendly Website Builder', 1),
+(74, 'P-0T4500702B9280615MR2XMDQ', '2 vCPU core', 1),
+(75, 'P-0T4500702B9280615MR2XMDQ', '3GB RAM', 1),
+(76, 'P-0T4500702B9280615MR2XMDQ', '200GB SSD Storage', 1),
+(77, 'P-0T4500702B9280615MR2XMDQ', '8GB Database Size', 1),
+(78, 'P-0T4500702B9280615MR2XMDQ', 'Unlimited Bandwidth', 1),
+(79, 'P-0T4500702B9280615MR2XMDQ', 'Access Manager', 1),
+(80, 'P-0T4500702B9280615MR2XMDQ', 'PHP Support', 1),
+(81, 'P-0T4500702B9280615MR2XMDQ', 'Isolated Resources', 1),
+(82, 'P-0T4500702B9280615MR2XMDQ', 'Free SSL Certificates', 1),
+(83, 'P-0T4500702B9280615MR2XMDQ', '99.9% Uptime Guarantee', 1),
+(84, 'P-0T4500702B9280615MR2XMDQ', '24/7 Support', 1),
+(85, 'P-8BN527251F239152TMR2XMMA', 'Friendly Website Builder', 1),
+(86, 'P-8BN527251F239152TMR2XMMA', '4 vCPU core', 1),
+(87, 'P-8BN527251F239152TMR2XMMA', '6GB RAM', 1),
+(88, 'P-8BN527251F239152TMR2XMMA', '250GB SSD Storage', 1),
+(89, 'P-8BN527251F239152TMR2XMMA', '8GB Database Size', 1),
+(90, 'P-8BN527251F239152TMR2XMMA', 'Unlimited Bandwidth', 1),
+(91, 'P-8BN527251F239152TMR2XMMA', 'Access Manager', 1),
+(92, 'P-8BN527251F239152TMR2XMMA', 'PHP Support', 1),
+(93, 'P-8BN527251F239152TMR2XMMA', 'Isolated Resources', 1),
+(94, 'P-8BN527251F239152TMR2XMMA', 'Free SSL Certificates', 1),
+(95, 'P-8BN527251F239152TMR2XMMA', '99.9% Uptime Guarantee', 1),
+(96, 'P-8BN527251F239152TMR2XMMA', '24/7 Support', 1),
+(97, 'P-5UL64606MW856531PMR2XMUA', 'Friendly Website Builder', 1),
+(98, 'P-5UL64606MW856531PMR2XMUA', '8 vCPU core', 1),
+(99, 'P-5UL64606MW856531PMR2XMUA', '12GB RAM', 1),
+(100, 'P-5UL64606MW856531PMR2XMUA', '300GB SSD Storage', 1),
+(101, 'P-5UL64606MW856531PMR2XMUA', '8GB Database Size', 1),
+(102, 'P-5UL64606MW856531PMR2XMUA', 'Unlimited Bandwidth', 1),
+(103, 'P-5UL64606MW856531PMR2XMUA', 'Access Manager', 1),
+(104, 'P-5UL64606MW856531PMR2XMUA', 'PHP Support', 1),
+(105, 'P-5UL64606MW856531PMR2XMUA', 'Isolated Resources', 1),
+(106, 'P-5UL64606MW856531PMR2XMUA', 'Free SSL Certificates', 1),
+(107, 'P-5UL64606MW856531PMR2XMUA', '99.9% Uptime Guarantee', 1),
+(108, 'P-5UL64606MW856531PMR2XMUA', '24/7 Support', 1);
 
 -- --------------------------------------------------------
 
@@ -80,206 +209,19 @@ INSERT INTO `payments` (`payment_id`, `user_email`, `product_id`, `transaction_i
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
-  `prod_id` int(10) NOT NULL,
-  `prod_title` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `prod_subtitle` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `prod_category` enum('Shared','VPS','Dedicated','') COLLATE utf8_unicode_ci NOT NULL,
-  `prod_price` float(5,2) NOT NULL,
-  `prod_status` enum('Active','Disabled') COLLATE utf8_unicode_ci NOT NULL
+  `prod_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `prod_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `prod_status` enum('ACTIVE','INACTIVE') COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`prod_id`, `prod_title`, `prod_subtitle`, `prod_category`, `prod_price`, `prod_status`) VALUES
-(1, 'Basic', 'Best for rookies ', 'Dedicated', 9.55, 'Active'),
-(2, 'Popular', 'Intermediate user', 'Dedicated', 15.55, 'Active'),
-(3, 'Premium', 'The pros', 'Dedicated', 33.55, 'Active'),
-(4, 'Basic', 'Best for rookies', 'Shared', 1.55, 'Active'),
-(5, 'Popular', 'Intermediate user', 'Shared', 2.55, 'Active'),
-(6, 'Premium', 'The pros', 'Shared', 3.55, 'Active'),
-(7, 'Basic', 'Best for rookies ', 'VPS', 3.55, 'Active'),
-(8, 'Popular', 'Intermediate user', 'VPS', 10.55, 'Active'),
-(9, 'Premium', 'The pros', 'VPS', 57.55, 'Active'),
-(10, 'Testing Edited', 'Good for testing Edited', 'Dedicated', 1.00, 'Active');
-
---
--- Triggers `product`
---
-DROP TRIGGER IF EXISTS `prod_add`;
-DELIMITER $$
-CREATE TRIGGER `prod_add` AFTER INSERT ON `product` FOR EACH ROW INSERT INTO productlog 
-VALUES(
-    null,
-    NOW(), 
-    'INSERT',
-    NEW.prod_id,
-    NEW.prod_title, 
-    NEW.prod_subtitle, 
-    NEW.prod_category, 
-    NEW.prod_price)
-$$
-DELIMITER ;
-DROP TRIGGER IF EXISTS `prod_del`;
-DELIMITER $$
-CREATE TRIGGER `prod_del` BEFORE DELETE ON `product` FOR EACH ROW INSERT INTO productlog
-VALUES(
-    null,
-    NOW(), 
-    'DELETE',    
-    OLD.prod_id,
-    OLD.prod_title, 
-    OLD.prod_subtitle, 
-    OLD.prod_category, 
-    OLD.prod_price)
-$$
-DELIMITER ;
-DROP TRIGGER IF EXISTS `prod_edit`;
-DELIMITER $$
-CREATE TRIGGER `prod_edit` BEFORE UPDATE ON `product` FOR EACH ROW INSERT INTO productlog
-VALUES(
-    null,
-    NOW(), 
-    'UPDATE',    
-    OLD.prod_id,
-    OLD.prod_title, 
-    OLD.prod_subtitle, 
-    OLD.prod_category, 
-    OLD.prod_price)
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `productdetail`
---
-
-DROP TABLE IF EXISTS `productdetail`;
-CREATE TABLE `productdetail` (
-  `auto_num` int(11) NOT NULL,
-  `prod_id` int(10) NOT NULL,
-  `feature` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `productdetail`
---
-
-INSERT INTO `productdetail` (`auto_num`, `prod_id`, `feature`, `status`) VALUES
-(1, 4, '1 Website', 1),
-(2, 4, '2 Subdomains per account', 1),
-(3, 4, '100GB Bandwidth', 1),
-(4, 4, '5 MySQL Databases', 1),
-(5, 4, '1 CPU Core', 1),
-(6, 4, '512GB RAM', 1),
-(7, 4, '50GB SSD Storage', 1),
-(8, 4, 'Unlimited Free SSL Certificates', 1),
-(9, 4, 'Daily Backup', 0),
-(10, 4, '99.9% Uptime Guarantee', 1),
-(11, 4, '24/7 Support', 1),
-(12, 4, 'Powerful Control Panel (cPanel)', 1),
-(13, 4, 'DNS management', 1),
-(14, 4, '10 Entry Processes', 1),
-(15, 4, '20 Active Processes', 1),
-(16, 5, '100 Website', 1),
-(17, 5, '100 Subdomains per account', 1),
-(18, 5, 'Unlimited Bandwidth', 1),
-(19, 5, 'Unlimited MySQL Databases', 1),
-(20, 5, '1 CPU Core', 1),
-(21, 5, '1024GB RAM', 1),
-(22, 5, '100GB SSD Storage', 1),
-(23, 5, 'Unlimited Free SSL Certificates', 1),
-(24, 5, 'Daily Backup', 0),
-(25, 5, '99.9% Uptime Guarantee', 1),
-(26, 5, '24/7 Support', 1),
-(27, 5, 'Powerful Control Panel (cPanel)', 1),
-(28, 5, 'DNS management', 1),
-(29, 5, '20 Entry Processes', 1),
-(30, 5, '45 Active Processes', 1),
-(31, 6, '150 Website', 1),
-(32, 6, '100 Subdomains per account', 1),
-(33, 6, 'Unlimited Bandwidth', 1),
-(34, 6, 'Unlimited MySQL Databases', 1),
-(35, 6, '2 CPU Core', 1),
-(36, 6, '1536GB RAM', 1),
-(37, 6, '300GB SSD Storage', 1),
-(38, 6, 'Unlimited Free SSL Certificates', 1),
-(39, 6, 'Daily Backup', 1),
-(40, 6, '99.9% Uptime Guarantee', 1),
-(41, 6, '24/7 Support', 1),
-(42, 6, 'Powerful Control Panel (cPanel)', 1),
-(43, 6, 'DNS management', 1),
-(44, 6, '35 Entry Processes', 1),
-(45, 6, '70 Active Processes', 1),
-(46, 7, '1 vCPU core', 1),
-(47, 7, '1GB RAM', 1),
-(48, 7, '25GB SSD Storage', 1),
-(49, 7, '1TB Bandwidth', 1),
-(50, 7, '100Mbps Network', 1),
-(51, 7, 'Weekly Backups', 1),
-(52, 7, 'Full Root Access', 1),
-(53, 7, 'Dedicated IP', 1),
-(54, 7, '24/7 Support', 1),
-(55, 8, '4 vCPU core', 1),
-(56, 8, '4GB RAM', 1),
-(57, 8, '85GB SSD Storage', 1),
-(58, 8, '3TB Bandwidth', 1),
-(59, 8, '200Mbps Network', 1),
-(60, 8, 'Weekly Backups', 1),
-(61, 8, 'Full Root Access', 1),
-(62, 8, 'Dedicated IP', 1),
-(63, 8, '24/7 Support', 1),
-(64, 9, '8 vCPU core', 1),
-(65, 9, '12GB RAM', 1),
-(66, 9, '250GB SSD Storage', 1),
-(67, 9, '6TB Bandwidth', 1),
-(68, 9, '300Mbps Network', 1),
-(69, 9, 'Weekly Backups', 1),
-(70, 9, 'Full Root Access', 1),
-(71, 9, 'Dedicated IP', 1),
-(72, 9, '24/7 Support', 1),
-(73, 1, 'Friendly Website Builder', 1),
-(74, 1, '2 vCPU core', 1),
-(75, 1, '3GB RAM', 1),
-(76, 1, '200GB SSD Storage', 1),
-(77, 1, '8GB Database Size', 1),
-(78, 1, 'Unlimited Bandwidth', 1),
-(79, 1, 'Access Manager', 1),
-(80, 1, 'PHP Support', 1),
-(81, 1, 'Isolated Resources', 1),
-(82, 1, 'Free SSL Certificates', 1),
-(83, 1, '99.9% Uptime Guarantee', 1),
-(84, 1, '24/7 Support', 1),
-(85, 2, 'Friendly Website Builder', 1),
-(86, 2, '4 vCPU core', 1),
-(87, 2, '6GB RAM', 1),
-(88, 2, '250GB SSD Storage', 1),
-(89, 2, '8GB Database Size', 1),
-(90, 2, 'Unlimited Bandwidth', 1),
-(91, 2, 'Access Manager', 1),
-(92, 2, 'PHP Support', 1),
-(93, 2, 'Isolated Resources', 1),
-(94, 2, 'Free SSL Certificates', 1),
-(95, 2, '99.9% Uptime Guarantee', 1),
-(96, 2, '24/7 Support', 1),
-(97, 3, 'Friendly Website Builder', 1),
-(98, 3, '8 vCPU core', 1),
-(99, 3, '12GB RAM', 1),
-(100, 3, '300GB SSD Storage', 1),
-(101, 3, '8GB Database Size', 1),
-(102, 3, 'Unlimited Bandwidth', 1),
-(103, 3, 'Access Manager', 1),
-(104, 3, 'PHP Support', 1),
-(105, 3, 'Isolated Resources', 1),
-(106, 3, 'Free SSL Certificates', 1),
-(107, 3, '99.9% Uptime Guarantee', 1),
-(108, 3, '24/7 Support', 1),
-(153, 10, 'te', 1),
-(154, 10, 'tet', 1),
-(155, 10, 'tete', 1);
+INSERT INTO `product` (`prod_id`, `prod_name`, `prod_status`) VALUES
+('PROD0001', 'Shared', 'ACTIVE'),
+('PROD0002', 'VPS', 'ACTIVE'),
+('PROD0003', 'Dedicated', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -298,6 +240,59 @@ CREATE TABLE `productlog` (
   `prod_category` varchar(255) NOT NULL,
   `prod_price` float(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscription`
+--
+
+DROP TABLE IF EXISTS `subscription`;
+CREATE TABLE `subscription` (
+  `sub_status` text COLLATE utf8_unicode_ci NOT NULL,
+  `sub_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `plan_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `u_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `paypal_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `paypal_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `payer_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `amount` double(10,2) NOT NULL,
+  `currency_code` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `bill_date` datetime NOT NULL,
+  `next_bill_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `subscription`
+--
+
+INSERT INTO `subscription` (`sub_status`, `sub_id`, `plan_id`, `u_email`, `paypal_email`, `paypal_name`, `payer_id`, `amount`, `currency_code`, `bill_date`, `next_bill_date`) VALUES
+('ACTIVE', 'I-D3ETYG0AC8M9', 'P-8SM252323T120453TMR2K4SQ', 'name3@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 1.55, 'USD', '2023-06-10 04:37:05', '2023-07-09 10:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction`
+--
+
+DROP TABLE IF EXISTS `transaction`;
+CREATE TABLE `transaction` (
+  `trans_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `trans_sub_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `trans_status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `trans_currency_code` text COLLATE utf8_unicode_ci NOT NULL,
+  `trans_gross_amount` double(10,2) NOT NULL,
+  `trans_fee_amount` double(10,2) NOT NULL,
+  `trans_net_amount` double(10,2) NOT NULL,
+  `trans_datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`trans_id`, `trans_sub_id`, `trans_status`, `trans_currency_code`, `trans_gross_amount`, `trans_fee_amount`, `trans_net_amount`, `trans_datetime`) VALUES
+('71L13637TT2390441', 'I-D3ETYG0AC8M9', 'COMPLETED', 'USD', 1.55, 0.54, 1.01, '2023-06-10 04:37:05');
 
 -- --------------------------------------------------------
 
@@ -346,12 +341,18 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`a_email`);
 
 --
--- Indexes for table `payments`
+-- Indexes for table `plan`
 --
-ALTER TABLE `payments`
-  ADD PRIMARY KEY (`payment_id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `user_email` (`user_email`);
+ALTER TABLE `plan`
+  ADD PRIMARY KEY (`plan_id`),
+  ADD KEY `prod_id` (`prod_id`);
+
+--
+-- Indexes for table `plandetail`
+--
+ALTER TABLE `plandetail`
+  ADD PRIMARY KEY (`auto_num`),
+  ADD KEY `prod_id` (`plan_id`);
 
 --
 -- Indexes for table `product`
@@ -360,17 +361,25 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`prod_id`);
 
 --
--- Indexes for table `productdetail`
---
-ALTER TABLE `productdetail`
-  ADD PRIMARY KEY (`auto_num`),
-  ADD KEY `prod_id` (`prod_id`);
-
---
 -- Indexes for table `productlog`
 --
 ALTER TABLE `productlog`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subscription`
+--
+ALTER TABLE `subscription`
+  ADD PRIMARY KEY (`sub_id`),
+  ADD KEY `plan_id` (`plan_id`),
+  ADD KEY `u_email` (`u_email`);
+
+--
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`trans_id`),
+  ADD KEY `trans_sub_id` (`trans_sub_id`);
 
 --
 -- Indexes for table `user`
@@ -383,45 +392,45 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `payments`
+-- AUTO_INCREMENT for table `plandetail`
 --
-ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `product`
---
-ALTER TABLE `product`
-  MODIFY `prod_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `productdetail`
---
-ALTER TABLE `productdetail`
-  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+ALTER TABLE `plandetail`
+  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
 -- AUTO_INCREMENT for table `productlog`
 --
 ALTER TABLE `productlog`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `payments`
+-- Constraints for table `plan`
 --
-ALTER TABLE `payments`
-  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`prod_id`),
-  ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`user_email`) REFERENCES `user` (`u_email`);
+ALTER TABLE `plan`
+  ADD CONSTRAINT `plan_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `product` (`prod_id`);
 
 --
--- Constraints for table `productdetail`
+-- Constraints for table `plandetail`
 --
-ALTER TABLE `productdetail`
-  ADD CONSTRAINT `productdetail_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `product` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `plandetail`
+  ADD CONSTRAINT `plandetail_ibfk_1` FOREIGN KEY (`plan_id`) REFERENCES `plan` (`plan_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `subscription`
+--
+ALTER TABLE `subscription`
+  ADD CONSTRAINT `subscription_ibfk_1` FOREIGN KEY (`plan_id`) REFERENCES `plan` (`plan_id`),
+  ADD CONSTRAINT `subscription_ibfk_2` FOREIGN KEY (`u_email`) REFERENCES `user` (`u_email`);
+
+--
+-- Constraints for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`trans_sub_id`) REFERENCES `subscription` (`sub_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

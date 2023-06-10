@@ -1,14 +1,15 @@
 /*
 ################################
-||                            ||
 ||        Loader Popup        ||
-||                            ||
 ################################
 */
 
-let oriURL; //temp variable to store original URL (to be toggled)
-
 window.addEventListener("load", function () {
+	showLoadingScreen();
+});
+
+let oriURL; //temp variable to store original URL (to be toggled)
+window.showLoadingScreen = function () {
 	const loader = document.getElementById("loader");
 	// Disable scroll behavior
 	document.body.style.overflow = "hidden";
@@ -29,13 +30,11 @@ window.addEventListener("load", function () {
 	} else if (window.location.pathname == "/pages/dedicated_hosting_pricing.php") {
 		document.getElementById("link-dc").href = "#";
 	}
-});
+};
 
 /*
 ################################
-||                            ||
 ||      Scroll Listener       ||
-||                            ||
 ################################
 - add shadow to nav bar when scrolling
 - change the href to # or oriURL

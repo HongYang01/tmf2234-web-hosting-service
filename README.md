@@ -1,8 +1,8 @@
 # TMF2234 Web Based System Development Assignment
 
-## Topic : Web Host Service
+## Project: Web Host Service
 
-## 🏆 Developed by Team: _Semicolon_
+## 🏆 Developed By Team: _Semicolon_
 
 - **79880** LIM HONG YANG
 - **79065** CHIN TECK YUNG
@@ -10,7 +10,7 @@
 - **79260** EE CHEE FAT
 - **79027** CHAI CHENG KANG
 
-## ⭐ User Manual For Localhost Deployment
+## 🌐 Deploying Website To Local Machine
 
 <details>
 <summary>Click to expand!</summary><br>
@@ -40,7 +40,7 @@ DocumentRoot "path/to/your/project/folder"
 
 </details>
 
-## ⭐ How to use ngrok to create secure tunnels to expose your local server to the internet
+## ☁️ How To Host Website Temporarily Using _ngrok_ (FREE)
 
 <details>
 <summary>Click to expand!</summary><br>
@@ -63,13 +63,21 @@ DocumentRoot "path/to/your/project/folder"
 
 ### Extra
 
-🔁 Repeat Step `[4], [5], [11-15]` if you wish to reopen a tunnel<br>
+🔁 Repeat Step `[4], [5], [11-15]` if you wish to re-open a tunnel<br>
 ✒️ Note: The link will be expired if you choose to close the tunnel (`Ctrl + C`)<br>
 ✒️ How to update ngrok: `ngrok udpate`
 
 </details>
 
-## Dummy Data
+## 📒 Dummy Data
+
+<details>
+<summary>Click to expand!</summary><br>
+
+```
+hashing method : password_hash("YOUR_PASSWORD", PASSWORD_BCRYPT);
+verify method  : password_verify("YOUR_PASSWORD", $hash);
+```
 
 | Role  | Email                  | PWD         |
 | ----- | ---------------------- | ----------- |
@@ -90,20 +98,37 @@ DocumentRoot "path/to/your/project/folder"
 | USER  | michael@yahoo.com      | mike78900   |
 | USER  | sarah@gmail.com        | sarah456    |
 
-## Paypal Credentials
+</details>
 
-| Role   | Email                                 | PWD      | Usage                                                       |
-| ------ | ------------------------------------- | -------- | ----------------------------------------------------------- |
-| USER   | sb-tehix25986425@personal.example.com | iH!y;g8r | testing payment                                             |
-| VENDOR | sb-tqzkp25986426@business.example.com | 8i)8L$MI | [manage plan](https://www.sandbox.paypal.com/billing/plans) |
+## 💳 PayPal Integration
+
+<details>
+<summary>Click to expand!</summary>
+
+### Types of payment
+
+1. One-time payment/checkout
+2. Recurring Payment (**we use this**)
+
+### Note
+
+- we use `client URL (cURL)` for transaction -- the NEW & EASY way
+- we are **NOT** using `Instant Payment Notification (IPN)` for transaction -- the OG way
+- [PayPal Subscription Guide](https://developer.paypal.com/docs/api/subscriptions/v1/)
+- [PayPal HTTP response](https://developer.paypal.com/api/rest/responses/)
+
+### Paypal Credentials
+
+| Role   | Email                                 | Region | PWD      | Usage                                                       |
+| ------ | ------------------------------------- | :----: | -------- | ----------------------------------------------------------- |
+| USER   | sb-tehix25986425@personal.example.com |   US   | iH!y;g8r | testing payment                                             |
+| VENDOR | sb-tqzkp25986426@business.example.com |   US   | 8i)8L$MI | [manage plan](https://www.sandbox.paypal.com/billing/plans) |
 
 Merchant ID: 425G855NZ29R6
 
-```
-hashing method: password_hash("YOUR_PASSWORD", PASSWORD_BCRYPT);
-```
+</details>
 
-# Folder Hierarchy
+## Folder Hierarchy
 
 ```
 project/
@@ -120,6 +145,6 @@ project/
 └── index.php
 ```
 
-# Tips on SQL
+## Tips on SQL
 
-1. Reset auto increment using `ALTER TABLE table_name AUTO_INCREMENT = value`
+1. Reset auto increment using `ALTER TABLE table_name AUTO_INCREMENT = desired_value`

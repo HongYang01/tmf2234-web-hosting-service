@@ -11,9 +11,9 @@ USAGE:
 Allow admin to delete an entire plan
 
 PROCESS:
-1. Get prod_id from the form using $_POST['prod_id'] [/admin/edit_price_plan.php]
-2. No need to delete the product details because the product feature relation is set to CASCADE
-3. Delete the product feature relation (JSON is response to client JS)
+1. Get plan_id from the form using $_POST['plan_id'] [/admin/edit_price_plan.php]
+2. No need to delete the plan details because the plan feature relation is set to CASCADE
+3. Delete the plan feature relation (JSON is response to client JS)
     - success
     - message
     - redirect
@@ -27,7 +27,7 @@ NOTE:
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
 
-if (!isset($_POST['prod_id']) || empty($_POST['prod_id'])) {
+if (!isset($_POST['plan_id']) || empty($_POST['plan_id'])) {
     $response = array('success' => false, 'message' => "Error: Product ID not found");
     echo json_encode($response);
     exit;
@@ -35,16 +35,16 @@ if (!isset($_POST['prod_id']) || empty($_POST['prod_id'])) {
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
-$prod_id = mysqli_real_escape_string($conn, $_POST['prod_id']);
+$plan_id = mysqli_real_escape_string($conn, $_POST['plan_id']);
 
-$query = "DELETE FROM product WHERE prod_id = ?";
+$query = "DELETE FROM plan WHERE plan_id = ?";
 $stmt = mysqli_prepare($conn, $query);
-mysqli_stmt_bind_param($stmt, "i", $prod_id);
+mysqli_stmt_bind_param($stmt, "i", $plan_id);
 
 if (mysqli_stmt_execute($stmt)) {
     $response = array('success' => true, 'redirect' => "/admin/manage_price_plan.php");
 } else {
-    $response = array('success' => false, 'message' => "Error: Failed to delete product (Product ID: " . $prod_id . ")");
+    $response = array('success' => false, 'message' => "Error: Failed to delete plan (Product ID: " . $plan_id . ")");
 }
 
 mysqli_stmt_close($stmt);
