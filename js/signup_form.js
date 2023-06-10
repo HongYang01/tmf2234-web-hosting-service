@@ -32,12 +32,12 @@ submitBtn.addEventListener("click", (event) => {
 				if (data.success) {
 					window.location.href = data.redirect;
 				} else {
-					showPopup(data.error);
+					throw new Error(data.error);
 				}
 			})
 			.catch((error) => {
-				showPopup("Error: Internal Error, Try again later");
-				console.error("Error:", error);
+				showPopup(error);
+				console.error(error);
 			});
 	}
 });

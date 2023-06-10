@@ -159,6 +159,10 @@ td {
 	box-shadow: 0 0 5px 1px rgba(var(--rgb-black), 0.3);
 }
 
+/*######################################*
+||         Show Popup Detail          ||
+*######################################*/
+
 #popup-details {
 	display: none;
 	position: absolute;
@@ -186,7 +190,7 @@ td {
 #popup-content-1 {
 	display: grid;
 	width: 100%;
-	grid-template-columns: 1fr 5fr;
+	grid-template-columns: 1fr 4fr;
 	margin: 30px 0;
 	line-height: 30px;
 }
@@ -213,6 +217,10 @@ td {
 	align-items: center;
 }
 
+/*######################################*
+||             Esc Button             ||
+*######################################*/
+
 #escBtn {
 	position: absolute;
 	top: 3%;
@@ -226,4 +234,35 @@ td {
 
 #escBtn:hover {
 	border: 1px solid rgba(var(--rgb-black), 40%);
+}
+
+/*######################################*
+||       Suspend/Cancel Button        ||
+*######################################*/
+
+[id^="popup-btn-"] {
+	border-radius: 5px;
+	padding: 5px 10px;
+	cursor: pointer;
+	border: none;
+	font-family: var(--font-second);
+	font-size: var(--font-size-normal);
+	transition: all 0.6s ease;
+}
+
+[id^="popup-btn-"]:hover {
+	box-shadow: 0 0 2px 1px rgba(var(--rgb-black), 0.2);
+}
+
+#popup-btn-cancel {
+	background-color: rgba(var(--rgb-red), 0.2);
+	margin-right: 5px;
+}
+
+#popup-btn-suspend {
+	background-color: rgba(255, 165, 0, 0.2);
+}
+
+#popup-btn-reactivate {
+	background-color: rgba(173, 234, 67, 0.2);
 }

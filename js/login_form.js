@@ -41,11 +41,11 @@ submitBtn.addEventListener("click", (event) => {
 			if (data.success) {
 				window.location.href = data.redirect; //get redirect attrib from object (URL string)
 			} else {
-				showPopup(data.error); //get error attrib from object (string)
+				throw new Error(data.error);
 			}
 		})
 		.catch((error) => {
-			showPopup("Error: Internal Error, Try again later");
-			console.error("Error:", error);
+			showPopup(error);
+			console.error(error);
 		});
 });

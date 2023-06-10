@@ -1,3 +1,23 @@
+<?php
+/*######################################*
+||              Includes              ||
+*######################################*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+
+/*######################################*
+||           Check Identity           ||
+*######################################*/
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
+if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
+    mysqli_close($conn);
+    header("Location: /pages/login_form.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,18 +40,9 @@
         <iframe src="/assets/loading.svg" title="logo"></iframe>
     </div>
 
+    <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php"); ?>
+
     <?php
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
-
-    if (!checkLoggedIn()) {
-        header("Location: /pages/login_form.php");
-        exit;
-    }
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
 
     try {
         $query = "SELECT YEAR(bill_date) AS year, MONTHNAME(bill_date) AS month, SUM(payment_amount) AS total_sales FROM payments GROUP BY year, month ORDER BY year, MONTH(bill_date)";
@@ -56,7 +67,7 @@
     } catch (Exception $e) {
         $errorMessage = "Error: " . $e->getMessage();
         $encodedMessage = json_encode($errorMessage);
-        echo "<script>showPopup($encodedMessage);</script>";
+        echo "<script>showPopup('" . $encodedMessage . "');</script>";
     }
 
     $conn->close();
