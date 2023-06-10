@@ -353,6 +353,12 @@ span {
 	width: 35%;
 }
 
+@media screen and (max-width: 720px){
+	.header-left {
+		width: 100%;
+	}
+}
+
 .header-left > h1 {
 	margin-bottom: 24px;
 }
@@ -377,6 +383,13 @@ footer {
 #image-cover {
 	height: 450px;
 	width: 450px;
+}
+
+@media screen and (max-width: 720px){
+	#image-cover {
+		height: 300px;
+		width: 300px;
+	}
 }
 
 #image-2 {
@@ -406,6 +419,18 @@ footer {
 	overflow: auto;
 	box-sizing: border-box;
 }
+
+@media screen and (max-width: 720px){
+	#hosting-type-grid {
+			display: grid;
+			grid-template-columns: repeat(1, 300px);
+			gap: 50px;
+			justify-content: center;
+			overflow: auto;
+			box-sizing: border-box;
+			flex-direction: column;
+		}
+	}
 
 #hosting-type-grid > a {
 	display: flex;
