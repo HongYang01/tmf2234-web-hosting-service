@@ -40,6 +40,8 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
         <iframe src="/assets/loading.svg" title="logo"></iframe>
     </div>
 
+    <div id="popup-fade-msg"></div>
+
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php"); ?>
 
     <div class="main-container middle">

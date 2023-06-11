@@ -17,7 +17,7 @@ h1 {
 	margin: 20px 0;
 }
 
-#home {
+#back {
 	display: block;
 	box-shadow: 0 0 10px 2px #00000010;
 	padding: 12px 40px;
@@ -25,6 +25,6 @@ h1 {
 	transition: all 0.6s ease;
 }
 
-#home:hover {
+#back:hover {
 	box-shadow: 0 0 10px 2px #00000030;
 }

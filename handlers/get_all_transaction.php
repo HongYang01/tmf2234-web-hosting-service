@@ -10,26 +10,6 @@
 
 */
 
-/*######################################*
-||          Check POST array          ||
-*######################################*/
-// must use post method
-
-try {
-    if ($_SERVER['REQUEST_METHOD'] === "GET") {
-        if (!isset($_GET['trans_sub_id']) || empty($_GET['trans_sub_id'])) {
-            throw new Exception("Subscription ID is not set");
-        } else {
-            getAllTransaction($_GET['trans_sub_id']);
-        }
-    }
-} catch (Exception $e) {
-    $response['error'] = $e->getMessage();
-    echo json_encode($response, true);
-    exit;
-}
-
-
 function getAllTransaction(?string $transSubId = null)
 {
 
@@ -39,10 +19,6 @@ function getAllTransaction(?string $transSubId = null)
     $transInfo = array();
 
     try {
-
-        if ($transSubId != null && empty($transSubId)) {
-            throw new Exception("Function require a transaction ID");
-        }
 
         /*######################################*
         ||        Get Transaction Info        ||
@@ -70,11 +46,7 @@ function getAllTransaction(?string $transSubId = null)
     }
 
     mysqli_close($conn);
-    if (isset($_GET['trans_sub_id'])) {
-        echo json_encode($response, true);
-    } else {
-        return $response;
-    }
+    return $response;
 }
 
 /*

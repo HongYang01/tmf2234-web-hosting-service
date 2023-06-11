@@ -15,7 +15,13 @@ function getLineGraphData()
 
         $response = array();
 
-        $query = "SELECT YEAR(trans_datetime) AS year, MONTHNAME(trans_datetime) AS month, SUM(trans_net_amount) AS total_sales FROM transaction GROUP BY year, month ORDER BY year, MONTH(trans_datetime)";
+        $query = "SELECT YEAR(trans_datetime) AS year, ";
+        $query .= "MONTHNAME(trans_datetime) AS month, ";
+        $query .= "DAY(trans_datetime) AS day, ";
+        $query .= "SUM(trans_gross_amount) AS total_sales FROM transaction ";
+        $query .= "GROUP BY year, month, day ";
+        $query .= "ORDER BY year, month, day";
+
         $result = mysqli_query($conn, $query);
 
 
@@ -26,7 +32,7 @@ function getLineGraphData()
         }
 
         while ($row = mysqli_fetch_array($result)) {
-            $response['label'][] = $row['year'] . "-" . $row['month'];
+            $response['label'][] = $row['day'] . " " . $row['month'] . ", " . $row['year'];
             $response['data'][] = $row['total_sales'];
         }
     } catch (Exception $e) {

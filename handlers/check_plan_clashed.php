@@ -11,23 +11,28 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
 if (!checkLoggedIn() || $_SESSION['role'] != "user") {
-    header("Location: /pages/login_form.php");
+    echo json_encode(['url' => "/pages/login_form.php"], true);
     exit;
 }
 
 /*######################################*
 ||           Check POST array          ||
 *######################################*/
-// Retrieve the raw POST data
-$jsonData = file_get_contents('php://input');
-// Decode the JSON data and assign it back to $data
-$decodeData = json_decode($jsonData, true);
-if (isset($decodeData['plan_id']) || !empty($decodeData['plan_id'])) {
-    checkPlanClashed($decodeData['plan_id'], $_SESSION['email'], true);
+
+if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'Fetch') {
+
+    // Retrieve the raw POST data
+    $jsonData = file_get_contents('php://input');
+    // Decode the JSON data and assign it back to $data
+    $decodeData = json_decode($jsonData, true);
+
+    if (isset($decodeData['plan_id']) || !empty($decodeData['plan_id'])) {
+        $result = checkPlanClashed($decodeData['plan_id'], $_SESSION['email']);
+        echo json_encode($result, true);
+    }
 }
 
-
-function checkPlanClashed(string $planId, string $email, ?bool $urlAccess = false)
+function checkPlanClashed(string $planId, string $email)
 {
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
@@ -54,12 +59,5 @@ function checkPlanClashed(string $planId, string $email, ?bool $urlAccess = fals
         $response['error'] = $e->getMessage();
     }
 
-    mysqli_close($conn);
-    if ($urlAccess) {
-        echo json_encode($response, true);
-    } else {
-        return $response;
-    }
+    return $response;
 }
-
-exit;
