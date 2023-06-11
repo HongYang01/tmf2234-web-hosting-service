@@ -3,8 +3,8 @@
 ||              Includes              ||
 *######################################*/
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/handlers/admin_get_all_customer.php");
 
 /*######################################*
 ||           Check Identity           ||
@@ -16,6 +16,8 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
     header("Location: /pages/login_form.php");
     exit;
 }
+
+$allCustomer = getAllCustomer();
 ?>
 
 <!DOCTYPE html>
@@ -23,15 +25,12 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/assets/image/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/admin-sales-analytics.css">
+    <link rel="stylesheet" href="/css/admin-customer-info.css">
     <script src="/js/effect.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/js/admin_sales_analytics.js"></script>
-    <title>Sales Analytics</title>
+    <title>Semicolonix | Customer Info</title>
 </head>
 
 <body>
@@ -40,26 +39,35 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
         <iframe src="/assets/loading.svg" title="logo"></iframe>
     </div>
 
-    <div id="popup-fade-msg"></div>
-
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php"); ?>
 
-    <div class="main-container middle">
-        <h1 class="c1 text-title" style="margin-bottom: 30px;">Sales Analytics</h1>
+    <div class="main-container">
+        <table>
+            <caption class="c1 font-primary text-h1 font-w-700">All Customer Info</caption>
+            <tr>
+                <th>No</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Signup Date</th>
+            </tr>
+            <?php
 
-        <div class="charts flex-col">
-            <div class="charts-card">
-                <div class="chartBox">
-                    <canvas id="lineChart"></canvas>
-                </div>
-            </div>
-            <div class="charts-card">
-                <div class="chartBox">
-                    <canvas id="pieChart"></canvas>
-                </div>
-            </div>
-        </div>
+            $count = 0;
 
+            foreach ($allCustomer as $temp) {
+
+                echo "<tr>";
+                echo "<td>" . ++$count . "</td>";
+                echo "<td>" . $temp['u_email'] . "</td>";
+                echo "<td>" . $temp['u_firstname'] . "</td>";
+                echo "<td>" . $temp['u_lastname'] . "</td>";
+                echo "<td>" . $temp['signupDate'] . "</td>";
+                echo "</tr>";
+            }
+
+            ?>
+        </table>
     </div>
 
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>

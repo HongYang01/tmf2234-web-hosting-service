@@ -16,6 +16,8 @@ try {
         } else {
             $sub_id = $_POST['sub_id'];
         }
+    } else {
+        header("Location: /pages/myprofile.php");
     }
 } catch (Exception $e) {
     $response['error'] = $e->getMessage();
@@ -150,7 +152,7 @@ $trans_id = $trans_info['trans_id']; // get transaction id only
                     </tr>
                 </table>
 
-                <a id="home" href="/pages/myprofile.php">Back</a>
+                <a id="back" href="/pages/myprofile.php">Back</a>
             </div>
         </div>
     </div>

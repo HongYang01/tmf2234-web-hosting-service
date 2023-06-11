@@ -59,7 +59,8 @@
                 echo "<div class='dropdown-content'>
                     <a id='link-price-plan' href='/admin/manage_price_plan.php'>Manage Price Plan</a>
                     <a id='link-sales' href='/admin/sales_analytics.php'>Sales Analytics</a>
-                    <a id='link-trans-history' href=''>Transaction History</a>
+                    <a id='link-trans-history' href='/admin/transaction_history.php'>Transaction History</a>
+                    <a id='link-trans-history' href='/admin/customer_info.php'>Customer Info</a>
                 </div>";
 
                 echo "</div>";

@@ -266,3 +266,33 @@ td {
 #popup-btn-reactivate {
 	background-color: rgba(173, 234, 67, 0.2);
 }
+
+/*######################################*
+||        Popup Logout Dialog         ||
+*######################################*/
+
+dialog {
+	background-color: rgba(var(--rgb-white), 0.4);
+	border-radius: 15px;
+	border: none;
+}
+
+dialog > div {
+	text-align: center;
+	padding: 15px;
+	box-sizing: border-box;
+}
+
+dialog > div > button {
+	font-size: var(--font-size-normal);
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	background-color: transparent;
+	box-shadow: 0 0 2px 1px rgba(var(--rgb-black), 0.2);
+	transition: all 0.6s ease;
+}
+
+dialog > div > button:hover {
+	box-shadow: 0 0 2px 1px rgba(var(--rgb-black), 0.4);
+}

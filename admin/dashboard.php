@@ -61,12 +61,12 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
 
             <div class="dashboard-component">
                 <span></span>
-                <a href="">Transaction History</a>
+                <a href="/admin/transaction_history.php">Transaction History</a>
             </div>
 
             <div class="dashboard-component">
                 <span></span>
-                <a href="">Customer Info</a>
+                <a href="/admin/customer_info.php">Customer Info</a>
             </div>
 
         </div>

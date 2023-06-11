@@ -9,9 +9,8 @@
  */
 window.myDateTimeFormat = function (datetime) {
 	if (typeof datetime !== "string") {
-		return null;
+		return "Wrong Format";
 	}
-
 	// Check if the device is online
 	if (navigator.onLine) {
 		let zone = moment.tz.guess();
