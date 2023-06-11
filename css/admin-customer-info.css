@@ -1,0 +1,18 @@
+table {
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	font-family: var(--font-second);
+	font-size: var(--font-size-normal);
+}
+
+th,
+td {
+	padding: 6px;
+	border: 1px solid rgba(var(--rgb-black), 0.2);
+}
+
+table > caption {
+	text-align: left;
+	margin-bottom: 30px;
+}

@@ -66,7 +66,7 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
 
             <div class="dashboard-component">
                 <span></span>
-                <a href="">Customer Info</a>
+                <a href="/admin/customer_info.php">Customer Info</a>
             </div>
 
         </div>
