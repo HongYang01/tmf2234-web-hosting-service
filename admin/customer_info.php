@@ -18,9 +18,6 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
 }
 
 $allCustomer = getAllCustomer();
-
-// echo "<pre>";
-// print_r($allCustomer);
 ?>
 
 <!DOCTYPE html>
