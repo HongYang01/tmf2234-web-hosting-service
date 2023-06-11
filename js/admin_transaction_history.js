@@ -48,12 +48,14 @@ function renderShowSubDetail(data) {
 	const timeDifference = targetDate - currentDate;
 	const countdownInDays = Math.floor(timeDifference / (1000 * 3600 * 24));
 
+	let fullPlanName = data.prod_name + " Hosting (" + data.plan_name + ")";
+
 	let readyTableData = [
 		{label: "Plan ID", value: data.plan_id},
 		{label: "Subscription ID", value: data.sub_id},
 		{label: "Payer Name", value: data.paypal_name},
 		{label: "Payer Email", value: data.paypal_email},
-		{label: "Plan Name", value: data.plan_name},
+		{label: "Plan Name", value: fullPlanName},
 		{label: "Amount Charged (USD)", value: data.amount},
 		{label: "Bill Date", value: data.bill_date},
 		{label: "Next Bill Date", value: data.next_bill_date},
