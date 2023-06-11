@@ -61,6 +61,9 @@ function redirectToCart(planInfo) {
 function planClashed(planInfo) {
 	return fetch(location.origin + "/handlers/check_plan_clashed.php", {
 		method: "POST",
+		headers: {
+			"X-Requested-With": "Fetch",
+		},
 		body: JSON.stringify({plan_id: planInfo.plan_id}),
 	})
 		.then(function (response) {
@@ -75,12 +78,14 @@ function planClashed(planInfo) {
 			} else if (data.success) {
 				showPopup("Redirecting you to checkout");
 				return false;
-			} else {
+			} else if (data.url) {
+				window.location.replace(data.url); // redirect to login
 				return true;
 			}
 		})
 		.catch((error) => {
 			showPopup(error);
+			console.error(error);
 			return true;
 		});
 }

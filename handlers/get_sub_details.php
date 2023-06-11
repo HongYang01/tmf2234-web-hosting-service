@@ -3,15 +3,19 @@
 ||          Check POST array          ||
 *######################################*/
 
-if (isset($_POST['function_name']) && isset($_POST['sub_id'])) {
-    $functionName = $_POST['function_name'];
-    $subID = $_POST['sub_id'];
+if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'Fetch') {
 
-    if ($functionName === "getSubDetail" && !empty($subID)) {
-        $result = getSubDetail($subID);
+    // Retrieve the raw POST data
+    $jsonData = file_get_contents('php://input');
+    // Decode the JSON data and assign it back to $data
+    $decodeData = json_decode($jsonData, true);
+
+    if (isset($decodeData['sub_id']) && !empty($decodeData['sub_id'])) {
+        $result = getSubDetail($decodeData['sub_id']);
         echo json_encode($result, true);
     }
 }
+
 
 function getSubDetail(string $subID)
 {

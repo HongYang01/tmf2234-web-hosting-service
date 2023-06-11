@@ -40,7 +40,7 @@ function createLineGraph() {
 					plugins: {
 						title: {
 							display: true,
-							text: "Total Sales",
+							text: "All Time Sales",
 							align: "center",
 							font: {
 								size: 16,
@@ -54,7 +54,7 @@ function createLineGraph() {
 						x: {
 							title: {
 								display: true,
-								text: "Month",
+								text: "Daily",
 								font: {
 									size: 14,
 									weight: "bold",
@@ -138,7 +138,7 @@ function createPieChart() {
 					plugins: {
 						title: {
 							display: true,
-							text: "Total Sales (USD) by Category",
+							text: "All Time Sales (USD) by Category",
 							align: "center",
 							font: {
 								size: 16,

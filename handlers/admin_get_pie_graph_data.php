@@ -16,7 +16,7 @@ function getPieChartData()
 
         $query = "SELECT plan.plan_name AS planName, ";
         $query .= "product.prod_name AS prodName, ";
-        $query .= "SUM(transaction.trans_net_amount) AS netAmount ";
+        $query .= "SUM(transaction.trans_gross_amount) AS netAmount ";
         $query .= "FROM transaction ";
         $query .= "INNER JOIN subscription ON transaction.trans_sub_id = subscription.sub_id ";
         $query .= "INNER JOIN plan ON subscription.plan_id = plan.plan_id ";
