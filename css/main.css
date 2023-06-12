@@ -445,6 +445,7 @@ footer {
 @media screen and (max-width: 720px){
 	#image-cover {
 		height: 300px;
+		width: 300px;
 	}
 }
 

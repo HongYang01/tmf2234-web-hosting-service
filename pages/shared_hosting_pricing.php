@@ -31,7 +31,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
     <div class="main-pricing-container">
 
-        <header class="flex-row middle between">
+        <header class="flex-row middle between center">
 
             <div class="header-left flex-col">
                 <h1 class="c1 text-title">Shared Hosting</h1>
