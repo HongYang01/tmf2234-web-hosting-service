@@ -478,15 +478,15 @@ footer {
 
 @media screen and (max-width: 720px){
 	#hosting-type-grid {
-			display: grid;
-			grid-template-columns: repeat(1, 300px);
-			gap: 50px;
-			justify-content: center;
-			overflow: auto;
-			box-sizing: border-box;
-			flex-direction: column;
-		}
+		display: grid;
+		grid-template-rows: repeat(3, 130px);
+		grid-template-columns:none;
+		gap: 30px;
+		justify-content: center;
+		overflow: auto;
+		box-sizing: border-box;
 	}
+}
 
 #hosting-type-grid > a {
 	display: flex;
