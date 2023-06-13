@@ -6,6 +6,13 @@
 	gap: 30px;
 }
 
+@media screen and (max-width: 720px){
+	.dashboard-layout {
+	grid-template-columns: repeat(2, 145px);
+	grid-template-rows: repeat(2, 145px);
+	}
+}
+
 .dashboard-component {
 	display: flex;
 	border: 1px solid black;

@@ -94,6 +94,11 @@
 		display: none;
 	}
 
+	#nav-admin-dashboard{
+		padding-left: 0% !important;
+		padding: 12.5px ;
+	}
+
 	#nav-price{
 		padding-left: 0% !important;
 		padding: 12.5px ;
