@@ -18,6 +18,12 @@
 	max-width: 100%;
 }
 
+@media screen and (max-width: 720px){
+	.pricing-layout {
+	grid-template-columns: auto;
+	}
+}
+
 .pricing-card {
 	display: flex;
 	flex-direction: column;

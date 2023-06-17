@@ -82,6 +82,17 @@
 	font-family: var(--font-primary);
 }
 
+@media screen and (max-width: 720px){
+	:root {
+		--font-size-title: 25px;
+		--font-size-h1: 20px;
+		--font-size-normal: 15px;
+		--font-size-small: 10px;
+
+		font-family: var(--font-primary);
+	}
+}
+
 ::selection {
 	background-color: rgba(var(--rgb-c1), 0.2);
 }
@@ -150,6 +161,7 @@ h2,
 h3,
 h4,
 h5,
+
 strong {
 	margin: 0;
 	font-weight: 600;
@@ -263,6 +275,12 @@ p {
 
 .text-title {
 	font-size: var(--font-size-title);
+}
+
+@media screen and (max-width: 720px){
+	.text-title {
+		font-size: var(--font-size-h1);
+	}
 }
 
 .text-h1 {
@@ -479,15 +497,19 @@ footer {
 
 @media screen and (max-width: 720px){
 	#hosting-type-grid {
-			display: grid;
-			grid-template-columns: repeat(1, 300px);
-			gap: 50px;
-			justify-content: center;
-			overflow: auto;
-			box-sizing: border-box;
-			flex-direction: column;
-		}
+		display: grid;
+		grid-template-rows: repeat(3, 130px);
+		grid-template-columns:none;
+		gap: 30px;
+		justify-content: center;
+		overflow: auto;
+		box-sizing: border-box;
 	}
+
+	#hosting-type-grid > a {
+		height: 100px!important;
+	}
+}
 
 #hosting-type-grid > a {
 	display: flex;

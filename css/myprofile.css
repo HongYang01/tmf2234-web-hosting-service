@@ -111,6 +111,18 @@ form > input:focus {
 	box-sizing: border-box;
 }
 
+@media (max-width: 720px) {
+	.filter {
+		display: grid;
+		gap: 10px;
+	}
+
+	.filter-content {
+		display: flex;
+		width: 100% !important;
+	}
+}
+
 .filter-content {
 	display: flex;
 	flex-direction: row;

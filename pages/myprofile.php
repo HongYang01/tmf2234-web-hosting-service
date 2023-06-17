@@ -89,42 +89,47 @@
 
             </section>
 
-            <section class="right-container">
+            <?php
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+            if ($_SESSION['role'] == "user") {
+            echo"<section class='right-container'>";
 
-                <div class="filter">
-                    <h1 class="c1 text-h1">Subscribed Plan</h1>
-                    <div class="filter-content">
+                echo"<div class='filter'>";
+                    echo"<h1 class='c1 text-h1'>Subscribed Plan</h1>";
+                    echo"<div class='filter-content'>
                         <span>Sort by:</span>
-                        <button onclick="sortAllSub('default')">Default</button>
-                        <button onclick="sortAllSub('name')">Plan</button>
-                        <button onclick="sortAllSub('date')">Maturity Date</button>
-                    </div>
-                </div>
+                        <button onclick='sortAllSub('default')'>Default</button>
+                        <button onclick='sortAllSub('name')'>Plan</button>
+                        <button onclick='sortAllSub('date')'>Maturity Date</button>
+                    </div>";
+                echo"</div>";
 
-                <div class="right-container-bottom">
+                echo"<div class='right-container-bottom'>
 
-                    <div id="render-plan">
+                    <div id='render-plan'>
                         <!-- Dynamic sub plan element here -->
                     </div>
 
-                </div>
+                </div>";
 
-                <div id="popup-details">
-                    <button id="escBtn" onclick="closePopupDetail()">ESC</button>
+                echo"<div id='popup-details'>
+                    <button id='escBtn' onclick='closePopupDetail()'>ESC</button>
                     <h1>Plan Details</h1>
 
-                    <div id="plan-detail-table-container"></div>
+                    <div id='plan-detail-table-container'></div>
 
                     <h1>Features</h1>
 
-                    <div id="popup-content-2">
-                        <div id="popup-content-2-include"></div>
-                        <div id="popup-content-2-exclude"></div>
-                        <div id="popup-content-3-payment-history"></div>
+                    <div id='popup-content-2'>
+                        <div id='popup-content-2-include'></div>
+                        <div id='popup-content-2-exclude'></div>
+                        <div id='popup-content-3-payment-history'></div>
                     </div>
-                </div>
+                </div>";
 
-            </section>
+            echo"</section>";
+            }
+            ?>
 
         </div>
 

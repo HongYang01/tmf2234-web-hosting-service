@@ -7,6 +7,13 @@
 	margin: 30px 0 0 0;
 }
 
+@media screen and (max-width: 720px){
+	.grid-layout {
+		grid-template-columns: auto ;
+		grid-template-rows: 0.5fr 1fr;
+	}
+}
+
 .grid-layout-content-1,
 .grid-layout-content-2 {
 	width: 100%;
