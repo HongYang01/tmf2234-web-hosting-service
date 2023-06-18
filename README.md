@@ -132,16 +132,20 @@ Merchant ID: 425G855NZ29R6
 
 ```
 project/
+├── admin/
 ├── assets/
+│   ├── font/
 │   ├── icon/
 │   └── image/
-├── assets/
 ├── auth/
 ├── config/
 ├── css/
+├── Error/
+├── handlers/
 ├── includes/
 ├── js/
 ├── pages/
+├── vendor/
 └── index.php
 ```
 

@@ -1,79 +1,94 @@
+.about-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--color-c1);
+	padding: 60px 30px;
+	box-sizing: border-box;
+	line-height: 30px;
+}
+
+.about-content > h1 {
+	margin-bottom: 30px;
+}
+
+/*######################################*
+||       Organization Structure       ||
+*######################################*/
+
+.organization-structure {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 60px 30px;
+	box-sizing: border-box;
+}
+
+.organization-structure > h1 {
+	margin-bottom: 30px;
+}
+
 .grid-container {
-    display: grid;
-    column-gap: 32px;
-    grid-template-columns: 0.25fr 1.5fr;
-    padding: 40px 220px 20px 220px;
-  }
-
-.image-left{
-  grid-auto-flow: column;
-  direction: rtl;
+	display: grid;
+	column-gap: 32px;
+	width: 100%;
+	grid-template-columns: 0.25fr 1.5fr;
+	padding: 40px 220px 20px 220px;
+	box-sizing: border-box;
 }
 
-@media screen and (max-width: 1000px){
-    .grid-container{
-      display: grid;
-      column-gap: 32px;
-      grid-template-columns: unset;
-      padding: 40px 5% 20px 5%;
-      text-align: center;
-      justify-items: center;
-    }
+.image-left {
+	grid-auto-flow: column;
+	direction: rtl;
 }
 
-@media screen and (max-width: 1000px){
-  .image-left{
-    grid-auto-flow: unset;
-    direction: unset;
-  }
+.name {
+	font-size: 16px;
 }
 
-.name{
-  font-size: 16px;
+.position {
+	display: flex;
 }
 
-.position{
-  display: flex;
+.spacebar {
+	padding-bottom: 12px;
 }
 
-@media screen and (max-width: 1000px){
-  .position{
-    display: unset;
-  }
+.company-description {
+	width: 45%;
+	text-align: center;
+	color: var(--color-white);
 }
 
-
-.spacebar{
-  padding-bottom: 12px;
+.description {
+	row-gap: 20px;
 }
 
-@media screen and (max-width: 1000px){
-  .spacebar{
-    padding-top: 12px;
-  }
+@media screen and (max-width: 1000px) {
+	.grid-container {
+		display: grid;
+		column-gap: 32px;
+		grid-template-columns: unset;
+		padding: 40px 5% 20px 5%;
+		text-align: center;
+		justify-items: center;
+	}
+
+	.image-left {
+		grid-auto-flow: unset;
+		direction: unset;
+	}
+
+	.position {
+		display: unset;
+	}
+
+	.spacebar {
+		padding-top: 12px;
+	}
+
+	.company-description {
+		width: 100%;
+		text-align: center;
+	}
 }
-
-.company-description{
-  width: 45%;
-  text-align: center;
-}
-
-@media screen and (max-width: 720px){
-  .company-description{
-    width: 100%;
-    text-align: center;
-  }
-}
-
-.description{
-  row-gap: 20px;
-}
-
-  
-
-
-
-
-
-
-  

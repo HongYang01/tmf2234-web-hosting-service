@@ -27,26 +27,23 @@
 
     <div class="main-pricing-container">
 
-        <header class="flex-row middle between center">
+        <div class="title flex-row middle around">
 
-            <div class="header-left flex-col">
-                <h1 class="c1">Dedicated Hosting</h1>
-                <p class="black text-normal font-w-400">Power up your website with reliable and affordable shared hosting that delivers exceptional performance.</p>
+            <div class="title-content">
+                <h1 class="c1 text-title">Dedicated Hosting</h1>
+                <p class="black text-normal font-w-400">Unlock the full potential of your online presence with our unrivaled dedicatedserver hosting, delivering unparalleled performance, reliability, and security to empower your digital ambitions.</p>
 
-                <div class="flex-row middle" style="margin-top:30px;">
-                    <span class='icon-tick'></span>
-                    <p class="black text-normal font-w-400">30-Day Money-Back Guarantee</p>
-                </div>
-                <div class="flex-row middle">
-                    <span class='icon-tick'></span>
-                    <p class="black text-normal font-w-400">Dell PowerEdge R630</p>
+                <div class="black text-normal" style="margin-top:30px;">
+                    <p class="flex-row middle"><span class='icon-tick'></span> Secured and enclosed system</p>
+                    <p class="flex-row middle"><span class='icon-tick'></span> Privacy is priority</p>
+                    <p class="flex-row middle"><span class='icon-tick'></span> Priortize your consumption</p>
                 </div>
 
             </div>
 
             <iframe id="image-cover" src="/assets/image/dedicated-server-icon2.svg" title="cover"></iframe>
 
-        </header>
+        </div>
 
 
         <div class="pricing-layout font-second">
