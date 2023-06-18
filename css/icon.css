@@ -62,3 +62,31 @@
 	height: 24px;
 	margin-right: 9px;
 }
+
+.icon-price-tag {
+	background-image: url(/assets/icon/price-tag.svg);
+	width: 50px;
+	height: 50px;
+	/* margin-right: 9px; */
+}
+
+.icon-chart {
+	background-image: url(/assets/icon/chart.svg);
+	width: 50px;
+	height: 50px;
+	/* margin-right: 9px; */
+}
+
+.icon-transaction-history {
+	background-image: url(/assets/icon/transaction-history.svg);
+	width: 50px;
+	height: 50px;
+	/* margin-right: 9px; */
+}
+
+.icon-customer {
+	background-image: url(/assets/icon/customer.svg);
+	width: 50px;
+	height: 50px;
+	/* margin-right: 9px; */
+}

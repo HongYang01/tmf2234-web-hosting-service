@@ -93,7 +93,7 @@ $prodInfo = getAllProduct($prod_id)[0]; // use [0] to access the first key of th
                         <!-- New product details will be appended here dynamically -->
                     </div>
 
-                    <button type="button" id="add-feature">Add Feature</button>
+                    <button type="button" id="add-feature"><span class="icon-addBtn"></span>Add Feature</button>
                 </div>
 
             </div>

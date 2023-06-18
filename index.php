@@ -32,31 +32,24 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     ?>
 
-    <div class="flex-grow-1">
+    <div class="main-container">
 
-        <header class="header-container middle">
+        <div class="title flex-row middle around">
 
-            <div class="header-left">
+            <div class="title-content">
                 <h1 class="c1 text-title">Your Website Deserves A Home</h1>
                 <p class="black text-normal font-w-400">Semicolonix aims to address common challenges such as lack of knowledge, inefficient servers, and poor technical support that hinder people from adopting web hosting services.</p>
 
-                <div class="flex-col between" style="margin-top:30px;">
-                    <div class="flex-row middle">
-                        <span class="icon-tick"></span>
-                        <p class="black text-normal font-w-400">Beginner Friendly</p>
-                    </div>
-
-                    <div class="flex-row middle">
-                        <span class="icon-tick"></span>
-                        <p class="black text-normal font-w-400">Support Organization</p>
-                    </div>
+                <div class="black text-normal" style="margin-top:30px;">
+                    <p class="flex-row middle"><span class='icon-tick'></span> Beginner Friendly</p>
+                    <p class="flex-row middle"><span class='icon-tick'></span>Support Organization</p>
                 </div>
 
             </div>
 
             <iframe id="image-cover" src="/assets/image/index_image.svg" title="logo"></iframe>
 
-        </header>
+        </div>
 
         <section id="world-map" class="flex-col middle" style="background-color: var(--color-c1);">
             <h1 class="c3 text-title margin-0">Server Colocation</h1>

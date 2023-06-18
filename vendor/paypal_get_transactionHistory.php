@@ -41,7 +41,7 @@ function paypalGetPaymentHistory(string $sub_id)
         if ($http_code >= 400 && $http_code < 600) {
             throw new Exception("PayPal Error " . $http_code . ": " . PAYPAL_HTTP_ERR_MSG($http_code));
         } else {
-            $response = json_decode($result, true);
+            return json_decode($result, true);
         }
     } catch (Exception $e) {
         $response['error'] = $e->getMessage();

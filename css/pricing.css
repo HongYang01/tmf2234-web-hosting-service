@@ -18,9 +18,22 @@
 	max-width: 100%;
 }
 
-@media screen and (max-width: 720px){
+@media screen and (max-width: 720px) {
 	.pricing-layout {
-	grid-template-columns: auto;
+		grid-template-columns: auto;
+	}
+
+	h1 {
+		margin-bottom: 15px;
+	}
+
+	.title {
+		width: 100%;
+		flex-direction: row-reverse;
+	}
+
+	.title-content {
+		width: 100%;
 	}
 }
 

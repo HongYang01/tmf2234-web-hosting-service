@@ -52,10 +52,11 @@ function renderShowSubDetail(data) {
 
 	let readyTableData = [
 		{label: "Plan ID", value: data.plan_id},
+		{label: "Plan Name", value: fullPlanName},
 		{label: "Subscription ID", value: data.sub_id},
 		{label: "Payer Name", value: data.paypal_name},
 		{label: "Payer Email", value: data.paypal_email},
-		{label: "Plan Name", value: fullPlanName},
+		{label: "Account Email", value: data.u_email},
 		{label: "Amount Charged (USD)", value: data.amount},
 		{label: "Bill Date", value: data.bill_date},
 		{label: "Next Bill Date", value: data.next_bill_date},

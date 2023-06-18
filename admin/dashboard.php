@@ -50,23 +50,19 @@ if (!checkLoggedIn() || $_SESSION['role'] != "admin") {
         <div class="dashboard-layout">
 
             <div class="dashboard-component">
-                <span></span>
-                <a href="/admin/manage_price_plan.php">Manage <br> Pricing Plan</a>
+                <a href="/admin/manage_price_plan.php"><span class="icon-price-tag"></span>Manage <br> Pricing Plan</a>
             </div>
 
             <div class="dashboard-component">
-                <span></span>
-                <a href="/admin/sales_analytics.php">Sales Analytics</a>
+                <a href="/admin/sales_analytics.php"><span class="icon-chart"></span>Sales Analytics</a>
             </div>
 
             <div class="dashboard-component">
-                <span></span>
-                <a href="/admin/transaction_history.php">Transaction History</a>
+                <a href="/admin/transaction_history.php"><span class="icon-transaction-history"></span>Transaction History</a>
             </div>
 
             <div class="dashboard-component">
-                <span></span>
-                <a href="/admin/customer_info.php">Customer Info</a>
+                <a href="/admin/customer_info.php"><span class="icon-customer"></span>Customer Info</a>
             </div>
 
         </div>

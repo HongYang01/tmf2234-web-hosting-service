@@ -407,14 +407,28 @@ deactivateBtn.addEventListener("click", (event) => {
 	event.preventDefault();
 
 	deleteBtnCounter++;
-	deactivateBtn.textContent = "⚠️ Confirm Deactivate Plan";
+	// deactivateBtn.textContent = "⚠️ Confirm Deactivate Plan ?";
 
 	//TODO: do a popup message to confirm action
-	setTimeout(function () {
-		//reset when user dont do anything
-		deactivateBtn.textContent = "Deactivate Plan";
-		deleteBtnCounter = 0;
-	}, 3000);
+	// setTimeout(function () {
+	// 	//reset when user dont do anything
+	// 	deactivateBtn.textContent = "Deactivate Plan";
+	// 	deleteBtnCounter = 0;
+	// }, 3000);
+
+	// Countdown
+	let countdown = 3; // Set the initial countdown value
+	deactivateBtn.textContent = "⚠️ Confirm Deactivate Plan ? " + countdown + "s";
+	let countdownInterval = setInterval(function () {
+		countdown--;
+		if (countdown > 0) {
+			deactivateBtn.textContent = "⚠️ Confirm Deactivate Plan ? " + countdown + "s";
+		} else {
+			clearInterval(countdownInterval); // Stop the countdown when it reaches 0
+			deleteBtnCounter = 0;
+			deactivateBtn.textContent = "Deactivate Plan";
+		}
+	}, 1000);
 
 	if (deleteBtnCounter === 2) {
 		showPopup("Loading...");

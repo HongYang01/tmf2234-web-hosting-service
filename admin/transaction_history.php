@@ -61,7 +61,7 @@ $allTrans = getAllTransaction();
                         <th>Gross ($)</th>
                         <th>Paypal Fee ($)</th>
                         <th>Net ($)</th>
-                        <th>Datetime (Paypal Time)</th>
+                        <th>Paypal Datetime</th>
                     </tr>
                     <?php
 

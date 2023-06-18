@@ -83,28 +83,27 @@
                         <span id="err-msg-lname"></span>
                     </form>
 
+                    <button data-open-modal id="logout-btn">Logout</button>
                 </div>
-
-                <button data-open-modal id="logout-btn">Logout</button>
 
             </section>
 
             <?php
             require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
             if ($_SESSION['role'] == "user") {
-            echo"<section class='right-container'>";
+                echo "<section class='right-container'>";
 
-                echo"<div class='filter'>";
-                    echo"<h1 class='c1 text-h1'>Subscribed Plan</h1>";
-                    echo"<div class='filter-content'>
+                echo "<div class='filter'>";
+                echo "<h1 class='c1 text-h1'>Subscribed Plan</h1>";
+                echo "<div class='filter-content'>
                         <span>Sort by:</span>
                         <button onclick='sortAllSub('default')'>Default</button>
                         <button onclick='sortAllSub('name')'>Plan</button>
                         <button onclick='sortAllSub('date')'>Maturity Date</button>
                     </div>";
-                echo"</div>";
+                echo "</div>";
 
-                echo"<div class='right-container-bottom'>
+                echo "<div class='right-container-bottom'>
 
                     <div id='render-plan'>
                         <!-- Dynamic sub plan element here -->
@@ -112,7 +111,7 @@
 
                 </div>";
 
-                echo"<div id='popup-details'>
+                echo "<div id='popup-details'>
                     <button id='escBtn' onclick='closePopupDetail()'>ESC</button>
                     <h1>Plan Details</h1>
 
@@ -127,7 +126,7 @@
                     </div>
                 </div>";
 
-            echo"</section>";
+                echo "</section>";
             }
             ?>
 

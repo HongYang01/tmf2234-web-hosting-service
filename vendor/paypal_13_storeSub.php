@@ -2,11 +2,27 @@
 
 require($_SERVER['DOCUMENT_ROOT'] . "/config/conn.php");
 
-$response = array();
 $sub_id = "";
 $u_email = "";
-$paypal_trans_info = array();
+$response = array();
 $paypal_sub_info = array();
+
+/*######################################*
+||           Check Identity           ||
+*######################################*/
+try {
+
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
+    if (!checkLoggedIn() || $_SESSION['role'] != "user") {
+        header("Location: /pages/login_form.php");
+        exit;
+    } else {
+        $u_email = $_SESSION['email'];
+    }
+} catch (Exception $e) {
+    $response['error'] = $e->getMessage();
+}
 
 /*######################################*
 ||          Check POST array          ||
@@ -30,23 +46,6 @@ try {
     $response['error'] = $e->getMessage();
 }
 
-/*######################################*
-||           Check Identity           ||
-*######################################*/
-try {
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/auth_session.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/auth/CheckLogin.php");
-    if (!checkLoggedIn() || $_SESSION['role'] != "user") {
-        header("Location: /pages/login_form.php");
-        exit;
-    } else {
-        $u_email = $_SESSION['email'];
-    }
-} catch (Exception $e) {
-    $response['error'] = $e->getMessage();
-}
-
 /*######################################
 ||    Get sub details from PayPal     ||
 ######################################*/
@@ -61,7 +60,6 @@ try {
 
     $sub_status = $paypal_sub_info['status'];
     $plan_id = $paypal_sub_info['plan_id'];
-
 
     $paypal_email = $paypal_sub_info['subscriber']['email_address'];
     $payer_id = $paypal_sub_info['subscriber']['payer_id'];
@@ -86,45 +84,7 @@ try {
         throw new Exception("Error: cannot store subsription info to database, but payment is successful. Will update shortly");
     }
     mysqli_stmt_close($stmt);
-} catch (Exception $e) {
-    $response['error'] = $e->getMessage();
-}
-
-/*######################################*
-||     Get PayPal Payment History     ||
-*######################################*/
-try {
-
-    sleep(3);
-    $readyTrans = array();
-
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/vendor/paypal_get_transactionHistory.php");
-
-    $paypal_trans_info = paypalGetPaymentHistory($sub_id);
-
-    if (key_exists("error", $paypal_trans_info)) {
-        throw new Exception($paypal_trans_info['error']);
-    } else {
-        $readyTrans = $paypal_trans_info['transactions'][0]; // first time payment
-    }
-
-    $trans_id = $readyTrans['id'];
-    $trans_sub_id = $sub_id;
-    $trans_status = $readyTrans['status'];
-    $trans_currency_code = $readyTrans['amount_with_breakdown']['gross_amount']['currency_code'];
-    $trans_gross_amount = $readyTrans['amount_with_breakdown']['gross_amount']['value'];
-    $trans_fee_amount = $readyTrans['amount_with_breakdown']['fee_amount']['value'];
-    $trans_net_amount = $readyTrans['amount_with_breakdown']['net_amount']['value'];
-    $trans_datetime = $readyTrans['time'];
-
-    $query = "INSERT INTO transaction (trans_id, trans_sub_id, trans_status, trans_currency_code, trans_gross_amount, trans_fee_amount, trans_net_amount, trans_datetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "ssssddds", $trans_id, $trans_sub_id, $trans_status, $trans_currency_code, $trans_gross_amount, $trans_fee_amount, $trans_net_amount, $trans_datetime);
-
-    if (!mysqli_stmt_execute($stmt)) {
-        throw new Exception("Failed to execute query");
-    }
-    $response["success"] = "Transaction captured and saved";
+    $response["success"] = "Subscription details saved";
 } catch (Exception $e) {
     $response['error'] = $e->getMessage();
 }

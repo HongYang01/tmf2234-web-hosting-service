@@ -82,7 +82,7 @@
 	font-family: var(--font-primary);
 }
 
-@media screen and (max-width: 720px){
+@media screen and (max-width: 720px) {
 	:root {
 		--font-size-title: 25px;
 		--font-size-h1: 20px;
@@ -90,6 +90,7 @@
 		--font-size-small: 10px;
 
 		font-family: var(--font-primary);
+		font-weight: 300;
 	}
 }
 
@@ -161,7 +162,6 @@ h2,
 h3,
 h4,
 h5,
-
 strong {
 	margin: 0;
 	font-weight: 600;
@@ -277,7 +277,7 @@ p {
 	font-size: var(--font-size-title);
 }
 
-@media screen and (max-width: 720px){
+@media screen and (max-width: 720px) {
 	.text-title {
 		font-size: var(--font-size-h1);
 	}
@@ -410,48 +410,51 @@ p {
 	box-sizing: border-box;
 }
 
-.header-container {
-	width: 100%;
-	max-width: 100%;
-	box-sizing: border-box; /*prevent overflow caused by padding*/
-	padding: 6rem 40px 40px 40px;
-	justify-content: space-around;
+.title {
+	display: flex;
+	flex-direction: row;
+	width: 85%;
+	align-items: center;
+	justify-content: around;
+	align-self: center;
 }
 
-@media screen and (max-width: 720px){
-	.header-container {
-		flex-direction: column;
+.title-content {
+	width: 50%;
+}
+
+.list {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: fit-content;
+}
+
+@media screen and (max-width: 720px) {
+	.title {
+		width: 100%;
+		flex-direction: row-reverse;
 	}
-}
 
-.header-left {
-	width: 35%;
-}
-
-@media screen and (max-width: 720px){
-	.header-left {
+	.title-content {
 		width: 100%;
 	}
 }
 
-.header-left > h1 {
-	margin-bottom: 24px;
-}
-
-.header-left > p {
-	text-align: justify;
-}
-
 footer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 	width: 100%;
 	padding: 24px 40px;
 	box-sizing: border-box;
 	z-index: 1;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 720px) {
 	footer {
-		display: none;
+		flex-direction: column;
+		align-items: center;
 	}
 }
 
@@ -460,17 +463,21 @@ footer {
 	width: 450px;
 }
 
-@media screen and (max-width: 720px){
+#image-2 {
+	height: 400px;
+	aspect-ratio: 3.2;
+}
+
+@media screen and (max-width: 720px) {
 	#image-cover {
 		height: 300px;
 		width: 300px;
 	}
-}
 
-#image-2 {
-	width: 100%;
-	height: auto;
-	aspect-ratio: 3.6;
+	#image-2 {
+		height: 150px;
+		aspect-ratio: 3.2;
+	}
 }
 
 #world-map {
@@ -495,11 +502,11 @@ footer {
 	box-sizing: border-box;
 }
 
-@media screen and (max-width: 720px){
+@media screen and (max-width: 720px) {
 	#hosting-type-grid {
 		display: grid;
 		grid-template-rows: repeat(3, 130px);
-		grid-template-columns:none;
+		grid-template-columns: none;
 		gap: 30px;
 		justify-content: center;
 		overflow: auto;
@@ -507,7 +514,7 @@ footer {
 	}
 
 	#hosting-type-grid > a {
-		height: 100px!important;
+		height: 100px !important;
 	}
 }
 

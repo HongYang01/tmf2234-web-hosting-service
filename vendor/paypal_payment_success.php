@@ -42,6 +42,7 @@ try {
 $sub_status = $sub_info['sub_status'];
 $sub_id = $sub_info['sub_id'];
 $plan_id = $sub_info['plan_id'];
+$u_email = $sub_info['u_email'];
 $paypal_email = $sub_info['paypal_email'];
 $paypal_name = $sub_info['paypal_name'];
 $payer_id = $sub_info['payer_id'];
@@ -56,6 +57,7 @@ $plan_price = $sub_info['plan_price'];
 $plan_status = $sub_info['plan_status'];
 $prod_name = $sub_info['prod_name'];
 $prod_status = $sub_info['prod_status'];
+$plan_full_name = $prod_name . " Hosting (" . $plan_name . ")";
 
 
 /*######################################*
@@ -75,6 +77,22 @@ try {
 
 // assign value
 $trans_id = $trans_info['trans_id']; // get transaction id only
+
+
+/*######################################*
+||        Generate PDF receipt        ||
+*######################################*/
+require($_SERVER['DOCUMENT_ROOT'] . "/handlers/pdf_generate.php");
+
+$pdf = new CustomPDF();  // Create a new PDF instance
+$pdf->AddPage();    // Add a new page to the document
+
+// user email: $u_email
+// paypal email: $paypal_email
+$pdf->Content($u_email, $trans_id, $amount, $sub_id, $plan_id, $plan_full_name, $bill_date, $next_bill_date);  // Call your custom method with dynamic values
+
+// $pdf->Output('subscription_receipt.pdf', 'D');
+$pdfData = $pdf->Output('', 'S');  // Get the generated PDF data
 
 ?>
 
@@ -109,7 +127,8 @@ $trans_id = $trans_info['trans_id']; // get transaction id only
     <div class="flex-grow-1 flex-col center middle">
         <div>
 
-            <h1>Thank you for your payment</h1>
+            <h1 style="margin-bottom: 30px;">Thank you for your payment</h1>
+
             <div class='info-card'>
                 <h4>Payment Information</h4>
 
@@ -136,7 +155,7 @@ $trans_id = $trans_info['trans_id']; // get transaction id only
                     </tr>
                     <tr>
                         <th>Plan Name</th>
-                        <td><?php echo $prod_name . " Hosting (" . $plan_name . ")"; ?></td>
+                        <td><?php echo $plan_full_name; ?></td>
                     </tr>
                     <tr>
                         <th>Bill Date</th>
@@ -152,8 +171,17 @@ $trans_id = $trans_info['trans_id']; // get transaction id only
                     </tr>
                 </table>
 
-                <a id="back" href="/pages/myprofile.php">Back</a>
+
             </div>
+
+            <div class="flex-row">
+                <a id="btn" href="/pages/myprofile.php">Back</a>
+                <form action="/handlers/pdf_download.php" method="post">
+                    <input type="hidden" name="pdfData" value="<?php echo base64_encode($pdfData); ?>">
+                    <button id="btn" type="submit">Save Receipt</button>
+                </form>
+            </div>
+
         </div>
     </div>
 

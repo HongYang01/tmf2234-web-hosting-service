@@ -73,8 +73,8 @@ addButton.addEventListener("click", function () {
 	*######################################*/
 	const deleteButton = document.createElement("button");
 	deleteButton.type = "button"; // Set the button type to button
-	deleteButton.id = "removeBtn"; // Set the id of the button
-	deleteButton.textContent = "Remove"; // Set the text content of the button
+	deleteButton.id = `removeBtn-${counter}`; // Set the id of the button
+	deleteButton.textContent = "❌"; // Set the text content of the button
 	container.appendChild(deleteButton);
 
 	// Event listener for the delete button click
