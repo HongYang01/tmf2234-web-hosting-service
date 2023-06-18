@@ -69,6 +69,16 @@ DocumentRoot "path/to/your/project/folder"
 
 </details>
 
+## ✉️ Generate Email Receipt using FPDF
+
+<details>
+<summary>Click to expand!</summary><br>
+
+1. Download the latest [fpdf](http://www.fpdf.org/) as zip file (v1.85 as of 18-6-2023)
+2. Extract and put in the project directory
+
+</details>
+
 ## 📒 Dummy Data
 
 <details>

@@ -126,7 +126,7 @@ $plan_detail = $plan_info['plan_detail'];
                     <h2>Product Features</h2>
 
                     <div id="feature-container"></div>
-                    <button type="button" id="add-feature" onclick="addFeature()">Add Feature</button>
+                    <button type="button" id="add-feature" onclick="addFeature()"><span class="icon-addBtn"></span>Add Feature</button>
 
                 </div>
 

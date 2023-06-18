@@ -90,6 +90,7 @@
 		--font-size-small: 10px;
 
 		font-family: var(--font-primary);
+		font-weight: 300;
 	}
 }
 
@@ -463,10 +464,8 @@ footer {
 }
 
 #image-2 {
-	width: 100%;
-	height: auto;
-	scale: 2.5;
-	margin: 120px;
+	height: 400px;
+	aspect-ratio: 3.2;
 }
 
 @media screen and (max-width: 720px) {
@@ -476,10 +475,8 @@ footer {
 	}
 
 	#image-2 {
-		width: 100%;
-		height: auto;
-		scale: 1.2;
-		margin: 30px 0;
+		height: 150px;
+		aspect-ratio: 3.2;
 	}
 }
 
