@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2023 at 07:52 AM
+-- Generation Time: Jun 20, 2023 at 04:33 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -267,7 +267,25 @@ CREATE TABLE `subscription` (
 --
 
 INSERT INTO `subscription` (`sub_status`, `sub_id`, `plan_id`, `u_email`, `paypal_email`, `paypal_name`, `payer_id`, `amount`, `currency_code`, `bill_date`, `next_bill_date`) VALUES
-('ACTIVE', 'I-D3ETYG0AC8M9', 'P-8SM252323T120453TMR2K4SQ', 'name3@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 1.55, 'USD', '2023-06-10 04:37:05', '2023-07-09 10:00:00');
+('ACTIVE', 'I-162GFA7RB7E1', 'P-7HU86870CB6342615MR2LZNA', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 2.55, 'USD', '2023-06-18 15:09:08', '2023-07-18 10:00:00'),
+('ACTIVE', 'I-1YJMH7J82111', 'P-11H60556R0411082MMR2L2FI', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 3.55, 'USD', '2023-06-18 14:18:56', '2023-07-18 10:00:00'),
+('ACTIVE', 'I-2XUX7E0F0VVL', 'P-9M811001A39121528MR2XKYA', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 57.55, 'USD', '2023-06-11 02:56:24', '2023-07-10 10:00:00'),
+('CANCELLED', 'I-4V9TL2ATMN06', 'P-8SM252323T120453TMR2K4SQ', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 1.55, 'USD', '2023-06-18 14:04:30', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-5GEMP6JEFCYA', 'P-7HU86870CB6342615MR2LZNA', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 2.55, 'USD', '2023-06-18 13:28:43', '2023-07-18 10:00:00'),
+('ACTIVE', 'I-6M57K474PKPH', 'P-8SM252323T120453TMR2K4SQ', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 1.55, 'USD', '2023-06-18 15:08:05', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-7ASEP9890ULU', 'P-0T4500702B9280615MR2XMDQ', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 9.55, 'USD', '2023-06-18 14:23:14', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-7VVWUGVNBPC8', 'P-8SM252323T120453TMR2K4SQ', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 1.55, 'USD', '2023-06-18 11:20:18', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-82XAGC46MVVC', 'P-0T4500702B9280615MR2XMDQ', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 9.55, 'USD', '2023-06-18 14:00:04', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-8XRF9G498AW3', 'P-0GM50921FC832453RMR2XKDY', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 3.55, 'USD', '2023-06-18 14:51:53', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-BSC0VGAWB5WW', 'P-8BN527251F239152TMR2XMMA', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 15.55, 'USD', '2023-06-18 14:56:55', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-C82EBASK4PDW', 'P-7HU86870CB6342615MR2LZNA', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 2.55, 'USD', '2023-06-18 14:50:22', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-D3EACNBE3RKP', 'P-9PP23621SW0121423MR2XKPQ', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 10.55, 'USD', '2023-06-18 14:08:22', '2023-07-18 10:00:00'),
+('ACTIVE', 'I-D3ETYG0AC8M9', 'P-8SM252323T120453TMR2K4SQ', 'name3@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 1.55, 'USD', '2023-06-10 04:37:05', '2023-07-09 10:00:00'),
+('CANCELLED', 'I-DECAR42XUUD2', 'P-0GM50921FC832453RMR2XKDY', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 3.55, 'USD', '2023-06-18 11:32:01', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-GCTHMG79R6HA', 'P-0GM50921FC832453RMR2XKDY', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 3.55, 'USD', '2023-06-18 14:15:20', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-H1JNJV618W7G', 'P-0T4500702B9280615MR2XMDQ', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 9.55, 'USD', '2023-06-18 15:02:07', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-K9TLD4PU91UY', 'P-7HU86870CB6342615MR2LZNA', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 2.55, 'USD', '2023-06-18 11:30:00', '2023-07-18 10:00:00'),
+('CANCELLED', 'I-X0PJUYCCSC6P', 'P-11H60556R0411082MMR2L2FI', 'name1@gmail.com', 'sb-tehix25986425@personal.example.com', 'John Doe', '9LB2QJM6L9ZSU', 3.55, 'USD', '2023-06-18 14:13:42', '2023-07-18 10:00:00');
 
 -- --------------------------------------------------------
 
@@ -292,7 +310,25 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`trans_id`, `trans_sub_id`, `trans_status`, `trans_currency_code`, `trans_gross_amount`, `trans_fee_amount`, `trans_net_amount`, `trans_datetime`) VALUES
-('71L13637TT2390441', 'I-D3ETYG0AC8M9', 'COMPLETED', 'USD', 1.55, 0.54, 1.01, '2023-06-10 04:37:05');
+('01441321P71239041', 'I-2XUX7E0F0VVL', 'COMPLETED', 'USD', 57.55, 2.50, 55.05, '2023-06-11 02:56:24'),
+('0RS43217CK506170V', 'I-82XAGC46MVVC', 'COMPLETED', 'USD', 9.55, 0.82, 8.73, '2023-06-18 14:00:04'),
+('1F461588NG645200K', 'I-BSC0VGAWB5WW', 'COMPLETED', 'USD', 15.55, 1.03, 14.52, '2023-06-18 14:56:55'),
+('1U360631ED0593603', 'I-162GFA7RB7E1', 'COMPLETED', 'USD', 2.55, 0.58, 1.97, '2023-06-18 15:09:08'),
+('2X375817G5972545M', 'I-7ASEP9890ULU', 'COMPLETED', 'USD', 9.55, 0.82, 8.73, '2023-06-18 14:23:14'),
+('3E83404179373074G', 'I-K9TLD4PU91UY', 'COMPLETED', 'USD', 2.55, 0.58, 1.97, '2023-06-18 11:30:00'),
+('3VW88234GS292042R', 'I-DECAR42XUUD2', 'COMPLETED', 'USD', 3.55, 0.61, 2.94, '2023-06-18 11:32:01'),
+('45N28899E8393311N', 'I-C82EBASK4PDW', 'COMPLETED', 'USD', 2.55, 0.58, 1.97, '2023-06-18 14:50:22'),
+('4VL92093DB740941E', 'I-1YJMH7J82111', 'COMPLETED', 'USD', 3.55, 0.61, 2.94, '2023-06-18 14:18:56'),
+('4W702674GD4540624', 'I-7VVWUGVNBPC8', 'COMPLETED', 'USD', 1.55, 0.54, 1.01, '2023-06-18 11:20:18'),
+('5A02058615551202F', 'I-4V9TL2ATMN06', 'COMPLETED', 'USD', 1.55, 0.54, 1.01, '2023-06-18 14:04:30'),
+('6A410747M7915805S', 'I-H1JNJV618W7G', 'COMPLETED', 'USD', 9.55, 0.82, 8.73, '2023-06-18 15:02:07'),
+('6KP76137EP235030C', 'I-6M57K474PKPH', 'COMPLETED', 'USD', 1.55, 0.54, 1.01, '2023-06-18 15:08:05'),
+('71L13637TT2390441', 'I-D3ETYG0AC8M9', 'COMPLETED', 'USD', 1.55, 0.54, 1.01, '2023-06-10 04:37:05'),
+('73381545NJ856435F', 'I-X0PJUYCCSC6P', 'COMPLETED', 'USD', 3.55, 0.61, 2.94, '2023-06-18 14:13:42'),
+('76D95453PD2468643', 'I-D3EACNBE3RKP', 'COMPLETED', 'USD', 10.55, 0.86, 9.69, '2023-06-18 14:08:22'),
+('77G374209F6374923', 'I-GCTHMG79R6HA', 'COMPLETED', 'USD', 3.55, 0.61, 2.94, '2023-06-18 14:15:20'),
+('9G433175VM181014Y', 'I-5GEMP6JEFCYA', 'COMPLETED', 'USD', 2.55, 0.58, 1.97, '2023-06-18 13:28:43'),
+('9RB32517LV393573V', 'I-8XRF9G498AW3', 'COMPLETED', 'USD', 3.55, 0.61, 2.94, '2023-06-18 14:51:53');
 
 -- --------------------------------------------------------
 
@@ -395,7 +431,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `plandetail`
 --
 ALTER TABLE `plandetail`
-  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
+  MODIFY `auto_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `productlog`

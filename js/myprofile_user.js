@@ -494,9 +494,7 @@ function rederTransactionHistory(subID) {
 
 /*
 ################################
-||                            ||
 ||        ESC Listener        ||
-||                            ||
 ################################
 */
 

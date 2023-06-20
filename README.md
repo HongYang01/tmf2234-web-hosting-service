@@ -10,10 +10,27 @@
 - **79260** EE CHEE FAT
 - **79027** CHAI CHENG KANG
 
+---
+
+## ⚠️ Importants!
+
+This web application must be develop **_ONLINE_**, because the belows are implemented:
+
+1. [PayPal Subscription](https://developer.paypal.com/docs/subscriptions/)
+2. [Chart.js](https://www.chartjs.org/)
+
+---
+
 ## 🌐 Deploying Website To Local Machine
 
 <details>
 <summary>Click to expand!</summary><br>
+
+### Option 1
+
+1. Clear your `xampp/htdocs/` directory and replace it with this project files
+
+### Option 2
 
 1. Open XAMPP
 2. Click config (Apache)
@@ -69,7 +86,7 @@ DocumentRoot "path/to/your/project/folder"
 
 </details>
 
-## ✉️ Generate Email Receipt using FPDF
+## ✉️ Generate PDF Receipt using FPDF
 
 <details>
 <summary>Click to expand!</summary><br>
@@ -110,7 +127,7 @@ verify method  : password_verify("YOUR_PASSWORD", $hash);
 
 </details>
 
-## 💳 PayPal Integration
+## 💳 PayPal Subscription Integration
 
 <details>
 <summary>Click to expand!</summary>
