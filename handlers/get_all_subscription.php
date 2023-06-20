@@ -60,8 +60,8 @@ function getALLSubscription(string $sortBy)
         // get subscription info
         if ($sortBy === "default") {
             $query = "SELECT * FROM subscription WHERE u_email = '" . $email . "' ORDER BY sub_status ASC";
-        } elseif ($sortBy === "name") {
-            $query = "SELECT * FROM subscription WHERE u_email = '" . $email . "' ORDER BY sub_id DESC";
+        } elseif ($sortBy === "subid") {
+            $query = "SELECT * FROM subscription WHERE u_email = '" . $email . "' ORDER BY sub_id ASC";
         } elseif ($sortBy === "date") {
             $query = "SELECT * FROM subscription WHERE u_email = '" . $email . "' ORDER BY bill_date DESC";
         } else {

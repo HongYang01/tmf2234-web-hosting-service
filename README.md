@@ -1,6 +1,6 @@
-# TMF2234 Web Based System Development Assignment
+# TMN2234 (G03) Web Based System Development Assignment
 
-## Project: Web Host Service
+## Project: Web Hosting Service
 
 ## 🏆 Developed By Team: _Semicolon_
 
@@ -12,7 +12,7 @@
 
 ---
 
-## ⚠️ Importants!
+## ⚠️ Important!
 
 This web application must be develop **_ONLINE_**, because the belows are implemented:
 
