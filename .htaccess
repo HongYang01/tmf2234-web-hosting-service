@@ -1,13 +1,6 @@
-RewriteEngine On
+# Disable directory browsing
 
-# Redirect user access to 404 and 503 pages to index.php using "/"
-
-# RewriteCond %{THE_REQUEST} /(Error/404|Error/503)\.php [NC]
-# RewriteRule ^ / [R=302,L]
-
-RewriteCond %{REQUEST_URI} ^/(admin|auth|config|Error|handlers|includes|js|pages|vendor|analytics)/ [NC]
-RewriteCond %{REQUEST_URI} !\.(php|html?|css|js|svg)$ [NC]
-RewriteRule ^ - [R=403,L]
+Options -Indexes
 
 # Redirect to custom error pages
 
@@ -15,17 +8,9 @@ ErrorDocument 404 /Error/404.php
 ErrorDocument 403 /Error/403.php
 ErrorDocument 503 /Error/503.php
 
-# Preventing unwanted attack requests
+# Route all other requests to index.php
 
-# - Directory traversal attacks
-
-# - URL parameter attacks
-
-# - Server-side request forgery (SSRF) attacks
-
-# - File inclusion attacks
-
-<FilesMatch "\.(htaccess|htpasswd|log|ini|phps|fla|psd|log|sh|zip|tar|tgz|gz|rar)$">
-Order Allow,Deny
-Deny from all
-</FilesMatch>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php/$1 [L]

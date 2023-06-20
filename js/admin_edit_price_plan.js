@@ -20,9 +20,7 @@ function checkDirty() {
 
 /*
 ################################
-||                            ||
 ||   Listen to page reload    ||
-||                            ||
 ################################
 */
 
@@ -407,14 +405,8 @@ deactivateBtn.addEventListener("click", (event) => {
 	event.preventDefault();
 
 	deleteBtnCounter++;
-	// deactivateBtn.textContent = "⚠️ Confirm Deactivate Plan ?";
 
 	//TODO: do a popup message to confirm action
-	// setTimeout(function () {
-	// 	//reset when user dont do anything
-	// 	deactivateBtn.textContent = "Deactivate Plan";
-	// 	deleteBtnCounter = 0;
-	// }, 3000);
 
 	// Countdown
 	let countdown = 3; // Set the initial countdown value
@@ -424,24 +416,37 @@ deactivateBtn.addEventListener("click", (event) => {
 		if (countdown > 0) {
 			deactivateBtn.textContent = "⚠️ Confirm Deactivate Plan ? " + countdown + "s";
 		} else {
-			clearInterval(countdownInterval); // Stop the countdown when it reaches 0
+			clearInterval(countdownInterval);
 			deleteBtnCounter = 0;
 			deactivateBtn.textContent = "Deactivate Plan";
 		}
 	}, 1000);
 
 	if (deleteBtnCounter === 2) {
-		showPopup("Loading...");
-		document.body.style.pointerEvents = "none";
-
-		const form = document.getElementById("edit-form");
-		const formData = new FormData(form);
-
-		if (!deactivatePlan(formData.get("plan_id"))) {
-			document.body.style.pointerEvents = "auto";
-		}
-
+		clearInterval(countdownInterval);
 		deleteBtnCounter = 0;
+		deactivateBtn.textContent = "Deactivate Plan";
+
+		const modal = document.querySelector("[data-modal]");
+		const cancelBtn = document.querySelector("[data-close-modal]");
+		const confirmBtn = document.getElementById("confirm-btn");
+
+		modal.showModal(); // popup confirmation
+
+		// deactivating
+		confirmBtn.addEventListener("click", () => {
+			showPopup("Loading...");
+
+			const form = document.getElementById("edit-form");
+			const formData = new FormData(form);
+			deactivatePlan(formData.get("plan_id"));
+
+			modal.close();
+		});
+
+		cancelBtn.addEventListener("click", () => {
+			modal.close();
+		});
 	}
 });
 
@@ -451,6 +456,7 @@ deactivateBtn.addEventListener("click", (event) => {
 function deactivatePlan(plan_id) {
 	// new status will also be updated in database
 	// not need to return because redirected
+
 	document.body.style.pointerEvents = "none";
 
 	showPopup("Requesting PayPal API...");
@@ -507,5 +513,4 @@ function updateButtonState() {
 	// Disable the add button if any input element is empty or any select element is unselected
 	addButton.disabled = isFeatureEmpty || isPlanEmpty || priceIsZero;
 	submitBtn.disabled = isFeatureEmpty || isPlanEmpty || priceIsZero;
-	// deactivateBtn.disabled = isFeatureEmpty;
 }

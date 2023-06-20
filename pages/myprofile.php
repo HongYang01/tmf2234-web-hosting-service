@@ -95,12 +95,13 @@
 
                 echo "<div class='filter'>";
                 echo "<h1 class='c1 text-h1'>Subscribed Plan</h1>";
-                echo "<div class='filter-content'>
-                        <span>Sort by:</span>
-                        <button onclick='sortAllSub('default')'>Default</button>
-                        <button onclick='sortAllSub('name')'>Plan</button>
-                        <button onclick='sortAllSub('date')'>Maturity Date</button>
-                    </div>";
+                echo "<div class='filter-content'>";
+                echo "<span>Sort by:</span>";
+                echo "<button onclick=\"sortAllSub('default')\">Default</button>";
+                echo "<button onclick=\"sortAllSub('subid')\">Sub ID</button>";
+                echo "<button onclick=\"sortAllSub('date')\">Maturity Date</button>";
+                echo "</div>";
+
                 echo "</div>";
 
                 echo "<div class='right-container-bottom'>

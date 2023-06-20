@@ -135,6 +135,20 @@ $plan_detail = $plan_info['plan_detail'];
         </form>
     </div>
 
+    <dialog data-modal>
+
+        <div>
+            <h1 class="text-h1">Confirm Deactivation</h1>
+            <p>Are you sure you want to deactivate the plan? <br><br> When you turn off this plan, it becomes unavailable to new subscribers. Current subscriptions will continue until they expire, customers cancel them, or you turn the subscriptions off.</p>
+        </div>
+
+        <div class="w-100 flex-row around">
+            <button id="confirm-btn">Yes, Deactivate it now</button>
+            <button data-close-modal id="cancel-btn">No</button>
+        </div>
+
+    </dialog>
+
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php");
     ?>

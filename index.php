@@ -52,13 +52,13 @@
         </div>
 
         <section id="world-map" class="flex-col middle" style="background-color: var(--color-c1);">
-            <h1 class="c3 text-title margin-0">Server Colocation</h1>
+            <h1 class="c3 text-title">Server Colocation</h1>
             <iframe id="image-2" src="/assets/image/world_map.svg" title="logo"></iframe>
         </section>
 
         <section id="hosting-type-layout">
 
-            <h1 class="c1 text-title margin-0">Our Hosting Services</h1>
+            <h1 class="c1 text-title">Our Hosting Services</h1>
 
             <div id="hosting-type-grid">
                 <a href="/pages/shared_hosting_pricing.php">Shared</a>

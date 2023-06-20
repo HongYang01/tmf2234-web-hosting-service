@@ -1,17 +1,37 @@
 /*######################################*
-||                                    ||
 ||     Run once after page loaded     ||
-||                                    ||
 *######################################*/
 
 document.addEventListener("DOMContentLoaded", function () {
+	checkDirty();
 	addButton.dispatchEvent(new Event("click")); //simulate click
 });
 
 /*######################################*
-||                                    ||
+||        Check form is dirty         ||
+*######################################*/
+
+let formIsDirty = false;
+function checkDirty() {
+	const formInputs = document.querySelectorAll("input, select, textarea");
+	formInputs.forEach((input) => {
+		input.addEventListener("input", () => {
+			formIsDirty = true;
+		});
+	});
+
+	window.addEventListener("beforeunload", (event) => {
+		if (formIsDirty) {
+			event.preventDefault();
+			event.returnValue = "";
+		}
+	});
+}
+
+// if page reload / refresh
+
+/*######################################*
 ||  Dynamically Create Form Element   ||
-||                                    ||
 *######################################*/
 
 let counter = 0; // Counter to track the number of features
@@ -252,6 +272,7 @@ function saveNewPlanToDB(form_planInfo, PayPal_planInfo) {
 				throw new Error(data.error);
 			} else if (data.success) {
 				showPopup(data.message);
+				formIsDirty = false; // form is not dirty anymore
 				setTimeout(function () {
 					window.location.replace(location.origin + "/admin/manage_price_plan.php");
 				}, 1500);
