@@ -11,30 +11,11 @@
 
 .pricing-layout {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+	grid-template-columns: repeat(3, minmax(360px, 1fr));
 	gap: 30px;
 	text-align: center;
 	width: 100%;
 	max-width: 100%;
-}
-
-@media screen and (max-width: 720px) {
-	.pricing-layout {
-		grid-template-columns: auto;
-	}
-
-	h1 {
-		margin-bottom: 15px;
-	}
-
-	.title {
-		width: 100%;
-		flex-direction: row-reverse;
-	}
-
-	.title-content {
-		width: 100%;
-	}
 }
 
 .pricing-card {
@@ -83,4 +64,23 @@
 
 .pricing-card button[type="submit"]:hover {
 	cursor: pointer;
+}
+
+.title-content > h1 {
+	margin-bottom: 30px;
+}
+
+@media screen and (max-width: 500px) {
+	.pricing-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.title {
+		width: 100%;
+		flex-direction: row-reverse;
+	}
+
+	.title-content {
+		width: 100%;
+	}
 }

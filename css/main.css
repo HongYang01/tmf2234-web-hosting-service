@@ -82,7 +82,7 @@
 	font-family: var(--font-primary);
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 500px) {
 	:root {
 		--font-size-title: 25px;
 		--font-size-h1: 20px;
@@ -275,12 +275,6 @@ p {
 
 .text-title {
 	font-size: var(--font-size-title);
-}
-
-@media screen and (max-width: 720px) {
-	.text-title {
-		font-size: var(--font-size-h1);
-	}
 }
 
 .text-h1 {
@@ -575,10 +569,14 @@ dialog > div > button:hover {
 ||            Phone Screen            ||
 *######################################*/
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 500px) {
 	.title {
 		width: 100%;
 		flex-direction: row-reverse;
+	}
+
+	.text-title {
+		font-size: var(--font-size-h1);
 	}
 
 	.title-content {
