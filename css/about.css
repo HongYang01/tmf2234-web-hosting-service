@@ -64,7 +64,7 @@
 	row-gap: 20px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 500px) {
 	.grid-container {
 		display: grid;
 		column-gap: 32px;

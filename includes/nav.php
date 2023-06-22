@@ -34,6 +34,7 @@
     </div>
 
     </a> <!-- close logo tag -->
+
     <div class="logo" id="navSwitch">
         <img class="nav-toggle" id='menu' src="/assets/icon/menu.svg" alt="">
         <img class="nav-toggle hidden" src="/assets/icon/close.svg" alt="">

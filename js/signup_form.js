@@ -75,30 +75,33 @@ function checkPasswordValididy() {
 		err4.innerHTML = "Field cannot be empty";
 		err4.style.display = "block";
 		return false;
-	} else {
-		err4.style.display = "none";
-		if (pwd.value.length < 8) {
-			err4.innerHTML = "Password must be at least 8 characters";
-			err4.style.display = "block";
-			return false;
-		} else {
-			err4.style.display = "none";
-		}
+	}
+
+	err4.style.display = "none";
+
+	if (
+		!/[A-Z]/.test(pwd.value) ||
+		!/[a-z]/.test(pwd.value) ||
+		!/\d/.test(pwd.value) ||
+		!/[!@#$%^&*]/.test(pwd.value)
+	) {
+		err4.innerHTML = "Password must be at least 8 characters and <br> contain mixed characters";
+		err4.style.display = "block";
+		return false;
 	}
 
 	if (!c_pwd.value.trim()) {
 		err5.innerHTML = "Field cannot be empty";
 		err5.style.display = "block";
 		return false;
-	} else {
-		err5.style.display = "none";
-		if (c_pwd.value !== pwd.value) {
-			err5.innerHTML = "Password does not match";
-			err5.style.display = "block";
-			return false;
-		} else {
-			err5.style.display = "none";
-		}
+	}
+
+	err5.style.display = "none";
+
+	if (c_pwd.value !== pwd.value) {
+		err5.innerHTML = "Password does not match";
+		err5.style.display = "block";
+		return false;
 	}
 
 	return true;
