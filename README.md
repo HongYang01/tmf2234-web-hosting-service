@@ -10,16 +10,17 @@
 - **79260** EE CHEE FAT
 - **79027** CHAI CHENG KANG
 
+This project is intended strictly for educational purposes. It is important to note that no tangible costs will be accrued. We wish to emphasize that any potential loss or damage to assets cannot be attributed to our accountability. We advise exercising caution and assuming full responsibility when opting to download and install this software.
+
 ---
 
-## ⚠️ Important!
+## ⚠️ Important Pre-requisite!
 
 This web application must be develop **_ONLINE_**, because the belows are implemented:
 
 1. [PayPal Subscription](https://developer.paypal.com/docs/subscriptions/)
+   - Ask credentials from developer or; use your own client ID & secret
 2. [Chart.js](https://www.chartjs.org/)
-
----
 
 ## 🌐 Deploying Website To Local Machine
 
@@ -28,7 +29,7 @@ This web application must be develop **_ONLINE_**, because the belows are implem
 
 ### Option 1
 
-1. Clear your `xampp/htdocs/` directory and replace it with this project files
+1. Empty your `xampp/htdocs/` directory and replace it with all the project files
 
 ### Option 2
 
@@ -56,6 +57,25 @@ DocumentRoot "path/to/your/project/folder"
 7. Done, try `localhost/index.php`
 
 </details>
+
+## 🔑 Setup Composer for _dotenv_ Environment
+
+<details>
+<summary>Click to expand!</summary><br>
+
+1. Download [Composer.exe](https://getcomposer.org/download/#:~:text=from%20any%20directory.-,Download%20and%20run,-Composer%2DSetup.exe) (v2.5.8 as of 08-Aug-2023) [Video Tutorial](https://www.youtube.com/watch?v=0WKvSplDxBY)
+2. Install as default setting
+
+#### If missing `dotenv` folder
+
+3. Create a `dotenv` folder
+4. Open vsCode terminal, `cd dotenv`
+5. type in `composer require vlucas/phpdotenv`
+6. Will see the package installed: `composer.json` & `composer.lock`
+
+</details>
+
+---
 
 ## ☁️ How To Host Website Temporarily Using _ngrok_ (FREE)
 
@@ -86,7 +106,7 @@ DocumentRoot "path/to/your/project/folder"
 
 </details>
 
-## ✉️ Generate PDF Receipt using FPDF
+## 🧾 Generate PDF Receipt using FPDF
 
 <details>
 <summary>Click to expand!</summary><br>
@@ -146,12 +166,7 @@ verify method  : password_verify("YOUR_PASSWORD", $hash);
 
 ### Paypal Credentials
 
-| Role   | Email                                 | Region | PWD      | Usage                                                       |
-| ------ | ------------------------------------- | :----: | -------- | ----------------------------------------------------------- |
-| USER   | sb-tehix25986425@personal.example.com |   US   | iH!y;g8r | testing payment                                             |
-| VENDOR | sb-tqzkp25986426@business.example.com |   US   | 8i)8L$MI | [manage plan](https://www.sandbox.paypal.com/billing/plans) |
-
-Merchant ID: 425G855NZ29R6
+Ask from developer
 
 </details>
 
@@ -167,6 +182,8 @@ project/
 ├── auth/
 ├── config/
 ├── css/
+├── dotenv/
+│   └── vendor/
 ├── Error/
 ├── handlers/
 ├── includes/
