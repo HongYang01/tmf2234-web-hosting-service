@@ -1,18 +1,25 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . "/dotenv/vendor/autoload.php";
+
+use Dotenv\Dotenv as Dotenv;
+
+// Get dotenv
+try {
+
+    $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+    $dotenv->load();
+} catch (Exception $e) {
+    // Connection error occurred
+    header("Location: /Error/404.php");
+    exit;
+}
+
 // Paypal API Credentials
-define("CLIENT_ID", "AcGiJABvQOLZrBw6RVcGvIRfjb7hUqlsbBVjvmake2oKdTjC3RtPMfvFI2wv0u99rKmkZpgTddQyva1v");
-define("CLIENT_SECRET", "EMgusAapAohRmqlHBxQSuBJaO5BV9zJL2hZwMzk3LyRLsxiH4NYQqwqGpHTL8kGeksPiLWAah5fUgvwo");
+define("CLIENT_ID", $_ENV['PAYPAL_CLIENT_ID']);
+define("CLIENT_SECRET", $_ENV['PAYPAL_CLIENT_SECRET']);
 define("SUCCESS_URL", "/vendor/paypal_payment_success.php");
 define("ERR_URL", "/vendor/paypal_payment_error.php");
-// define("MERCHANT_ID", "2J6QB8YJQSJRJ"); // not used
-// define("WEBHOOK_ID", "4RJ19380EM6204022"); // webhookID
-
-// Database Credentials
-define("DB_HOST", "localhost");
-define("DB_USERNAME", "root");
-define("DB_PASSWORD", "");
-define("DB_NAME", "id20654951_semicolonix");
 
 function PAYPAL_HTTP_ERR_MSG(int $http_code)
 {
