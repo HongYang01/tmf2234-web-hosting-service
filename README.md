@@ -1,3 +1,5 @@
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FHongYang01%2Ftmf2234-web-hosting-service&label=Visitors&labelColor=%23697689&countColor=%23d9e3f0)
+
 # TMN2234 (G03) Web Based System Development Assignment
 
 ## Project: Web Hosting Service
