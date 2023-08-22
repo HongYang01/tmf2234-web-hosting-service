@@ -1,4 +1,5 @@
-![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FHongYang01%2Ftmf2234-web-hosting-service&label=Visitors&labelColor=%23697689&countColor=%23d9e3f0)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FHongYang01%2Ftmf2234-web-hosting-service&labelColor=%23d9e3f0&countColor=%23697689&style=flat&labelStyle=lower)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FHongYang01%2Ftmf2234-web-hosting-service)
+![GitHub contributors](https://img.shields.io/github/contributors/HongYang01/tmf2234-web-hosting-service?labelColor=%23d9e3f0&color=%23697689)
 
 # TMN2234 (G03) Web Based System Development Assignment
 
